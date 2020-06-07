@@ -1,0 +1,9 @@
+https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json
+
+https://opendata.dwd.de/climate_environment/health/alerts/Beschreibung_pollen_s31fg.pdf
+
+https://github.com/Pix---/vis_widget_dwd_pollenflug
+
+https://play.google.com/store/search?q=pollen&c=apps&hl=en_US
+
+

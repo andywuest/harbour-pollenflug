@@ -17,14 +17,31 @@ CONFIG += sailfishapp
 SOURCES += src/harbour-pollenflug.cpp
 
 DISTFILES += qml/harbour-pollenflug.qml \
+    qml/components/PollenIconTextSwitch.qml \
+    qml/components/PollenRow.qml \
+    qml/components/PollenTile.qml \
+    qml/components/PollenTitleRow.qml \
+    qml/components/thirdparty/LabelText.qml \
     qml/cover/CoverPage.qml \
+    qml/js/constants.js \
+    qml/js/functions.js \
     qml/pages/OverviewPage.qml \
+    qml/pages/AboutPage.qml \
+    qml/pages/SettingsPage.qml \
     qml/pages/SecondPage.qml \
     rpm/harbour-pollenflug.changes.in \
     rpm/harbour-pollenflug.changes.run.in \
     rpm/harbour-pollenflug.spec \
     rpm/harbour-pollenflug.yaml \
     translations/*.ts \
+    qml/pages/icons/ambrosia.svg \
+    qml/pages/icons/beifuss.svg \
+    qml/pages/icons/birke.svg \
+    qml/pages/icons/erle.svg \
+    qml/pages/icons/esche.svg \
+    qml/pages/icons/graeser.svg \
+    qml/pages/icons/hasel.svg \
+    qml/pages/icons/roggen.svg \
     harbour-pollenflug.desktop
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172

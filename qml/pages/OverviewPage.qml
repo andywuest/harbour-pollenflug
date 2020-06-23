@@ -34,7 +34,6 @@ Page {
             }
         }
 
-
         // Tell SilicaFlickable the height of its content.
         contentHeight: column.height
 
@@ -44,13 +43,7 @@ Page {
             id: column
 
             width: page.width
-            //height: 800
             spacing: Theme.paddingLarge
-            // y: Theme.paddingLarge
-
-//            PageHeader {
-//                title: qsTr("UI Template")
-//            }
 
             SilicaListView {
                 id: pollenListView
@@ -86,139 +79,12 @@ Page {
                         }
                     }
                 }
-
-
-
-//                delegate: ListItem {
-//                    width: parent.width
-
-//                    PollenRow {
-
-//                    tileImage: imageSource
-//                    headerLabel: label
-//                }
             }
-
-
-
-
-//            Label {
-//                x: Theme.horizontalPageMargin
-//                text: qsTr("Hello Sailors")
-//                color: Theme.secondaryHighlightColor
-//                font.pixelSize: Theme.fontSizeExtraLarge
-//            }
-
-
-//            Column {
-//                width: parent.width
-//                height: 800
-//                Label {
-//                    text: qsTr("Gräser")
-//                }
-
-//            PollenRow {
-//                width: parent.width
-//                tileImage: "../icons/erle.svg"
-//                headerLabel: qsTr("Erle")
-//            }
-
-//            Separator {
-//                width: parent.width
-//                color: Theme.primaryColor
-//                horizontalAlignment: Qt.AlignHCenter
-//            }
-
-//            PollenRow {
-//                width: parent.width
-//                tileImage: "../icons/ambrosia.svg"
-//                headerLabel: qsTr("Ambrosia")
-//            }
-
-//            Separator {
-//                width: parent.width
-//                color: Theme.primaryColor
-//                horizontalAlignment: Qt.AlignHCenter
-//            }
-
-//            PollenRow {
-//                width: parent.width
-//                tileImage: "../icons/graeser.svg"
-//                headerLabel: qsTr("Gräser")
-//            }
-
-//            Separator {
-//                width: parent.width
-//                color: Theme.primaryColor
-//                horizontalAlignment: Qt.AlignHCenter
-//            }
-
-
-//            PollenRow {
-//                width: parent.width
-//                tileImage: "../icons/birke.svg"
-//                headerLabel: qsTr("Birke")
-//            }
-
-//            Separator {
-//                width: parent.width
-//                color: Theme.primaryColor
-//                horizontalAlignment: Qt.AlignHCenter
-//            }
-
-
-
-
-//                Row {
-//                    width: parent.width
-//                    Label {
-//                        width: parent.width
-//                        horizontalAlignment: Text.AlignHCenter
-//                        font.pixelSize: Theme.fontSizeLarge
-//                        font.bold: true
-//                        text: qsTr("Gräser")
-//                    }
-//                }
-
-//                Row {
-//                    width: parent.width
-//                    height: parent.height
-
-//                    PollenTile {
-//                        width: parent.width / 3
-//                        label: qsTr("Heute")
-//                        tileImage: "../icons/erle.svg"
-//                    }
-
-//                    PollenTile {
-//                        width: parent.width / 3
-//                        label: qsTr("Morgen")
-//                        tileImage: "../icons/erle.svg"
-//                    }
-
-//                    PollenTile {
-//                        width: parent.width / 3
-//                        label: qsTr("01.07.2020")
-//                        tileImage: "../icons/erle.svg"
-//                    }
-//                }
-
-
-
-            }
-
-
-
-
-
-
-
- //       }
+        }
     }
 
     Component.onCompleted: {
         Functions.addPollenToModel(pollenModel, pollenflugSettings)
         console.log(pollenModel.count)
     }
-
 }

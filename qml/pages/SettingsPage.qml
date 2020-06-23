@@ -1,3 +1,4 @@
+
 /*
  * harbour-watchlist - Sailfish OS Version
  * Copyright © 2017 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
@@ -20,8 +21,6 @@ import QtQuick.LocalStorage 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
-// TODO import
-
 // QTBUG-34418
 import "."
 
@@ -33,21 +32,11 @@ import "../js/constants.js" as Constants
 Page {
     id: settingsPage
     property int iconSize: 64
-    property bool isAshTreeSelected: false
-    property bool isAlderSelected: false
-    property bool isGrassPollenSelected: false
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
-            console.log("store settings!");
-//            if (settingsPage.currentDataBackend !== pollenflugSettings.dataBackend) {
-//                console.log("reset application database");
-//                Database.resetApplication()
-//                Database.initApplicationTables()
-//            }
-            console.log("isAshTreeSelected : " + pollenflugSettings.isAshTreeSelected);
-            console.log("isAlderSelected : " + pollenflugSettings.isAlderSelected);
-            pollenflugSettings.sync();
+            console.log("storing settings!")
+            pollenflugSettings.sync()
         }
     }
 
@@ -105,7 +94,7 @@ Page {
             ComboBox {
                 id: partRegionComboBox
                 //: SettingsPage download news data
-                label: qsTr("Region")
+                label: qsTr("Gegend")
                 currentIndex: watchlistSettings.newsDataDownloadStrategy
                 //: SettingsPage download strategy explanation
                 description: qsTr("Defines strategy to download the news data")
@@ -121,7 +110,8 @@ Page {
 
                     // so far - there is no manually - maybe a button in the future
                     onActivated: {
-                        watchlistSettings.newsDataDownloadStrategy = index
+
+                        //watchlistSettings.newsDataDownloadStrategy = index
                     }
                 }
             }
@@ -185,155 +175,6 @@ Page {
                     pollenflugSettings.isRyeSelected = checked
                 }
             }
-
-
-
-/*
-
-            IconTextSwitch {
-                text: Constants.POLLEN_DATA_MAP[Constants.ASH_TREE_ID].label
-                icon.source: Constants.POLLEN_DATA_MAP[Constants.ASH_TREE_ID].imageSource
-                checked: pollenflugSettings.isAshTreeSelected
-                icon.width: iconSize
-                icon.height: iconSize
-                onCheckedChanged: {
-                    pollenflugSettings.isAshTreeSelected = checked
-                }
-            }
-
-            IconTextSwitch {
-                text: qsTr("Erle")
-                icon.source: "../icons/erle.svg"
-                description: "Description for Erle"
-                checked: pollenflugSettings.isAlderSelected
-                icon.width: iconSize
-                icon.height: iconSize
-                onCheckedChanged: {
-                    pollenflugSettings.isAlderSelected = checked
-                }
-            }
-
-            IconTextSwitch {
-                text: qsTr("Gräser")
-                icon.source: "../icons/erle.svg"
-                description: "Description for Gräser"
-                checked: pollenflugSettings.isGrassPollenSelected
-                icon.width: iconSize
-                icon.height: iconSize
-                onCheckedChanged: {
-                    pollenflugSettings.isGrassPollenSelected = checked
-                }
-            }
-            */
-
-            ComboBox {
-                id: chartDataDownloadComboBox
-                //: SettingsPage download chart data
-                label: qsTr("Download chart data")
-                currentIndex: watchlistSettings.chartDataDownloadStrategy
-                //: SettingsPage download strategy explanation
-                description: qsTr("Defines strategy to download the chart data")
-                menu: ContextMenu {
-                    MenuItem {
-                        //: SettingsPage download strategy always
-                        text: qsTr("Always")
-                    }
-                    MenuItem {
-                        //: SettingsPage download strategy only on wifi
-                        text: qsTr("Only on WiFi")
-                    }
-                    MenuItem {
-                        //: SettingsPage download strategy only manually
-                        text: qsTr("Only manually")
-                    }
-                    onActivated: {
-                        watchlistSettings.chartDataDownloadStrategy = index
-                    }
-                }
-            }
-
-            ComboBox {
-                id: sortingOrderComboBox
-                //: SettingsPage sorting order watchlist page
-                label: qsTr("Sorting order")
-                currentIndex: watchlistSettings.sortingOrder
-                //: SettingsPage sorting order description
-                description: qsTr("Defines sorting order of watchlist entries")
-                menu: ContextMenu {
-                    MenuItem {
-                        //: SettingsPage sorting order by change
-                        text: qsTr("By change")
-                    }
-                    MenuItem {
-                        //: SettingsPage sorting order by name
-                        text: qsTr("By name")
-                    }
-                    onActivated: {
-                        watchlistSettings.sortingOrder = index
-                    }
-                }
-            }
-
-            ComboBox {
-                id: dataBackendComboBox
-                //: SettingsPage data backend for watchlist
-                label: qsTr("Data Backend")
-                currentIndex: watchlistSettings.dataBackend
-                //: SettingsPage data backend for watchlist description
-                description: qsTr("Data backend to be used for the watchlist")
-                menu: ContextMenu {
-                    MenuItem {
-                        //: SettingsPage data backend Euroinvestor (default)
-                        text: qsTr("Euroinvestor")
-                    }
-                    MenuItem {
-                        //: SettingsPage data backend Moscow Exchange
-                        text: qsTr("Moscow Exchange")
-                    }
-                    onActivated: {
-                        watchlistSettings.dataBackend = index
-                    }
-                }
-            }
-
-            Label {
-                id: dataBackendLabel
-                text: qsTr("NOTE: Changing the data backend will reset the database. This means that the current watchlist will be reset and the stocks have to be added again!")
-                font.pixelSize: Theme.fontSizeSmall
-                padding: Theme.paddingLarge
-                width: parent.width - 2 * Theme.paddingLarge
-                wrapMode: Text.Wrap
-            }
-
-            ComboBox {
-                id: newsDataDownloadComboBox
-                //: SettingsPage download news data
-                label: qsTr("Download news data")
-                currentIndex: watchlistSettings.newsDataDownloadStrategy
-                //: SettingsPage download strategy explanation
-                description: qsTr("Defines strategy to download the news data")
-                menu: ContextMenu {
-                    MenuItem {
-                        //: SettingsPage news download strategy always
-                        text: qsTr("Always")
-                    }
-                    MenuItem {
-                        //: SettingsPage news download strategy only on wifi
-                        text: qsTr("Only on WiFi")
-                    }
-                    // so far - there is no manually - maybe a button in the future
-                    onActivated: {
-                        watchlistSettings.newsDataDownloadStrategy = index
-                    }
-                }
-            }
-
-        }
-
-        Component.onCompleted: {
-            settingsPage.isAlderSelected = pollenflugSettings.isAlderSelected;
-            settingsPage.isAshTreeSelected = pollenflugSettings.isAshTreeSelected;
-            settingsPage.isGrassPollenSelected = pollenflugSettings.isGrassPollenSelected;
         }
     }
 }

@@ -40,3 +40,21 @@ function buildPollenMap(pollenList) {
 
 var POLLEN_DATA_LIST = buildPollenList();
 var POLLEN_DATA_MAP = buildPollenMap(POLLEN_DATA_LIST);
+
+function buildGermanRegionIdToPartRegions() {
+    var partRegionIdMap = [];
+    partRegionIdMap[10] = [qsTr("Inseln und Marschen"), qsTr("Geest, Schleswig-Holstein und Hamburg")];
+    partRegionIdMap[30] = [qsTr("Westl. Niedersachsen/Bremen"), qsTr("Östl. Niedersachsen")];
+    partRegionIdMap[40] = [qsTr("Rhein.-Westfäl. Tiefland"), qsTr("Ostwestfalen"), qsTr("Mittelgebirge NRW")];
+    partRegionIdMap[60] = [qsTr("Tiefland Sachsen-Anhalt"), qsTr("Harz")];
+    partRegionIdMap[70] = [qsTr("Tiefland Thüringen"), qsTr("Mittelgebirge Thüringen")];
+    partRegionIdMap[80] = [qsTr("Tiefland Sachsen"), qsTr("Mittelgebirge Sachsen")];
+    partRegionIdMap[90] = [qsTr("Nordhessen und hess. Mittelgebirge"), qsTr("Rhein-Main")];
+    partRegionIdMap[100] = [qsTr("Rhein, Pfalz, Nahe und Mosel"), qsTr("Mittelgebirgsbereich Rheinland-Pfalz"), qsTr("Saarland")];
+    partRegionIdMap[110] = [qsTr("Oberrhein und unteres Neckartal"), qsTr("Hohenlohe/mittlerer Neckar/Oberschwaben"), qsTr("Mittelgebirge Baden-Württemberg")];
+    partRegionIdMap[120] = [qsTr("Allgäu/Oberbayern/Bay. Wald"), qsTr("Donauniederungen"), qsTr("Bayern n. der Donau, o. Bayr. Wald, o. Mainfranken"), qsTr("Mainfranken")];
+    return partRegionIdMap;
+}
+
+var GERMAN_REGION_ID_TO_PART_REGIONS = buildGermanRegionIdToPartRegions();
+

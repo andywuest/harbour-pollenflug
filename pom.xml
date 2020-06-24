@@ -19,7 +19,7 @@
           <!--  <header>license-header.txt</header>    -->
           <properties>
             <owner>Andreas Wüst</owner>
-            <license.years>2019</license.years>
+            <license.years>2020</license.years>
             <email>andreas.wuest.freelancer@gmail.com</email>
           </properties>
           <dryRun>false</dryRun>

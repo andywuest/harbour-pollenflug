@@ -1,4 +1,3 @@
-
 /*
  * harbour-watchlist - Sailfish OS Version
  * Copyright © 2017 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
@@ -25,18 +24,34 @@ import Nemo.Configuration 1.0
 import "."
 
 import "../components"
-
-// import "../js/database.js" as Database
 import "../js/constants.js" as Constants
 
 Page {
     id: settingsPage
     property int iconSize: 64
+    property var partRegionNames: []
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
+            console.log("region : " + pollenflugSettings.region)
+            console.log("partRegion : " + pollenflugSettings.partRegion)
             pollenflugSettings.sync()
+        }
+    }
+
+    function populatePartRegions(partRegionId) {
+        var partRegionList = Constants.GERMAN_REGION_ID_TO_PART_REGIONS[partRegionId];
+        partRegionComboBox.currentIndex = -1;
+        if (partRegionList && partRegionList.length > 0) {
+            console.log("new region parts : " + partRegionList);
+            partRegionNames = partRegionList;
+            partRegionRepeater.model = partRegionList.length;
+            partRegionComboBox.visible = true;
+        } else {
+            partRegionNames = [];
+            partRegionRepeater.model = 0;
+            partRegionComboBox.visible = false;
         }
     }
 
@@ -65,53 +80,83 @@ Page {
 
             ComboBox {
                 id: regionComboBox
-                //: SettingsPage download news data
+                //: SettingsPage region
                 label: qsTr("Region")
-                currentIndex: watchlistSettings.newsDataDownloadStrategy
-                //: SettingsPage download strategy explanation
-                description: qsTr("Defines strategy to download the news data")
+                currentIndex: pollenflugSettings.region
+                //: SettingsPage region description
+                description: qsTr("Select the state where you live")
                 menu: ContextMenu {
                     MenuItem {
-                        //: SettingsPage news download strategy always
-                        text: qsTr("Schleswig-Holstein und Hamburg")
+                        text: qsTr("Schleswig-Holstein und Hamburg") // 10
+                        onClicked: populatePartRegions(10);
                     }
                     MenuItem {
-                        //: SettingsPage news download strategy only on wifi
-                        text: qsTr("Mecklenburg-Vorpommern")
+                        text: qsTr("Mecklenburg-Vorpommern") // 20
+                        onClicked: populatePartRegions(20);
                     }
                     MenuItem {
-                        //: SettingsPage news download strategy only on wifi
-                        text: qsTr("Niedersachsen und Bremen")
+                        text: qsTr("Niedersachsen und Bremen") // 30
+                        onClicked: populatePartRegions(30);
                     }
-
-                    // so far - there is no manually - maybe a button in the future
+                    MenuItem {
+                        text: qsTr("Nordrhein-Westfalen") // 40
+                        onClicked: populatePartRegions(40);
+                    }
+                    MenuItem {
+                        text: qsTr("Brandenburg und Berlin") // 50
+                        onClicked: populatePartRegions(50);
+                    }
+                    MenuItem {
+                        text: qsTr("Sachsen-Anhalt") // 60
+                        onClicked: populatePartRegions(60);
+                    }
+                    MenuItem {
+                        text: qsTr("Thüringen") // 70
+                        onClicked: populatePartRegions(70);
+                    }
+                    MenuItem {
+                        text: qsTr("Sachsen") // 80
+                        onClicked: populatePartRegions(80);
+                    }
+                    MenuItem {
+                        text: qsTr("Hessen") // 90
+                        onClicked: populatePartRegions(90);
+                    }
+                    MenuItem {
+                        text: qsTr("Rheinland-Pfalz und Saarland") // 100
+                        onClicked: populatePartRegions(100);
+                    }
+                    MenuItem {
+                        text: qsTr("Baden-Württemberg") // 110
+                        onClicked: populatePartRegions(110);
+                    }
+                    MenuItem {
+                        text: qsTr("Bayern") // 120
+                        onClicked: populatePartRegions(120);
+                    }
                     onActivated: {
-                        watchlistSettings.newsDataDownloadStrategy = index
+                        pollenflugSettings.region = index
                     }
                 }
             }
 
             ComboBox {
                 id: partRegionComboBox
-                //: SettingsPage download news data
+                //: SettingsPage part region
                 label: qsTr("Gegend")
-                currentIndex: watchlistSettings.newsDataDownloadStrategy
-                //: SettingsPage download strategy explanation
-                description: qsTr("Defines strategy to download the news data")
+                currentIndex: pollenflugSettings.partRegion
+                //: SettingsPage part region description
+                description: qsTr("Select the region where you live")
                 menu: ContextMenu {
-                    MenuItem {
-                        //: SettingsPage news download strategy always
-                        text: qsTr("Westl. Niedersachsen/Bremen")
+                    Repeater {
+                        id: partRegionRepeater
+                        model: 0
+                        MenuItem {
+                            text: settingsPage.partRegionNames[index]
+                        }
                     }
-                    MenuItem {
-                        //: SettingsPage news download strategy only on wifi
-                        text: qsTr("Östl. Niedersachsen")
-                    }
-
-                    // so far - there is no manually - maybe a button in the future
                     onActivated: {
-
-                        //watchlistSettings.newsDataDownloadStrategy = index
+                        pollenflugSettings.partRegion = index
                     }
                 }
             }
@@ -177,4 +222,17 @@ Page {
             }
         }
     }
+
+    Component.onCompleted: {
+        console.log("read config value : " + pollenflugSettings.region + "/" + pollenflugSettings.partRegion);
+        regionComboBox.currentIndex = pollenflugSettings.region;
+        populatePartRegions((pollenflugSettings.region + 1) * 10);
+        if (pollenflugSettings.partRegion) {
+            if (pollenflugSettings.partRegion >= 0) {
+                partRegionComboBox.currentIndex = 1;
+                partRegionComboBox.currentIndex = pollenflugSettings.partRegion;
+            }
+        }
+    }
+
 }

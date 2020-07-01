@@ -14,7 +14,9 @@ TARGET = harbour-pollenflug
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-pollenflug.cpp
+SOURCES += src/harbour-pollenflug.cpp \
+    src/germanpollenbackend.cpp \
+    src/pollenflug.cpp
 
 DISTFILES += qml/harbour-pollenflug.qml \
     qml/components/PollenIconTextSwitch.qml \
@@ -55,3 +57,8 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-pollenflug-de.ts
+
+HEADERS += \
+    src/constants.h \
+    src/germanpollenbackend.h \
+    src/pollenflug.h

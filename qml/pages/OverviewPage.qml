@@ -13,6 +13,49 @@ Page {
     allowedOrientations: Orientation.All
 
     property int iconSize: 92
+    property var nodeData: ({})
+
+    function connectSlots() {
+        console.log("connect - slots");
+        var dataBackend = Functions.getDataBackend();
+        dataBackend.pollenDataAvailable.connect(pollenDataAvailable);
+        dataBackend.requestError.connect(errorResultHandler);
+    }
+
+    function disconnectSlots() {
+        console.log("disconnect - slots");
+        var dataBackend = Functions.getDataBackend();
+        dataBackend.pollenDataAvailable.disconnect(pollenDataAvailable);
+        dataBackend.requestError.disconnect(errorResultHandler);
+    }
+
+    function pollenDataAvailable(result) {
+        console.log(result);
+        var jsonResult = JSON.parse(result);
+
+        if (pollenflugSettings.region) {
+            var region = (pollenflugSettings.region + 1) * 10;
+            var partRegion = region + (pollenflugSettings.partRegion + 1);
+
+            var node = Constants.findPollenNode(region, partRegion, jsonResult.content);
+            nodeData = node;
+
+            pollenModel.clear();
+            Functions.addPollenToModel(pollenModel, pollenflugSettings);
+        }
+
+
+//        var pullution = Constants.getPollution(Constants.GRASS_ID, node);
+//        console.log("Pollution : " + pullution.today)
+//        console.log("Pollution : " + pullution.tomorrow)
+//        console.log("Pollution : " + pullution.dayafter_to)
+
+    }
+
+    function errorResultHandler(result) {
+//        stockUpdateProblemNotification.show(result)
+//        loaded = true;
+    }
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
@@ -28,9 +71,14 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
-                //: OverviewPage about menu item
+                //: OverviewPage settings menu item
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+            MenuItem {
+                //: OverviewPage refrehs menu item
+                text: qsTr("Refresh")
+                onClicked: germanPollenBackend.fetchPollenData();
             }
         }
 
@@ -44,6 +92,12 @@ Page {
 
             width: page.width
             spacing: Theme.paddingLarge
+
+//            PageHeader {
+//                id: stockQuotesHeader
+//                //: OverviewPage header
+//                title: qsTr("Allergene")
+//            }
 
             SilicaListView {
                 id: pollenListView
@@ -69,6 +123,8 @@ Page {
                             width: parent.width
                             tileImage: imageSource
                             headerLabel: label
+                            pollenId: id
+                            pollenData: nodeData
                         }
 
                         Separator {
@@ -85,6 +141,8 @@ Page {
 
     Component.onCompleted: {
         Functions.addPollenToModel(pollenModel, pollenflugSettings)
-        console.log(pollenModel.count)
+        // console.log(pollenModel.count)
+        connectSlots();
+        // germanPollenBackend.fetchPollenData();
     }
 }

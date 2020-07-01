@@ -1,5 +1,5 @@
 /*
- * harbour-watchlist - Sailfish OS Version
+ * harbour-pollenflug - Sailfish OS Version
  * Copyright © 2017 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,11 +21,8 @@ import Sailfish.Silica 1.0
 
 import "../components/thirdparty"
 
-//import "../js/database.js" as Database
-
 Page {
     id: aboutPage
-//    property bool showInfos: false
 
     SilicaFlickable {
         id: aboutPageFlickable
@@ -51,9 +48,10 @@ Page {
                     margins: Theme.paddingLarge
                 }
                 //: AboutPage title - about text title
-                label: qsTr("About Watchlist")
+                label: qsTr("About Pollenflug")
                 //: AboutPage text - about text
-                text: qsTr("This is app is a simple stock watchlist for Sailfish OS. Watchlist is open source and licensed under the GPL v3.")
+                // TODO fixme
+                text: qsTr("If you have an allergy you can watch the pollen situtation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.")
                 separator: true
             }
 
@@ -89,9 +87,6 @@ Page {
                     separator: true
                     color: clickableUrlAuthor.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
-//                onClicked: {
-//                    aboutPage.showInfos = !aboutPage.showInfos;
-//                }
             }
 
 //            LabelText {
@@ -104,18 +99,6 @@ Page {
 //                text: qsTr("Viacheslav Dikonov (ru)") + "\n" +
 //                      "Åke Engelbrektson (sv)\n" +
 //                      "@KhanPuking (zh_CN)"
-//                separator: true
-//            }
-
-//            LabelText {
-//                anchors {
-//                    left: parent.left
-//                    margins: Theme.paddingLarge
-//                }
-//                //: AboutPage contributors label
-//                label: qsTr("Contributors")
-//                text: "Okxa (icon)\n" +
-//                      "dikonov (small patch)"
 //                separator: true
 //            }
 
@@ -141,19 +124,6 @@ Page {
                 }
                 onClicked: Qt.openUrlExternally(labelUrl.text)
             }
-
-//            LabelText {
-//                visible: aboutPage.showInfos
-//                anchors {
-//                    left: parent.left
-//                    margins: Theme.paddingLarge
-//                }
-//                //: AboutPage translators label
-//                label: qsTr("Debug Infos")
-//                text: "WiFi : " + (watchlist.isWiFi() ? "on" : "off") +
-//                      "\n" + qsTr("Screen size : ") + aboutPage.width + "x" + aboutPage.height;
-//                separator: true
-//            }
         }
     }
 

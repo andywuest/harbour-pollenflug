@@ -4,17 +4,23 @@
 
 #include <sailfishapp.h>
 
-int main(int argc, char *argv[])
-{
-    // SailfishApp::main() will display "qml/harbour-pollenflug.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //   - SailfishApp::pathToMainQml() to get a QUrl to the main QML file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
+#include "pollenflug.h"
 
-    return SailfishApp::main(argc, argv);
+int main(int argc, char *argv[]) {
+    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    QScopedPointer<QQuickView> view(SailfishApp::createView());
+
+    QQmlContext *context = view.data()->rootContext();
+    Pollenflug pollenflug;
+    context->setContextProperty("pollenflug", &pollenflug);
+
+    GermanPollenBackend *germanPollenBackend = pollenflug.getGermanPollenBackend();
+    context->setContextProperty("germanPollenBackend", germanPollenBackend);
+
+
+    context->setContextProperty("applicationVersion", QString("0.1")); // TODO
+
+    view->setSource(SailfishApp::pathTo("qml/harbour-pollenflug.qml"));
+    view->show();
+    return app->exec();
 }

@@ -5,9 +5,11 @@ Column {
     id: pollenTile
 
     property int iconSize: 70
+    property int pollutionIndex: -1
 
-    property alias label: label.text
-    property alias tileImage: pollenImage.source
+    property alias dateLabel: dateLabel.text
+    property alias pollutionLabel: pollutionLabel.text
+    //property alias tileImage: pollenImage.source
     property var colors: ["#006400", "#228b22", "#7cfc00", "#ffff00", "#ee9a00", "#cd0000", "#8b3a62"]
     property var borderColors: ["", "", "", "", "", "", ""]
     // https://cssgenerator.org/rgba-and-hex-color-generator.html
@@ -16,7 +18,7 @@ Column {
     spacing: Theme.paddingLarge
 
     Label {
-        id: label
+        id: dateLabel
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Theme.fontSizeSmall
@@ -26,22 +28,20 @@ Column {
     }
 
     Label {
-        id: dd
+        id: pollutionLabel
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Theme.fontSizeExtraSmall
-        text: "mittel / sehr sehr hoch"
         wrapMode: Label.WordWrap
-        //visible: false
     }
 
-    Image {
-        id: pollenImage
-        visible: false // TODO
-        width: iconSize
-        height: iconSize
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
+//    Image {
+//        id: pollenImage
+//        visible: false // TODO
+//        width: iconSize
+//        height: iconSize
+//        anchors.horizontalCenter: parent.horizontalCenter
+//    }
 
     Row {
         id: indicatorRow
@@ -56,8 +56,7 @@ Column {
                 width: parent.width / 7
                 height: parent.width / 7
                 border.color: Theme.highlightColor
-                // color: "transparent"
-                color: colors[index]
+                color: (index <= pollutionIndex ? colors[index] : "transparent")
                 border.width: 1
             }
         }

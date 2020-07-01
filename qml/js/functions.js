@@ -20,3 +20,7 @@ function addIfActive(list, index, currentId, active, model) {
         console.log("added pollen : " + list[index].label);
     }
 }
+
+function getDataBackend() {
+    return germanPollenBackend;
+}

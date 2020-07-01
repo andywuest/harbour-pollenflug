@@ -30,6 +30,7 @@ Page {
     id: settingsPage
     property int iconSize: 64
     property var partRegionNames: []
+//    property int initialPartRegion
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
@@ -48,6 +49,7 @@ Page {
             partRegionNames = partRegionList;
             partRegionRepeater.model = partRegionList.length;
             partRegionComboBox.visible = true;
+            partRegionComboBox.currentIndex = -1
         } else {
             partRegionNames = [];
             partRegionRepeater.model = 0;
@@ -152,12 +154,31 @@ Page {
                         id: partRegionRepeater
                         model: 0
                         MenuItem {
-                            text: settingsPage.partRegionNames[index]
+                            text: (index < settingsPage.partRegionNames.length) ? settingsPage.partRegionNames[index] : "";
                         }
+
+                        onModelChanged: {
+                            console.log("model changed");
+//                            if (initialPartRegion) {
+//                                console.log("initial part region : " + initialPartRegion);
+//                                partRegionComboBox.currentIndex = initialPartRegion;
+//                            }
+                        }
+
                     }
                     onActivated: {
                         pollenflugSettings.partRegion = index
                     }
+                    onActiveChanged: {
+                        console.log("active changed ")
+                    }
+                    onStateChanged: {
+                        console.log("state changed");
+                    }
+                    onChildrenChanged: {
+                        console.log("chidlren changed");
+                    }
+
                 }
             }
 
@@ -227,12 +248,16 @@ Page {
         console.log("read config value : " + pollenflugSettings.region + "/" + pollenflugSettings.partRegion);
         regionComboBox.currentIndex = pollenflugSettings.region;
         populatePartRegions((pollenflugSettings.region + 1) * 10);
-        if (pollenflugSettings.partRegion) {
+        //if (pollenflugSettings.partRegion) {
             if (pollenflugSettings.partRegion >= 0) {
-                partRegionComboBox.currentIndex = 1;
+                //console.log("part region : " + initialPartRegion)
+                //console.log("part region 2 : " + pollenflugSettings.partRegion)
+                // initialPartRegion = pollenflugSettings.partRegion;
                 partRegionComboBox.currentIndex = pollenflugSettings.partRegion;
+                // partRegionComboBox.currentIndex = 1;
+                // partRegionComboBox.currentIndex = pollenflugSettings.partRegion;
             }
-        }
+        //}
     }
 
 }

@@ -10,6 +10,7 @@ Column {
 
     property alias headerLabel: headerLabel.text
 
+    property bool isUpToDate: true
     property string tileImage: ""
     property int pollenId: -1
     property var pollenData: ({})
@@ -37,79 +38,80 @@ Column {
             titleImage: ""
             headerLabel: headerLabel.text
         }
-
     }
 
-    Row {
-        id: tilesRow
+    PollenDateRow {
+        id: pollenDateRow
         width: parent.width
+    }
 
-        PollenTile {
-            id: tileToday
-            width: parent.width / 3
-            dateLabel: qsTr("Heute")
-            pollutionLabel: ""
-            //tileImage: ""
-        }
+    PollenPollutionRow {
+        id: pollenPollutionRow
+        width: parent.width
+        pollutionLabelToday: "-"
+        pollutionLabelTomorrow: "-"
+        pollutionLabelDayAfterTomorrow: "-"
+        visible: isUpToDate
+    }
 
-        PollenTile {
-            id: tileTomorrow
-            width: parent.width / 3
-            dateLabel: qsTr("Morgen")
-            pollutionLabel: ""
-            //tileImage: ""
-        }
+    PollenPollutionNotUpToDateRow {
+        id: pollenPollutionNotUpToDateRow
+        width: parent.width
+        visible: !isUpToDate
+    }
 
-        PollenTile {
-            id: tileDayAfterTomorrow
-            width: parent.width / 3
-//            height: tileToday.height
-            dateLabel: qsTr("01.07.2020")
-            pollutionLabel: "-"
-            //tileImage: ""
-        }
+    PollenPollutionScaleRow {
+        id: pollenPollutionScaleRow
+        width: parent.width
+        pollutionScaleToday: -1
+        pollutionScaleTomorrow: -1
+        pollutionScaleDayAfterTomorrow: -1
+        visible: isUpToDate
     }
 
     Component.onCompleted: {
-//        tileToday.tileImage = tileImage
-        //tileTomorrow.tileImage = tileImage
-//        tileDayAfterTomorrow.tileImage = tileImage
         titleRowImage.titleImage = tileImage
         console.log("given pollenId : " + columnRow.pollenId)
 
-        console.log("pollution : " + JSON.toString(pollenData));
+        console.log("pollution : " + JSON.toString(pollenData))
 
-                var pollution = Constants.getPollution(columnRow.pollenId, pollenData);
+        var pollution = Constants.getPollution(columnRow.pollenId, pollenData)
         if (pollution) {
             if (pollution.today) {
-                console.log("pollution.today : " + pollution.today);
-                tileToday.pollutionLabel = Constants.POLLUTION_ID_TO_LABEL[pollution.today];
-                tileToday.pollutionIndex = Constants.POLLUTION_ID_TO_INDEX[pollution.today];
+                console.log("pollution.today : " + pollution.today)
+                //tileToday.pollutionLabel = Constants.POLLUTION_ID_TO_LABEL[pollution.today];
+                pollenPollutionRow.pollutionLabelToday
+                        = Constants.POLLUTION_ID_TO_LABEL[pollution.today]
+                pollenPollutionScaleRow.pollutionScaleToday
+                        = Constants.POLLUTION_ID_TO_INDEX[pollution.today]
+                //tileToday.pollutionIndex = Constants.POLLUTION_ID_TO_INDEX[pollution.today];
             }
             if (pollution.tomorrow) {
-                console.log("pollution.tomorrow : " + pollution.tomorrow);
-                tileTomorrow.pollutionLabel = Constants.POLLUTION_ID_TO_LABEL[pollution.tomorrow];
-                tileTomorrow.pollutionIndex = Constants.POLLUTION_ID_TO_INDEX[pollution.tomorrow];
+                console.log("pollution.tomorrow : " + pollution.tomorrow)
+                //tileTomorrow.pollutionLabel = Constants.POLLUTION_ID_TO_LABEL[pollution.tomorrow];
+                pollenPollutionRow.pollutionLabelTomorrow
+                        = Constants.POLLUTION_ID_TO_LABEL[pollution.tomorrow]
+                pollenPollutionScaleRow.pollutionScaleTomorrow
+                        = Constants.POLLUTION_ID_TO_INDEX[pollution.tomorrow]
+                //tileTomorrow.pollutionIndex = Constants.POLLUTION_ID_TO_INDEX[pollution.tomorrow];
             }
             if (pollution.dayafter_to && pollution.dayafter_to !== "-1") {
-                console.log("pollution.dayafter_to : " + pollution.dayafter_to);
-                tileDayAfterTomorrow.pollutionLabel = Constants.POLLUTION_ID_TO_LABEL[pollution.dayafter_to];
-                tileDayAfterTomorrow.pollutionIndex = Constants.POLLUTION_ID_TO_INDEX[pollution.dayafter_to];
+                console.log("pollution.dayafter_to : " + pollution.dayafter_to)
+                //tileDayAfterTomorrow.pollutionLabel = Constants.POLLUTION_ID_TO_LABEL[pollution.dayafter_to];
+                pollenPollutionRow.pollutionLabelDayAfterTomorrow
+                        = Constants.POLLUTION_ID_TO_LABEL[pollution.dayafter_to]
+                pollenPollutionScaleRow.pollutionScaleDayAfterTomorrow
+                        = Constants.POLLUTION_ID_TO_LABEL[pollution.dayafter_to]
+                //tileDayAfterTomorrow.pollutionIndex = Constants.POLLUTION_ID_TO_INDEX[pollution.dayafter_to];
             }
 
-            console.log("pollution : " + pollution);
-                    console.log("Pollution : " + pollution.today)
-                    console.log("Pollution : " + pollution.tomorrow)
-                    console.log("Pollution : " + pollution.dayafter_to)
+            console.log("pollution : " + pollution)
+            console.log("Pollution : " + pollution.today)
+            console.log("Pollution : " + pollution.tomorrow)
+            console.log("Pollution : " + pollution.dayafter_to)
 
-            console.log("label: "  + Constants.POLLUTION_ID_TO_LABEL[pollution.today]);
-            console.log("index: " + Constants.POLLUTION_ID_TO_INDEX[pollution.today]);
-
-
-
+            console.log("label: " + Constants.POLLUTION_ID_TO_LABEL[pollution.today])
+            console.log("index: " + Constants.POLLUTION_ID_TO_INDEX[pollution.today])
         }
-
     }
-
-
 }

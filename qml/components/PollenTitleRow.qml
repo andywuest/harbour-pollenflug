@@ -9,7 +9,6 @@ Column {
     property int iconSize: 70
 
     property alias headerLabel: iconLabelRowLabel.text
-    // property string headerLabel: ""
     property alias titleImage: iconLabelRowImage.source
 
     Row {
@@ -24,12 +23,7 @@ Column {
                 id: iconLabelRowImage
                 width: iconSize
                 height: iconSize
-                //anchors.horizontalCenter: parent.horizontalCenter
                 anchors.right: parent.right
-                //horizontalAlignment: Image.AlignRight
-                //anchors.horizontalCenter: parent.horizontalCenterCenter
-                // horizontalAlignment: Text.AlignRight
-                //source: tileImage
             }
         }
 
@@ -39,7 +33,6 @@ Column {
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: Theme.fontSizeExtraLarge
             font.bold: true
-            //text: ""
         }
     }
 }

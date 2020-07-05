@@ -55,9 +55,14 @@ AboutPage title - about text title</extracomment>
         <extracomment>OverviewPage refrehs menu item</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Allergene</source>
+        <extracomment>OverviewPage header</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
-    <name>PollenRow</name>
+    <name>PollenDateRow</name>
     <message>
         <source>Heute</source>
         <translation type="unfinished"></translation>
@@ -67,7 +72,14 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>01.07.2020</source>
+        <source>14.07.2020</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PollenPollutionNotUpToDateRow</name>
+    <message>
+        <source>Nicht aktuell</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

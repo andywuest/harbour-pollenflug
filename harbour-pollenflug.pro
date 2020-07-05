@@ -21,8 +21,14 @@ SOURCES += src/harbour-pollenflug.cpp \
 DEFINES += VERSION_NUMBER=\\\"$$(VERSION_NUMBER)\\\"
 
 DISTFILES += qml/harbour-pollenflug.qml \
+    qml/components/PollenDateRow.qml \
     qml/components/PollenIconTextSwitch.qml \
+    qml/components/PollenLabel.qml \
+    qml/components/PollenPollutionNotUpToDateRow.qml \
+    qml/components/PollenPollutionRow.qml \
+    qml/components/PollenPollutionScaleRow.qml \
     qml/components/PollenRow.qml \
+    qml/components/PollenScale.qml \
     qml/components/PollenTile.qml \
     qml/components/PollenTitleRow.qml \
     qml/components/thirdparty/LabelText.qml \

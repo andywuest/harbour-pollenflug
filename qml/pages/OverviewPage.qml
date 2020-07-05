@@ -43,16 +43,10 @@ Page {
             pollenModel.clear();
             Functions.addPollenToModel(pollenModel, pollenflugSettings);
         }
-
-
-//        var pullution = Constants.getPollution(Constants.GRASS_ID, node);
-//        console.log("Pollution : " + pullution.today)
-//        console.log("Pollution : " + pullution.tomorrow)
-//        console.log("Pollution : " + pullution.dayafter_to)
-
     }
 
     function errorResultHandler(result) {
+        // TODO
 //        stockUpdateProblemNotification.show(result)
 //        loaded = true;
     }
@@ -89,20 +83,29 @@ Page {
         // of the page, followed by our content.
         Column {
             id: column
-
             width: page.width
             spacing: Theme.paddingLarge
+            opacity: visible ? 1 : 0
+            visible: true
 
-//            PageHeader {
-//                id: stockQuotesHeader
-//                //: OverviewPage header
-//                title: qsTr("Allergene")
-//            }
+            Behavior on opacity {
+                NumberAnimation {
+                }
+            }
+
+            PageHeader {
+                id: pollenHeader
+                //: OverviewPage header
+                title: qsTr("Allergene")
+            }
 
             SilicaListView {
                 id: pollenListView
                 width: parent.width
-                height: page.height
+                height: page.height - pollenHeader.height
+
+                // magic to prevent overscrolling with header
+                clip: true
 
                 model: ListModel {
                     id: pollenModel

@@ -18,6 +18,8 @@ SOURCES += src/harbour-pollenflug.cpp \
     src/germanpollenbackend.cpp \
     src/pollenflug.cpp
 
+DEFINES += VERSION_NUMBER=\\\"$$(VERSION_NUMBER)\\\"
+
 DISTFILES += qml/harbour-pollenflug.qml \
     qml/components/PollenIconTextSwitch.qml \
     qml/components/PollenRow.qml \

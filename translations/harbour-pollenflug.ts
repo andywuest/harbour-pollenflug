@@ -5,17 +5,9 @@
     <name>AboutPage</name>
     <message>
         <source>About Pollenflug</source>
-        <extracomment>AboutPage title - header</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About Watchlist</source>
-        <extracomment>AboutPage title - about text title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This is app is a simple stock watchlist for Sailfish OS. Watchlist is open source and licensed under the GPL v3.</source>
-        <extracomment>AboutPage text - about text</extracomment>
+        <extracomment>AboutPage title - header
+----------
+AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -31,6 +23,11 @@
     <message>
         <source>Source code</source>
         <extracomment>AboutPage about source label</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you have an allergy you can watch the pollen situtation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
+        <extracomment>AboutPage text - about text</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -50,7 +47,12 @@
     </message>
     <message>
         <source>Settings</source>
-        <extracomment>OverviewPage about menu item</extracomment>
+        <extracomment>OverviewPage settings menu item</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <extracomment>OverviewPage refrehs menu item</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -88,124 +90,79 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Download chart data</source>
-        <extracomment>SettingsPage download chart data</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Defines strategy to download the chart data</source>
-        <extracomment>SettingsPage download strategy explanation</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <extracomment>SettingsPage download strategy always
-----------
-SettingsPage news download strategy always</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Only on WiFi</source>
-        <extracomment>SettingsPage download strategy only on wifi
-----------
-SettingsPage news download strategy only on wifi</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Only manually</source>
-        <extracomment>SettingsPage download strategy only manually</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sorting order</source>
-        <extracomment>SettingsPage sorting order watchlist page</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Defines sorting order of watchlist entries</source>
-        <extracomment>SettingsPage sorting order description</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>By change</source>
-        <extracomment>SettingsPage sorting order by change</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>By name</source>
-        <extracomment>SettingsPage sorting order by name</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Data Backend</source>
-        <extracomment>SettingsPage data backend for watchlist</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Data backend to be used for the watchlist</source>
-        <extracomment>SettingsPage data backend for watchlist description</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Euroinvestor</source>
-        <extracomment>SettingsPage data backend Euroinvestor (default)</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Moscow Exchange</source>
-        <extracomment>SettingsPage data backend Moscow Exchange</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>NOTE: Changing the data backend will reset the database. This means that the current watchlist will be reset and the stocks have to be added again!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download news data</source>
-        <extracomment>SettingsPage download news data</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Defines strategy to download the news data</source>
-        <extracomment>SettingsPage download strategy explanation</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Region</source>
-        <extracomment>SettingsPage download news data</extracomment>
+        <extracomment>SettingsPage region</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Schleswig-Holstein und Hamburg</source>
-        <extracomment>SettingsPage news download strategy always</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Mecklenburg-Vorpommern</source>
-        <extracomment>SettingsPage news download strategy only on wifi</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Niedersachsen und Bremen</source>
-        <extracomment>SettingsPage news download strategy only on wifi</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Westl. Niedersachsen/Bremen</source>
-        <extracomment>SettingsPage news download strategy always</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Östl. Niedersachsen</source>
-        <extracomment>SettingsPage news download strategy only on wifi</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Allergen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gegend</source>
+        <extracomment>SettingsPage part region</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the region where you live</source>
+        <extracomment>SettingsPage part region description</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nordrhein-Westfalen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Brandenburg und Berlin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sachsen-Anhalt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thüringen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sachsen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hessen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rheinland-Pfalz und Saarland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Baden-Württemberg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bayern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the state where you live</source>
+        <extracomment>SettingsPage region description</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -241,6 +198,134 @@ SettingsPage news download strategy only on wifi</extracomment>
     </message>
     <message>
         <source>Roggen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inseln und Marschen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Geest, Schleswig-Holstein und Hamburg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Westl. Niedersachsen/Bremen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Östl. Niedersachsen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rhein.-Westfäl. Tiefland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mittelgebirge NRW</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ostwestfalen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tiefland Sachsen-Anhalt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Harz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tiefland Thüringen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mittelgebirge Thüringen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tiefland Sachsen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mittelgebirge Sachsen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nordhessen und hess. Mittelgebirge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rhein-Main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rhein, Pfalz, Nahe und Mosel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mittelgebirgsbereich Rheinland-Pfalz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saarland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Oberrhein und unteres Neckartal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hohenlohe/mittlerer Neckar/Oberschwaben</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mittelgebirge Baden-Württemberg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allgäu/Oberbayern/Bay. Wald</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donauniederungen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bayern n. der Donau, o. Bayr. Wald, o. Mainfranken</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mainfranken</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>keine Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>keine bis geringe Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>geringe Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>geringe bis mittlere Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mittlere Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mittlere bis hohe Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hohe Belastung</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

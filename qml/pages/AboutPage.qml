@@ -62,7 +62,7 @@ Page {
                 }
                 //: AboutPage version label
                 label: qsTr("Version")
-                text: "TODO - applicationVersion"
+                text: applicationVersion
                 separator: true
             }
 

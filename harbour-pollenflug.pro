@@ -32,6 +32,7 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/components/PollenTile.qml \
     qml/components/PollenTitleRow.qml \
     qml/components/thirdparty/LabelText.qml \
+    qml/components/thirdparty/LoadingIndicator.qml \
     qml/cover/CoverPage.qml \
     qml/js/constants.js \
     qml/js/functions.js \

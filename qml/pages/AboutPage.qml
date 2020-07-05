@@ -89,18 +89,28 @@ Page {
                 }
             }
 
-//            LabelText {
-//                anchors {
-//                    left: parent.left
-//                    margins: Theme.paddingLarge
-//                }
-//                //: AboutPage translators label
-//                label: qsTr("Translators")
-//                text: qsTr("Viacheslav Dikonov (ru)") + "\n" +
-//                      "Åke Engelbrektson (sv)\n" +
-//                      "@KhanPuking (zh_CN)"
-//                separator: true
-//            }
+            BackgroundItem {
+                id: clickableUrlIcons
+                contentHeight: iconLabelUrl.height
+                height: contentHeight
+                width: aboutPageFlickable.width
+                anchors {
+                    left: parent.left
+                }
+
+                LabelText {
+                    id: iconLabelUrl
+                    anchors {
+                        left: parent.left
+                        margins: Theme.paddingLarge
+                    }
+                    //: AboutPage icon source label
+                    label: qsTr("Icons")
+                    text: "Icons made by Freepik from Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons"
+                    color: clickableUrlSourceCode.highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
+                onClicked: Qt.openUrlExternally("http://www.flaticon.com")
+            }
 
             BackgroundItem {
                 id: clickableUrlSourceCode

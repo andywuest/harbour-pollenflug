@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../components"
+import "../components/thirdparty"
 
 import "../js/constants.js" as Constants
 import "../js/functions.js" as Functions
@@ -12,8 +13,10 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
+    property bool loaded : false
     property int iconSize: 92
     property var nodeData: ({})
+    property var resultData: ""
 
     function connectSlots() {
         console.log("connect - slots");
@@ -22,33 +25,41 @@ Page {
         dataBackend.requestError.connect(errorResultHandler);
     }
 
-    function disconnectSlots() {
-        console.log("disconnect - slots");
-        var dataBackend = Functions.getDataBackend();
-        dataBackend.pollenDataAvailable.disconnect(pollenDataAvailable);
-        dataBackend.requestError.disconnect(errorResultHandler);
+    function updatePollenData() {
+        loaded = false;
+        Functions.getDataBackend().fetchPollenData();
     }
 
     function pollenDataAvailable(result) {
-        console.log(result);
-        var jsonResult = JSON.parse(result);
+//        console.log(result);
 
-        if (pollenflugSettings.region) {
-            var region = (pollenflugSettings.region + 1) * 10;
-            var partRegion = region + (pollenflugSettings.partRegion + 1);
+        lastestPollenData = JSON.parse(result);
+        //page.resultData = JSON.parse(result);
 
-            var node = Constants.findPollenNode(region, partRegion, jsonResult.content);
-            nodeData = node;
+        //Constants.jsonData = JSON.parse(result);
 
-            pollenModel.clear();
-            Functions.addPollenToModel(pollenModel, pollenflugSettings);
+        if (pollenflugSettings) {
+            console.log("set..reg " + pollenflugSettings)
+            console.log("reg " + pollenflugSettings.region)
+            if (pollenflugSettings.region) {
+                var region = (pollenflugSettings.region + 1) * 10;
+                var partRegion = region + (pollenflugSettings.partRegion + 1);
+
+                var node = Constants.findPollenNode(region, partRegion, lastestPollenData.content);
+                nodeData = node;
+
+                pollenModel.clear();
+                Functions.addPollenToModel(pollenModel, pollenflugSettings);
+            }
         }
+
+        loaded = true;
     }
 
     function errorResultHandler(result) {
         // TODO
 //        stockUpdateProblemNotification.show(result)
-//        loaded = true;
+        loaded = true;
     }
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
@@ -96,7 +107,7 @@ Page {
             PageHeader {
                 id: pollenHeader
                 //: OverviewPage header
-                title: qsTr("Allergene")
+                title: qsTr("Allergen")
             }
 
             SilicaListView {
@@ -128,6 +139,8 @@ Page {
                             headerLabel: label
                             pollenId: id
                             pollenData: nodeData
+                            pollenNextUpdate: lastestPollenData.next_update
+                            pollenLastUpdate: lastestPollenData.last_update
                         }
 
                         Separator {
@@ -142,10 +155,28 @@ Page {
         }
     }
 
+    LoadingIndicator {
+        id: pollenLoadingIndicator
+        visible: !loaded
+        Behavior on opacity {
+            NumberAnimation {
+            }
+        }
+        opacity: loaded ? 0 : 1
+        height: parent.height
+        width: parent.width
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            console.log("status changed -> active now")
+            updatePollenData();
+        }
+    }
+
     Component.onCompleted: {
         Functions.addPollenToModel(pollenModel, pollenflugSettings)
-        // console.log(pollenModel.count)
         connectSlots();
-        // germanPollenBackend.fetchPollenData();
+        updatePollenData();
     }
 }

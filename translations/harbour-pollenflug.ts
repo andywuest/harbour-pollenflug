@@ -30,11 +30,31 @@ AboutPage title - about text title</extracomment>
         <extracomment>AboutPage text - about text</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Icons</source>
+        <extracomment>AboutPage icon source label</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Morgen</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LoadingIndicator</name>
+    <message>
+        <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -56,7 +76,7 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Allergene</source>
+        <source>Allergen</source>
         <extracomment>OverviewPage header</extracomment>
         <translation type="unfinished"></translation>
     </message>
@@ -69,10 +89,6 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Morgen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>14.07.2020</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

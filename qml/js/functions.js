@@ -24,3 +24,10 @@ function addIfActive(list, index, currentId, active, model) {
 function getDataBackend() {
     return germanPollenBackend;
 }
+
+function addDays(date, days) {
+  var copy = new Date(Number(date))
+  copy.setDate(date.getDate() + days)
+  return copy;
+}
+

@@ -5,6 +5,8 @@ import "pages"
 
 ApplicationWindow {
 
+    property var lastestPollenData: ({})
+
     // Global Settings Storage
     ConfigurationGroup {
         id: pollenflugSettings

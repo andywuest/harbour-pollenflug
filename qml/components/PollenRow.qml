@@ -10,10 +10,12 @@ Column {
 
     property alias headerLabel: headerLabel.text
 
-    property bool isUpToDate: false
+    property bool isUpToDate: true
     property string tileImage: ""
     property int pollenId: -1
-    property var pollenData: ({})
+    property var dataToday
+    property var dataTomorrow
+    property var dataDayAfterTomorrow
     property string pollenLastUpdate: ""
     property string pollenNextUpdate: ""
 
@@ -24,6 +26,25 @@ Column {
             var nextUpdate = Date.parse(pollenLastUpdateString);
             isUpToDate = (nextUpdate > now);
         }
+    }
+
+    function updateUI() {
+        if (dataToday) {
+            pollenPollutionRow.pollutionLabelToday = dataToday.pollutionLabel;
+            pollenPollutionScaleRow.pollutionScaleToday = dataToday.pollutionIndex;
+        }
+        if (dataTomorrow) {
+            pollenPollutionRow.pollutionLabelTomorrow = dataTomorrow.pollutionLabel;
+            pollenPollutionScaleRow.pollutionScaleTomorrow = dataTomorrow.pollutionIndex;
+        }
+        if (dataDayAfterTomorrow) {
+            pollenPollutionRow.pollutionLabelDayAfterTomorrow = dataDayAfterTomorrow.pollutionLabel;
+            if (dataDayAfterTomorrow.pollutionIndex >= 0) {
+                pollenPollutionScaleRow.pollutionScaleDayAfterTomorrow = dataDayAfterTomorrow.pollutionIndex;
+             }
+        }
+        titleRowImage.titleImage = tileImage;
+        checkIsUpToDate();
     }
 
     Row {
@@ -79,30 +100,4 @@ Column {
         visible: isUpToDate
     }
 
-    Component.onCompleted: {
-        titleRowImage.titleImage = tileImage
-        var pollution = Constants.getPollution(columnRow.pollenId, pollenData)
-        if (pollution) {
-            if (pollution.today) {
-                pollenPollutionRow.pollutionLabelToday
-                        = Constants.POLLUTION_ID_TO_LABEL[pollution.today]
-                pollenPollutionScaleRow.pollutionScaleToday
-                        = Constants.POLLUTION_ID_TO_INDEX[pollution.today]
-            }
-            if (pollution.tomorrow) {
-                pollenPollutionRow.pollutionLabelTomorrow
-                        = Constants.POLLUTION_ID_TO_LABEL[pollution.tomorrow]
-                pollenPollutionScaleRow.pollutionScaleTomorrow
-                        = Constants.POLLUTION_ID_TO_INDEX[pollution.tomorrow]
-            }
-            if (pollution.dayafter_to && pollution.dayafter_to !== "-1") {
-                pollenPollutionRow.pollutionLabelDayAfterTomorrow
-                        = Constants.POLLUTION_ID_TO_LABEL[pollution.dayafter_to]
-                pollenPollutionScaleRow.pollutionScaleDayAfterTomorrow
-                        = Constants.POLLUTION_ID_TO_LABEL[pollution.dayafter_to]
-            }
-        }
-
-        checkIsUpToDate();
-    }
 }

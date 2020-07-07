@@ -80,7 +80,7 @@ function buildGermanRegionIdToPartRegions() {
 
 var GERMAN_REGION_ID_TO_PART_REGIONS = buildGermanRegionIdToPartRegions()
 
-function findPollenNode(regionId, partRegionId, contentArray) {
+function findPollenNodeXXXXXXX(regionId, partRegionId, contentArray) {
     if (contentArray.length > 0) {
         for (var i = 0; i < contentArray.length; i++) {
             var node = contentArray[i]

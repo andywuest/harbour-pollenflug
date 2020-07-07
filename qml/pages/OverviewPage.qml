@@ -27,31 +27,56 @@ Page {
 
     function updatePollenData() {
         loaded = false;
-        Functions.getDataBackend().fetchPollenData();
+
+        var region = (pollenflugSettings.region + 1) * 10;
+        var partRegion = region + (pollenflugSettings.partRegion + 1);
+
+        console.log("region : " + region);
+        console.log("partRegion : " + partRegion);
+
+        Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
     }
 
     function pollenDataAvailable(result) {
-//        console.log(result);
+        console.log(result);
 
         lastestPollenData = JSON.parse(result);
         //page.resultData = JSON.parse(result);
 
         //Constants.jsonData = JSON.parse(result);
 
-        if (pollenflugSettings) {
-            console.log("set..reg " + pollenflugSettings)
-            console.log("reg " + pollenflugSettings.region)
-            if (pollenflugSettings.region) {
-                var region = (pollenflugSettings.region + 1) * 10;
-                var partRegion = region + (pollenflugSettings.partRegion + 1);
+//        console.log("length : "+ lastestPollenData.pollenData.length)
 
-                var node = Constants.findPollenNode(region, partRegion, lastestPollenData.content);
-                nodeData = node;
+        if (pollenModel) {
+            pollenModel.clear();
 
-                pollenModel.clear();
-                Functions.addPollenToModel(pollenModel, pollenflugSettings);
+            for (var i = 0; i < lastestPollenData.pollenData.length; i++) {
+                var data = lastestPollenData.pollenData[i];
+                console.log("data : " + data);
+                console.log(JSON.toString(lastestPollenData.pollenData[i]))
+                //console.log(JSON.parse(lastestPollenData.pollenData[i]))
+                pollenModel.append(data);
             }
         }
+
+
+        //lastestPollenData.pollenData.forEach(pollenModel.append);
+
+
+//        if (pollenflugSettings) {
+//            console.log("set..reg " + pollenflugSettings)
+//            console.log("reg " + pollenflugSettings.region)
+//            if (pollenflugSettings.region) {
+//                var region = (pollenflugSettings.region + 1) * 10;
+//                var partRegion = region + (pollenflugSettings.partRegion + 1);
+
+////                var node = Constants.findPollenNode(region, partRegion, lastestPollenData.content);
+////                nodeData = node;
+
+////                pollenModel.clear();
+//                Functions.addPollenToModel(pollenModel, pollenflugSettings);
+//            }
+//        }
 
         loaded = true;
     }
@@ -83,7 +108,7 @@ Page {
             MenuItem {
                 //: OverviewPage refrehs menu item
                 text: qsTr("Refresh")
-                onClicked: germanPollenBackend.fetchPollenData();
+                onClicked: updatePollenData();
             }
         }
 
@@ -135,12 +160,21 @@ Page {
                         PollenRow {
                             id: pollenRow
                             width: parent.width
-                            tileImage: imageSource
+                            //tileImage: imageSource
                             headerLabel: label
-                            pollenId: id
-                            pollenData: nodeData
-                            pollenNextUpdate: lastestPollenData.next_update
-                            pollenLastUpdate: lastestPollenData.last_update
+
+                            Component.onCompleted: {
+                                // TODO find better way to update values in component
+                                var currentModelItem = pollenModel.get(index);
+                                dataToday = currentModelItem.today;
+                                dataTomorrow = currentModelItem.tomorrow;
+                                dataDayAfterTomorrow = currentModelItem.dayAfterTomorrow;
+                                pollenNextUpdate = lastestPollenData.next_update; // TODO rename
+                                pollenLastUpdate = lastestPollenData.last_update; // TODO rename
+                                tileImage = Constants.POLLEN_DATA_LIST[currentModelItem.id - 1].imageSource;
+
+                                updateUI();
+                            }
                         }
 
                         Separator {
@@ -148,6 +182,7 @@ Page {
                             width: parent.width
                             color: Theme.primaryColor
                             horizontalAlignment: Qt.AlignHCenter
+                            y: Theme.paddingLarge
                         }
                     }
                 }

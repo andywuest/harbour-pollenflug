@@ -21,6 +21,25 @@ function addIfActive(list, index, currentId, active, model) {
     }
 }
 
+function addPollenIdIfActive(selection, currentId, active) {
+    if (active) {
+        selection.push(currentId);
+    }
+}
+
+function getSelectedPollenList(settings) {
+    var selection = [];
+    addPollenIdIfActive(selection, MUGWORT_ID, settings.isMugwortSelected)
+    addPollenIdIfActive(selection, BIRCH_ID, settings.isBirchSelected)
+    addPollenIdIfActive(selection, ALDER_ID, settings.isAlderSelected)
+    addPollenIdIfActive(selection, ASH_TREE_ID, settings.isAshTreeSelected)
+    addPollenIdIfActive(selection, GRASS_ID, settings.isGrassPollenSelected)
+    addPollenIdIfActive(selection, HAZEL_ID, settings.isHazelSelected)
+    addPollenIdIfActive(selection, AMBROSIA_ID, settings.isAmbrosiaSelected)
+    addPollenIdIfActive(selection, RYE_ID, settings.isRyeSelected)
+    return selection;
+}
+
 function getDataBackend() {
     return germanPollenBackend;
 }

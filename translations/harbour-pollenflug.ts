@@ -52,6 +52,69 @@ AboutPage title - about text title</extracomment>
     </message>
 </context>
 <context>
+    <name>GermanPollenBackend</name>
+    <message>
+        <source>Beifuss</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Birke</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Erle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Esche</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gräser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hasel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ambrosia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Roggen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>keine Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>keine bis geringe Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>geringe Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>geringe bis mittlere Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mittlere Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mittlere bis hohe Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hohe Belastung</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LoadingIndicator</name>
     <message>
         <source>Loading...</source>

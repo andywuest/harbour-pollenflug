@@ -6,7 +6,7 @@ Column {
     width: parent.width
 
     property int pollution: -1
-    property int boxes: 7
+    property int boxes: 7 // TODO sollte vom client kommen
     property var colors: ["#006400", "#228b22", "#7cfc00", "#ffff00", "#ee9a00", "#cd0000", "#8b3a62"]
 
     Row {
@@ -24,12 +24,11 @@ Column {
                 width: parent.width / scaleColumn.boxes
                 height: parent.width / scaleColumn.boxes
                 border.color: Theme.highlightColor
-                color: (index <= scaleColumn.pollution ? scaleColumn.colors[index] : "transparent")
+                color: (index < scaleColumn.pollution ? scaleColumn.colors[index] : "transparent")
                 border.width: 1
             }
         }
     }
-
 
 }
 

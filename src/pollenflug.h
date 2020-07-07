@@ -5,6 +5,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkConfigurationManager>
 #include <QSettings>
+#include <QVariant>
 
 #include "germanpollenbackend.h"
 // #include "onvistanews.h"

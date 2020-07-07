@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
+#include <QSequentialIterable>
 
 #include "constants.h"
 
@@ -13,11 +14,24 @@ public:
     explicit  GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent = 0);
     ~GermanPollenBackend();
 
-    Q_INVOKABLE void fetchPollenData();
+    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, int regionId, int partRegionId);
 
     // signals for the qml part
     Q_SIGNAL void requestError(const QString &errorMessage);
     Q_SIGNAL void pollenDataAvailable(const QString &reply);
+
+private:
+
+    QMap<int, QString> pollenIdToKeyMap;
+    QMap<int, QString> pollenIdToLabelMap;
+    QMap<QString, QString> pollutionIndexToLabelMap;
+    QMap<QString, int> pollutionIndexToIndexMap;
+    QList<int> pollenIds;
+    int regionId;
+    int partRegionId;
+
+    bool isRegionNodeFound(int regionId, int partRegionId);
+    QJsonObject getNodeForPollenId(QJsonObject pollenNode, int pollenId);
 
 protected:
 
@@ -26,6 +40,9 @@ protected:
     QNetworkAccessManager *manager;
 
     QNetworkReply *executeGetRequest(const QUrl &url);
+
+    QString parsePollenData(QByteArray searchReply); // TODO rename
+    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString dayString);
 
 private slots:
     void handleFetchPollenDataFinished();

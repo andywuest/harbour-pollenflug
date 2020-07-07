@@ -26,45 +26,59 @@ import "../js/functions.js" as Functions
 
 CoverBackground {
     id: coverPage
-    property int watchlistId: 1 // the default watchlistId as long as we only support one watchlist
-    property bool loading : false;
+    // property bool loading : false;
+    property bool loaded : false
 
-    function reloadPollen() {
-        coverModel.clear()
-//        var stocks = Database.loadAllStockData(watchlistId,
-//                                               Database.SORT_BY_CHANGE_ASC)
-//        if (coverActionPrevious.enabled) {
-//            stocks.reverse()
-//        }
-
-//        var reducedStockList = stocks
-//        if (stocks.length > 5) {
-//            reducedStockList = stocks.slice(0, 5)
-//        }
-
-//        for (var i = 0; i < reducedStockList.length; i++) {
-//            coverModel.append(reducedStockList[i])
-//        }
-
-//        var pollen = {}
-//        pollen.name = "Gräser";
-//        pollen.pollution = "mittlere bis starke Belastung"
-//        coverModel.append(pollen)
-
-//        pollen.name = "Birke";
-//        pollen.pollution = "keine Belastung"
-//        coverModel.append(pollen)
-
-        coverModel.clear();
-        Functions.addPollenToModel(coverModel, pollenflugSettings);
-
-      //  var pollution = Constants.getPollution(columnRow.pollenId, pollenData)
-
+    function connectSlots() {
+        console.log("connect - slots");
+        var dataBackend = Functions.getDataBackend();
+        dataBackend.pollenDataAvailable.connect(pollenDataAvailable);
+        dataBackend.requestError.connect(errorResultHandler);
     }
 
-//    AlarmNotification {
-//        id: stockAlarmNotification
-//    }
+    function updatePollenData() {
+        loaded = false;
+
+        var region = (pollenflugSettings.region + 1) * 10;
+        var partRegion = region + (pollenflugSettings.partRegion + 1);
+
+        console.log("region : " + region);
+        console.log("partRegion : " + partRegion);
+
+        Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
+    }
+
+    function pollenDataAvailable(result) {
+        console.log(result);
+
+        lastestPollenData = JSON.parse(result);
+        //page.resultData = JSON.parse(result);
+
+        //Constants.jsonData = JSON.parse(result);
+
+//        console.log("length : "+ lastestPollenData.pollenData.length)
+
+        if (coverModel) {
+            coverModel.clear();
+
+            for (var i = 0; i < lastestPollenData.pollenData.length; i++) {
+                var data = lastestPollenData.pollenData[i];
+                console.log("data : " + data);
+                console.log(JSON.toString(lastestPollenData.pollenData[i]))
+                //console.log(JSON.parse(lastestPollenData.pollenData[i]))
+                coverModel.append(data);
+            }
+        }
+
+        loaded = true;
+    }
+
+
+    function errorResultHandler(result) {
+        // TODO
+//        stockUpdateProblemNotification.show(result)
+        loaded = true;
+    }
 
     Column {
         id: loadingColumn
@@ -72,7 +86,7 @@ CoverBackground {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingMedium
-        visible: coverPage.loading
+        visible: coverPage.loaded
         Behavior on opacity {
             NumberAnimation {
             }
@@ -96,7 +110,7 @@ CoverBackground {
                 console.log("previous clicked")
                 coverActionPrevious.enabled = false
                 coverActionNext.enabled = true
-                reloadPollen()
+                updatePollenData()
             }
         }
 
@@ -105,7 +119,7 @@ CoverBackground {
             iconSource: "image://theme/icon-cover-refresh"
             onTriggered: {
                 console.log("refresh clicked prev")
-                updateQuotes()
+                updatePollenData()
             }
         }
     }
@@ -130,7 +144,7 @@ CoverBackground {
             iconSource: "image://theme/icon-cover-refresh"
             onTriggered: {
                 console.log("refresh clicked prev")
-                updateQuotes()
+                updatePollenData()
             }
         }
     }
@@ -199,52 +213,25 @@ CoverBackground {
 
                     Label {
                         id: pollutionLabel
-                        width: parent.width // * 8 / 10
+                        width: parent.width
                         height: parent.height
-                        text: pollution
                         color: Theme.primaryColor
-                        font.pixelSize: Theme.fontSizeExtraSmall
+                        font.pixelSize: Theme.fontSizeExtraSmallBase
                         font.bold: false
                         horizontalAlignment: Text.AlignLeft
                         truncationMode: TruncationMode.Fade
+
+                        Component.onCompleted: {
+                            pollutionLabel.text = (coverActionPrevious.enabled ? coverModel.get(index).today.pollutionLabel : coverModel.get(index).tomorrow.pollutionLabel);
+                        }
                     }
-
-
-//                    Text {
-//                        id: stockQuoteChange
-//                        width: parent.width / 2
-//                        height: parent.height
-//                        text: Functions.renderPrice(price, currency)
-//                        color: Theme.highlightColor
-//                        font.pixelSize: Theme.fontSizeTiny
-//                        font.bold: true
-//                        horizontalAlignment: Text.AlignLeft
-//                    }
-
-//                    Text {
-//                        id: changePercentageText
-//                        width: parent.width / 2
-//                        height: parent.height
-//                        text: Functions.renderChange(price, changeRelative, '%')
-//                        color: Functions.determineChangeColor(changeRelative)
-//                        font.pixelSize: Theme.fontSizeTiny
-//                        horizontalAlignment: Text.AlignRight
-//                    }
                 }
             }
         }
 
         Component.onCompleted: {
-//            Database.initApplicationTables()
-//            var dataBackend = Functions.getDataBackend(watchlistSettings.dataBackend);
-//            dataBackend.quoteResultAvailable.connect(quoteResultHandler)
-//            dataBackend.requestError.connect(errorResultHandler)
-//            reloadAllStocks()
-            reloadPollen()
-        }
-
-        onVisibleChanged: {
-//            reloadAllStocks()
+            connectSlots();
+            updatePollenData()
         }
     }
 

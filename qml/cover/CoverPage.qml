@@ -26,8 +26,7 @@ import "../js/functions.js" as Functions
 
 CoverBackground {
     id: coverPage
-    // property bool loading : false;
-    property bool loaded : false
+    property bool loading : false
 
     function connectSlots() {
         console.log("connect - slots");
@@ -37,47 +36,30 @@ CoverBackground {
     }
 
     function updatePollenData() {
-        loaded = false;
+        loading = true;
 
-        var region = (pollenflugSettings.region + 1) * 10;
-        var partRegion = region + (pollenflugSettings.partRegion + 1);
-
-        console.log("region : " + region);
-        console.log("partRegion : " + partRegion);
+        var region = Functions.calculateRegion(pollenflugSettings.region);
+        var partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
 
         Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
     }
 
     function pollenDataAvailable(result) {
         console.log(result);
-
         lastestPollenData = JSON.parse(result);
-        //page.resultData = JSON.parse(result);
-
-        //Constants.jsonData = JSON.parse(result);
-
-//        console.log("length : "+ lastestPollenData.pollenData.length)
 
         if (coverModel) {
             coverModel.clear();
-
             for (var i = 0; i < lastestPollenData.pollenData.length; i++) {
-                var data = lastestPollenData.pollenData[i];
-                console.log("data : " + data);
-                console.log(JSON.toString(lastestPollenData.pollenData[i]))
-                //console.log(JSON.parse(lastestPollenData.pollenData[i]))
-                coverModel.append(data);
+                coverModel.append(lastestPollenData.pollenData[i]);
             }
         }
 
-        loaded = true;
+        loading = false;
     }
 
-
     function errorResultHandler(result) {
-        // TODO
-//        stockUpdateProblemNotification.show(result)
-        loaded = true;
+        loading = false;
     }
 
     Column {
@@ -86,7 +68,7 @@ CoverBackground {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingMedium
-        visible: coverPage.loaded
+        visible: coverPage.loading
         Behavior on opacity {
             NumberAnimation {
             }
@@ -107,20 +89,14 @@ CoverBackground {
             id: actionPreviousPrevious
             iconSource: "image://theme/icon-cover-previous"
             onTriggered: {
-                console.log("previous clicked")
                 coverActionPrevious.enabled = false
                 coverActionNext.enabled = true
-                updatePollenData()
             }
         }
 
         CoverAction {
-            id: actionRefresh
             iconSource: "image://theme/icon-cover-refresh"
-            onTriggered: {
-                console.log("refresh clicked prev")
-                updatePollenData()
-            }
+            onTriggered: updatePollenData()
         }
     }
 
@@ -135,17 +111,12 @@ CoverBackground {
                 console.log("previous clicked")
                 coverActionNext.enabled = false
                 coverActionPrevious.enabled = true
-                reloadPollen()
             }
         }
 
         CoverAction {
-            id: actionRefreshNext
             iconSource: "image://theme/icon-cover-refresh"
-            onTriggered: {
-                console.log("refresh clicked prev")
-                updatePollenData()
-            }
+            onTriggered: updatePollenData()
         }
     }
 
@@ -194,10 +165,9 @@ CoverBackground {
 
                     Label {
                         id: stockQuoteName
-                        width: parent.width // * 8 / 10
+                        width: parent.width
                         height: parent.height
                         text: label
-                        // truncationMode: TruncationMode.Elide // TODO check for very long texts
                         color: Theme.primaryColor
                         font.pixelSize: Theme.fontSizeExtraSmall
                         font.bold: true
@@ -228,11 +198,6 @@ CoverBackground {
                 }
             }
         }
-
-        Component.onCompleted: {
-            connectSlots();
-            updatePollenData()
-        }
     }
 
     OpacityRampEffect {
@@ -240,6 +205,11 @@ CoverBackground {
         direction: OpacityRamp.TopToBottom
         offset: 0.6
         slope: 3.75
+    }
+
+    Component.onCompleted: {
+        connectSlots();
+        updatePollenData()
     }
 
 }

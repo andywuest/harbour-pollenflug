@@ -50,3 +50,13 @@ function addDays(date, days) {
   return copy;
 }
 
+// TODO germany specific functions
+function calculateRegion(storedRegion) {
+    return (storedRegion + 1) * 10;
+}
+
+function calculatePartRegion(calculatedRegion, storedPartRegion) {
+    return calculatedRegion + (storedPartRegion + 1)
+}
+
+

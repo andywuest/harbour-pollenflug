@@ -163,17 +163,6 @@ AboutPage title - about text title</extracomment>
     </message>
 </context>
 <context>
-    <name>SecondPage</name>
-    <message>
-        <source>Nested Page</source>
-        <translation>Unterseite</translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation>Element</translation>
-    </message>
-</context>
-<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
@@ -389,34 +378,6 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Mainfranken</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>keine Belastung</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>keine bis geringe Belastung</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>geringe Belastung</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>geringe bis mittlere Belastung</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>mittlere Belastung</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>mittlere bis hohe Belastung</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hohe Belastung</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

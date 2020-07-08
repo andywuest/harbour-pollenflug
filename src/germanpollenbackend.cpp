@@ -1,24 +1,8 @@
 #include "germanpollenbackend.h"
 
-//#include <QDebug>
-//#include <QFile>
-//#include <QUrl>
-//#include <QUrlQuery>
-//#include <QUuid>
-//#include <QJsonObject>
-//#include <QJsonArray>
-//#include <QDateTime>
-//#include <QVariantMap>
-//#include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QVariant>
-#include <QVariantList>
-#include <QSequentialIterable>
-#include <QSequentialIterable>
-
-
 
 GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent) : QObject(parent) {
     qDebug() << "Initializing German Pollen Backend...";
@@ -61,7 +45,6 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollutionIndexToIndexMap.insert("2", 4);
     this->pollutionIndexToIndexMap.insert("2-3", 5);
     this->pollutionIndexToIndexMap.insert("3", 6);
-
 }
 
 GermanPollenBackend::~GermanPollenBackend() {
@@ -107,20 +90,14 @@ void GermanPollenBackend::handleFetchPollenDataFinished() {
         return;
     }
 
-    QByteArray searchReply = reply->readAll();
-
-    // qDebug() << parsePollenData(searchReply);
-
-    emit pollenDataAvailable(parsePollenData(searchReply));
+    emit pollenDataAvailable(parsePollenData(reply->readAll()));
 }
 
 bool GermanPollenBackend::isRegionNodeFound(int regionId, int partRegionId) {
     if (this->regionId == regionId) {
         if (this->partRegionId != -1 && this->partRegionId == partRegionId) {
-            qDebug() << " fOUND !!!";
             return true;
         } else if (this->partRegionId == -1) {
-            qDebug() << " fOUND !!!";
             return true;
        }
     }
@@ -134,6 +111,7 @@ QJsonObject GermanPollenBackend::getNodeForPollenId(QJsonObject pollenNode, int 
         return pollenNode.value(key).toObject();
     }
     qDebug() << " error no value found found key " << pollenId;
+    return QJsonObject();
 }
 
 QJsonObject GermanPollenBackend::createResultPollenObject(QJsonObject pollenSourceNode, QString dayString) {
@@ -157,8 +135,8 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
     QJsonArray resultArray;
 
     QJsonObject resultObject;
-    resultObject.insert("last_update", responseObject.value("last_update"));
-    resultObject.insert("next_update", responseObject.value("next_update"));
+    resultObject.insert("lastUpdate", responseObject.value("last_update"));
+    resultObject.insert("nextUpdate", responseObject.value("next_update"));
     resultObject.insert("scaleElements", 7); // predefined
     resultObject.insert("maxDaysPrediction", 3); // predefined
     resultObject.insert("region", this->regionId); // dynamic from request
@@ -176,25 +154,11 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
          qDebug() << "region/partregion: " << regionId << "/" << partRegionId;
 
          if (isRegionNodeFound(regionId, partRegionId) == true) {
-             qDebug()<< "variant : " << this->pollenIds;
              QJsonObject responsePollenObject = rootObject.value("Pollen").toObject();
-
 
              for (int i = 0; i < this->pollenIds.size(); i++) {
                  int pollenId = this->pollenIds.at(i);
-
                  QJsonObject pollenIdNode = getNodeForPollenId(responsePollenObject, pollenId);
-
-//                 qDebug() << " today : " << pollenIdNode.value("today").toString();
-//                 qDebug() << " tomorrow : " << pollenIdNode.value("tomorrow").toString();
-//                 qDebug() << " dayafter_to : " << pollenIdNode.value("dayafter_to").toString();
-
-
-//                 QJsonObject todayObject;
-//                 todayObject.insert("pollutionIndex", this->pollutionIndexToIndexMap[pollenIdNode.value("today").toString()]);
-//                 todayObject.insert("pollutionLabel", this->pollutionIndexToLabelMap[pollenIdNode.value("today").toString()]);
-
-                 // TODO morrow, day after tommore
 
                  QJsonObject pollenResultObject;
                  pollenResultObject.insert("label", this->pollenIdToLabelMap[pollenId]);
@@ -207,105 +171,10 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
              }
          }
     }
-
     resultObject.insert("pollenData", resultArray);
-
-
-
-
-
-
-//            last_update: "10.10.2020 12:23"
-//            next_update: "10.10.2020 12:23"
-//            scaleElements: 7
-//            maxDaysPrediction: 3
-//            region: 10
-//            regionPart: -1
-
-
-
-//    foreach (const QJsonValue & value, responseArray) {
-//        QJsonObject rootObject = value.toObject();
-//        QJsonObject exchangeObject = rootObject["exchange"].toObject();
-
-//        QJsonObject resultObject;
-//        resultObject.insert("extRefId", rootObject.value("id"));
-//        resultObject.insert("name", rootObject.value("name"));
-//        resultObject.insert("currency", rootObject.value("currency"));
-//        resultObject.insert("price", rootObject.value("last"));
-//        resultObject.insert("symbol1", rootObject.value("symbol"));
-//        resultObject.insert("isin", rootObject.value("isin"));
-//        resultObject.insert("stockMarketName", exchangeObject.value("name"));
-//        resultObject.insert("changeAbsolute", rootObject.value("change"));
-//        resultObject.insert("changeRelative", rootObject.value("changeInPercentage"));
-//        resultObject.insert("high", rootObject.value("high"));
-//        resultObject.insert("low", rootObject.value("low"));
-//        resultObject.insert("ask", rootObject.value("ask"));
-//        resultObject.insert("bid", rootObject.value("bid"));
-//        resultObject.insert("volume", rootObject.value("volume"));
-//        resultObject.insert("numberOfStocks", rootObject.value("numberOfStocks"));
-
-//        QJsonValue jsonUpdatedAt = rootObject.value("updatedAt");
-//        QDateTime updatedAtLocalTime = convertUTCDateTimeToLocalDateTime(jsonUpdatedAt.toString());
-//        resultObject.insert("quoteTimestamp", convertToDatabaseDateTimeFormat(updatedAtLocalTime));
-
-//        resultObject.insert("lastChangeTimestamp", convertToDatabaseDateTimeFormat(QDateTime::currentDateTime()));
-
-//        resultArray.push_back(resultObject);
-//    }
 
     resultDocument.setObject(resultObject);
     QString dataToString(resultDocument.toJson());
 
     return dataToString;
 }
-
-
-
-/**
-
-Customer Data Model:
-
-  client provides the configured allergenes as list "1, 2, 3"
-  Response
-
-  {
-    last_update: "10.10.2020 12:23"
-    next_update: "10.10.2020 12:23"
-    scaleElements: 7
-    maxDaysPrediction: 3
-    region: 10
-    regionPart: -1
-
-    content: [
-       {
-           label: Gräser
-           today {
-              pollutionIndex: 2
-              pollutionLabel: "keine Belastung"
-           }
-           tomorrow {
-              pollutionIndex: 2
-              pollutionLabel: "keine Belastung"
-           }
-           dayAfterTomorrow {
-              pollutionIndex: -1
-           }
-       },
-       {
-           label: Birke
-       }
-
-    ];
-
-
-
-  }
-
-
-
-
-
-*/
-
-

@@ -39,7 +39,6 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/SettingsPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/harbour-pollenflug.changes.in \
     rpm/harbour-pollenflug.changes.run.in \
     rpm/harbour-pollenflug.spec \

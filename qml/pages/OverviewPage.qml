@@ -15,8 +15,6 @@ Page {
 
     property bool loaded : false
     property int iconSize: 92
-    property var nodeData: ({})
-    property var resultData: ""
 
     function connectSlots() {
         console.log("connect - slots");
@@ -28,55 +26,23 @@ Page {
     function updatePollenData() {
         loaded = false;
 
-        var region = (pollenflugSettings.region + 1) * 10;
-        var partRegion = region + (pollenflugSettings.partRegion + 1);
-
-        console.log("region : " + region);
-        console.log("partRegion : " + partRegion);
+        var region = Functions.calculateRegion(pollenflugSettings.region);
+        var partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
 
         Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
     }
 
     function pollenDataAvailable(result) {
         console.log(result);
-
         lastestPollenData = JSON.parse(result);
-        //page.resultData = JSON.parse(result);
-
-        //Constants.jsonData = JSON.parse(result);
-
-//        console.log("length : "+ lastestPollenData.pollenData.length)
 
         if (pollenModel) {
             pollenModel.clear();
 
             for (var i = 0; i < lastestPollenData.pollenData.length; i++) {
-                var data = lastestPollenData.pollenData[i];
-                console.log("data : " + data);
-                console.log(JSON.toString(lastestPollenData.pollenData[i]))
-                //console.log(JSON.parse(lastestPollenData.pollenData[i]))
-                pollenModel.append(data);
+                pollenModel.append(lastestPollenData.pollenData[i]);
             }
         }
-
-
-        //lastestPollenData.pollenData.forEach(pollenModel.append);
-
-
-//        if (pollenflugSettings) {
-//            console.log("set..reg " + pollenflugSettings)
-//            console.log("reg " + pollenflugSettings.region)
-//            if (pollenflugSettings.region) {
-//                var region = (pollenflugSettings.region + 1) * 10;
-//                var partRegion = region + (pollenflugSettings.partRegion + 1);
-
-////                var node = Constants.findPollenNode(region, partRegion, lastestPollenData.content);
-////                nodeData = node;
-
-////                pollenModel.clear();
-//                Functions.addPollenToModel(pollenModel, pollenflugSettings);
-//            }
-//        }
 
         loaded = true;
     }
@@ -169,9 +135,9 @@ Page {
                                 dataToday = currentModelItem.today;
                                 dataTomorrow = currentModelItem.tomorrow;
                                 dataDayAfterTomorrow = currentModelItem.dayAfterTomorrow;
-                                pollenNextUpdate = lastestPollenData.next_update; // TODO rename
-                                pollenLastUpdate = lastestPollenData.last_update; // TODO rename
                                 tileImage = Constants.POLLEN_DATA_LIST[currentModelItem.id - 1].imageSource;
+                                pollenNextUpdate = (lastestPollenData.nextUpdate ? lastestPollenData.nextUpdate : "");
+                                pollenLastUpdate = (lastestPollenData.lastUpdate ? lastestPollenData.nextUpdate : "");
 
                                 updateUI();
                             }
@@ -182,7 +148,6 @@ Page {
                             width: parent.width
                             color: Theme.primaryColor
                             horizontalAlignment: Qt.AlignHCenter
-                            y: Theme.paddingLarge
                         }
                     }
                 }

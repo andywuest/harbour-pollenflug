@@ -1,3 +1,4 @@
+
 /*
  * harbour-watchlist - Sailfish OS Version
  * Copyright © 2017 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
@@ -30,7 +31,6 @@ Page {
     id: settingsPage
     property int iconSize: 64
     property var partRegionNames: []
-//    property int initialPartRegion
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
@@ -42,18 +42,18 @@ Page {
     }
 
     function populatePartRegions(partRegionId) {
-        var partRegionList = Constants.GERMAN_REGION_ID_TO_PART_REGIONS[partRegionId];
-        partRegionComboBox.currentIndex = -1;
+        var partRegionList = Constants.GERMAN_REGION_ID_TO_PART_REGIONS[partRegionId]
+        partRegionComboBox.currentIndex = -1
         if (partRegionList && partRegionList.length > 0) {
-            console.log("new region parts : " + partRegionList);
-            partRegionNames = partRegionList;
-            partRegionRepeater.model = partRegionList.length;
-            partRegionComboBox.visible = true;
+            console.log("new region parts : " + partRegionList)
+            partRegionNames = partRegionList
+            partRegionRepeater.model = partRegionList.length
+            partRegionComboBox.visible = true
             partRegionComboBox.currentIndex = -1
         } else {
-            partRegionNames = [];
-            partRegionRepeater.model = 0;
-            partRegionComboBox.visible = false;
+            partRegionNames = []
+            partRegionRepeater.model = 0
+            partRegionComboBox.visible = false
         }
     }
 
@@ -90,51 +90,51 @@ Page {
                 menu: ContextMenu {
                     MenuItem {
                         text: qsTr("Schleswig-Holstein und Hamburg") // 10
-                        onClicked: populatePartRegions(10);
+                        onClicked: populatePartRegions(10)
                     }
                     MenuItem {
                         text: qsTr("Mecklenburg-Vorpommern") // 20
-                        onClicked: populatePartRegions(20);
+                        onClicked: populatePartRegions(20)
                     }
                     MenuItem {
                         text: qsTr("Niedersachsen und Bremen") // 30
-                        onClicked: populatePartRegions(30);
+                        onClicked: populatePartRegions(30)
                     }
                     MenuItem {
                         text: qsTr("Nordrhein-Westfalen") // 40
-                        onClicked: populatePartRegions(40);
+                        onClicked: populatePartRegions(40)
                     }
                     MenuItem {
                         text: qsTr("Brandenburg und Berlin") // 50
-                        onClicked: populatePartRegions(50);
+                        onClicked: populatePartRegions(50)
                     }
                     MenuItem {
                         text: qsTr("Sachsen-Anhalt") // 60
-                        onClicked: populatePartRegions(60);
+                        onClicked: populatePartRegions(60)
                     }
                     MenuItem {
                         text: qsTr("Thüringen") // 70
-                        onClicked: populatePartRegions(70);
+                        onClicked: populatePartRegions(70)
                     }
                     MenuItem {
                         text: qsTr("Sachsen") // 80
-                        onClicked: populatePartRegions(80);
+                        onClicked: populatePartRegions(80)
                     }
                     MenuItem {
                         text: qsTr("Hessen") // 90
-                        onClicked: populatePartRegions(90);
+                        onClicked: populatePartRegions(90)
                     }
                     MenuItem {
                         text: qsTr("Rheinland-Pfalz und Saarland") // 100
-                        onClicked: populatePartRegions(100);
+                        onClicked: populatePartRegions(100)
                     }
                     MenuItem {
                         text: qsTr("Baden-Württemberg") // 110
-                        onClicked: populatePartRegions(110);
+                        onClicked: populatePartRegions(110)
                     }
                     MenuItem {
                         text: qsTr("Bayern") // 120
-                        onClicked: populatePartRegions(120);
+                        onClicked: populatePartRegions(120)
                     }
                     onActivated: {
                         pollenflugSettings.region = index
@@ -154,31 +154,12 @@ Page {
                         id: partRegionRepeater
                         model: 0
                         MenuItem {
-                            text: (index < settingsPage.partRegionNames.length) ? settingsPage.partRegionNames[index] : "";
+                            text: (index < settingsPage.partRegionNames.length) ? settingsPage.partRegionNames[index] : ""
                         }
-
-                        onModelChanged: {
-                            console.log("model changed");
-//                            if (initialPartRegion) {
-//                                console.log("initial part region : " + initialPartRegion);
-//                                partRegionComboBox.currentIndex = initialPartRegion;
-//                            }
-                        }
-
                     }
                     onActivated: {
                         pollenflugSettings.partRegion = index
                     }
-                    onActiveChanged: {
-                        console.log("active changed ")
-                    }
-                    onStateChanged: {
-                        console.log("state changed");
-                    }
-                    onChildrenChanged: {
-                        console.log("chidlren changed");
-                    }
-
                 }
             }
 
@@ -245,19 +226,12 @@ Page {
     }
 
     Component.onCompleted: {
-        console.log("read config value : " + pollenflugSettings.region + "/" + pollenflugSettings.partRegion);
-        regionComboBox.currentIndex = pollenflugSettings.region;
-        populatePartRegions((pollenflugSettings.region + 1) * 10);
-        //if (pollenflugSettings.partRegion) {
-            if (pollenflugSettings.partRegion >= 0) {
-                //console.log("part region : " + initialPartRegion)
-                //console.log("part region 2 : " + pollenflugSettings.partRegion)
-                // initialPartRegion = pollenflugSettings.partRegion;
-                partRegionComboBox.currentIndex = pollenflugSettings.partRegion;
-                // partRegionComboBox.currentIndex = 1;
-                // partRegionComboBox.currentIndex = pollenflugSettings.partRegion;
-            }
-        //}
+        console.log("read config value : " + pollenflugSettings.region + "/"
+                    + pollenflugSettings.partRegion)
+        regionComboBox.currentIndex = pollenflugSettings.region
+        populatePartRegions((pollenflugSettings.region + 1) * 10)
+        if (pollenflugSettings.partRegion >= 0) {
+            partRegionComboBox.currentIndex = pollenflugSettings.partRegion
+        }
     }
-
 }

@@ -25,6 +25,7 @@ import Nemo.Configuration 1.0
 import "."
 
 import "../components"
+import "../js/functions.js" as Functions
 import "../js/constants.js" as Constants
 
 Page {
@@ -35,6 +36,8 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
+            pollenflugSettings.region = regionComboBox.currentIndex;
+            pollenflugSettings.partRegion = partRegionComboBox.currentIndex;
             console.log("region : " + pollenflugSettings.region)
             console.log("partRegion : " + pollenflugSettings.partRegion)
             pollenflugSettings.sync()
@@ -45,14 +48,19 @@ Page {
         var partRegionList = Constants.GERMAN_REGION_ID_TO_PART_REGIONS[partRegionId]
         partRegionComboBox.currentIndex = -1
         if (partRegionList && partRegionList.length > 0) {
-            console.log("new region parts : " + partRegionList)
-            partRegionNames = partRegionList
-            partRegionRepeater.model = partRegionList.length
+            partRegionsModel.clear();
+
+            for (var j = 0; j < partRegionList.length; j++) {
+                var item = {};
+                item.label = partRegionList[j];
+                partRegionsModel.append(item);
+            }
+
+            partRegionComboBox.currentIndex = -1;
+            partRegionComboBox.currentItem = null;
             partRegionComboBox.visible = true
-            partRegionComboBox.currentIndex = -1
         } else {
-            partRegionNames = []
-            partRegionRepeater.model = 0
+            partRegionsModel.clear();
             partRegionComboBox.visible = false
         }
     }
@@ -90,57 +98,52 @@ Page {
                 menu: ContextMenu {
                     MenuItem {
                         text: qsTr("Schleswig-Holstein und Hamburg") // 10
-                        onClicked: populatePartRegions(10)
                     }
                     MenuItem {
                         text: qsTr("Mecklenburg-Vorpommern") // 20
-                        onClicked: populatePartRegions(20)
                     }
                     MenuItem {
                         text: qsTr("Niedersachsen und Bremen") // 30
-                        onClicked: populatePartRegions(30)
                     }
                     MenuItem {
                         text: qsTr("Nordrhein-Westfalen") // 40
-                        onClicked: populatePartRegions(40)
                     }
                     MenuItem {
                         text: qsTr("Brandenburg und Berlin") // 50
-                        onClicked: populatePartRegions(50)
                     }
                     MenuItem {
                         text: qsTr("Sachsen-Anhalt") // 60
-                        onClicked: populatePartRegions(60)
                     }
                     MenuItem {
                         text: qsTr("Thüringen") // 70
-                        onClicked: populatePartRegions(70)
                     }
                     MenuItem {
                         text: qsTr("Sachsen") // 80
-                        onClicked: populatePartRegions(80)
                     }
                     MenuItem {
                         text: qsTr("Hessen") // 90
-                        onClicked: populatePartRegions(90)
                     }
                     MenuItem {
                         text: qsTr("Rheinland-Pfalz und Saarland") // 100
-                        onClicked: populatePartRegions(100)
                     }
                     MenuItem {
                         text: qsTr("Baden-Württemberg") // 110
-                        onClicked: populatePartRegions(110)
                     }
                     MenuItem {
                         text: qsTr("Bayern") // 120
-                        onClicked: populatePartRegions(120)
-                    }
-                    onActivated: {
-                        pollenflugSettings.region = index
                     }
                 }
+                onCurrentIndexChanged: {
+                    onClicked: populatePartRegions(Functions.calculateRegion(currentIndex), true)
+                }
             }
+
+            ListModel {
+                        id: partRegionsModel
+                        ListElement {
+                            label: ""
+                        }
+                    }
 
             ComboBox {
                 id: partRegionComboBox
@@ -152,13 +155,10 @@ Page {
                 menu: ContextMenu {
                     Repeater {
                         id: partRegionRepeater
-                        model: 0
-                        MenuItem {
-                            text: (index < settingsPage.partRegionNames.length) ? settingsPage.partRegionNames[index] : ""
+                        model: partRegionsModel
+                        delegate : MenuItem {
+                            text: label
                         }
-                    }
-                    onActivated: {
-                        pollenflugSettings.partRegion = index
                     }
                 }
             }
@@ -229,7 +229,7 @@ Page {
         console.log("read config value : " + pollenflugSettings.region + "/"
                     + pollenflugSettings.partRegion)
         regionComboBox.currentIndex = pollenflugSettings.region
-        populatePartRegions((pollenflugSettings.region + 1) * 10)
+        populatePartRegions((pollenflugSettings.region + 1) * 10, false)
         if (pollenflugSettings.partRegion >= 0) {
             partRegionComboBox.currentIndex = pollenflugSettings.partRegion
         }

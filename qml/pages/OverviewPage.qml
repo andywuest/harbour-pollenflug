@@ -33,7 +33,7 @@ Page {
     }
 
     function pollenDataAvailable(result) {
-        console.log(result);
+        //console.log(result);
         lastestPollenData = JSON.parse(result);
 
         if (pollenModel) {

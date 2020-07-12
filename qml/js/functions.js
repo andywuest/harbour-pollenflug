@@ -56,7 +56,10 @@ function calculateRegion(storedRegion) {
 }
 
 function calculatePartRegion(calculatedRegion, storedPartRegion) {
-    return calculatedRegion + (storedPartRegion + 1)
+    if (storedPartRegion !== -1) {
+        return calculatedRegion + (storedPartRegion + 1)
+    }
+    return storedPartRegion;
 }
 
 

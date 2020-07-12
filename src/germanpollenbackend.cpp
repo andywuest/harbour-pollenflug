@@ -94,12 +94,9 @@ void GermanPollenBackend::handleFetchPollenDataFinished() {
 }
 
 bool GermanPollenBackend::isRegionNodeFound(int regionId, int partRegionId) {
-    if (this->regionId == regionId) {
-        if (this->partRegionId != -1 && this->partRegionId == partRegionId) {
-            return true;
-        } else if (this->partRegionId == -1) {
-            return true;
-       }
+    if (this->regionId == regionId && this->partRegionId == partRegionId) {
+        qDebug() << "FOUDN region/partregion: " << regionId << "/" << partRegionId;
+        return true;
     }
     return false;
 }
@@ -150,8 +147,6 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
          QJsonObject rootObject = value.toObject();
          int regionId = rootObject.value("region_id").toInt();
          int partRegionId = rootObject.value("partregion_id").toInt();
-
-         qDebug() << "region/partregion: " << regionId << "/" << partRegionId;
 
          if (isRegionNodeFound(regionId, partRegionId) == true) {
              QJsonObject responsePollenObject = rootObject.value("Pollen").toObject();

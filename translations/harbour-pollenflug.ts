@@ -31,7 +31,7 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If you suffer from aan allergy you can watch the pollen situtation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
+        <source>If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
         <extracomment>AboutPage text - about text</extracomment>
         <translation type="unfinished"></translation>
     </message>
@@ -43,11 +43,11 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heute</source>
+        <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Morgen</source>
+        <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -151,11 +151,11 @@ AboutPage title - about text title</extracomment>
 <context>
     <name>PollenDateRow</name>
     <message>
-        <source>Heute</source>
+        <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Morgen</source>
+        <source>Tomorrow</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

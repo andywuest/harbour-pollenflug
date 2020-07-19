@@ -3,6 +3,9 @@
 #endif
 
 #include <sailfishapp.h>
+#include <QQuickView>
+#include <QQmlContext>
+#include <QGuiApplication>
 
 #include "pollenflug.h"
 
@@ -17,7 +20,6 @@ int main(int argc, char *argv[]) {
     GermanPollenBackend *germanPollenBackend = pollenflug.getGermanPollenBackend();
     context->setContextProperty("germanPollenBackend", germanPollenBackend);
 
-    //context->setContextProperty("applicationVersion", QString("0.1")); // TODO
     context->setContextProperty("applicationVersion", QString(VERSION_NUMBER));
 
     view->setSource(SailfishApp::pathTo("qml/harbour-pollenflug.qml"));

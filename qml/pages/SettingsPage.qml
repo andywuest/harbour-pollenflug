@@ -91,7 +91,7 @@ Page {
             ComboBox {
                 id: regionComboBox
                 //: SettingsPage region
-                label: qsTr("Region")
+                label: qsTr("Bundesland")
                 currentIndex: pollenflugSettings.region
                 //: SettingsPage region description
                 description: qsTr("Select the state where you live")

@@ -9,12 +9,12 @@ Row {
 
     PollenLabel {
         id: todayLabel
-        text: qsTr("Heute")
+        text: qsTr("Today")
     }
 
     PollenLabel {
         id: tomorrowLabel
-        text: qsTr("Morgen")
+        text: qsTr("Tomorrow")
     }
 
     PollenLabel {

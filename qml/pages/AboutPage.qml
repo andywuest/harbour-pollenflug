@@ -51,7 +51,7 @@ Page {
                 label: qsTr("About Pollenflug")
                 //: AboutPage text - about text
                 // TODO fixme
-                text: qsTr("If you have an allergy you can watch the pollen situtation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.")
+                text: qsTr("If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.")
                 separator: true
             }
 

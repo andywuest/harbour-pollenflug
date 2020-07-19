@@ -138,7 +138,7 @@ CoverBackground {
             width: parent.width
             topPadding: Theme.paddingLarge
             bottomPadding: Theme.paddingMedium
-            text: coverActionPrevious.enabled ? qsTr("Heute") : qsTr("Morgen")
+            text: coverActionPrevious.enabled ? qsTr("Today") : qsTr("Tomorrow")
             color: Theme.primaryColor
             font.bold: true
             font.pixelSize: Theme.fontSizeSmall

@@ -26,13 +26,13 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If you have an allergy you can watch the pollen situtation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
-        <extracomment>AboutPage text - about text</extracomment>
+        <source>Icons</source>
+        <extracomment>AboutPage icon source label</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Icons</source>
-        <extracomment>AboutPage icon source label</extracomment>
+        <source>If you suffer from aan allergy you can watch the pollen situtation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
+        <extracomment>AboutPage text - about text</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -143,6 +143,10 @@ AboutPage title - about text title</extracomment>
         <extracomment>OverviewPage header</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No data available - please configure your state and region properly.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PollenDateRow</name>
@@ -171,11 +175,6 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Ort</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Region</source>
-        <extracomment>SettingsPage region</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -243,6 +242,11 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Select the state where you live</source>
         <extracomment>SettingsPage region description</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bundesland</source>
+        <extracomment>SettingsPage region</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

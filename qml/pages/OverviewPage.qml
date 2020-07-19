@@ -53,6 +53,28 @@ Page {
         loaded = true;
     }
 
+    // TODO create component from it
+    Column {
+        id: noPollenDataConfiguredColumn
+
+        x: Theme.horizontalPageMargin
+        width: parent.width - 2 * x
+        spacing: Theme.paddingSmall
+
+        visible: !(lastestPollenData.pollenData.length > 0)
+
+        Label {
+            topPadding: Theme.paddingLarge
+            horizontalAlignment: Text.AlignHCenter
+            x: Theme.horizontalPageMargin
+            width: parent.width - 2 * x
+
+            wrapMode: Text.Wrap
+            textFormat: Text.RichText
+            text: qsTr("No data available - please configure your state and region properly.")
+        }
+    }
+
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         width: parent.width
@@ -99,6 +121,7 @@ Page {
                 id: pollenHeader
                 //: OverviewPage header
                 title: qsTr("Allergen")
+                visible: (lastestPollenData.pollenData.length > 0)
             }
 
             SilicaListView {

@@ -6,8 +6,6 @@ Column {
     width: parent.width
     spacing: Theme.paddingMedium
 
-    property int iconSize: 70
-
     property alias headerLabel: iconLabelRowLabel.text
     property alias titleImage: iconLabelRowImage.source
 
@@ -21,8 +19,8 @@ Column {
 
             Image {
                 id: iconLabelRowImage
-                width: iconSize
-                height: iconSize
+                width: iconLabelRowLabel.height
+                height: iconLabelRowLabel.height
                 anchors.right: parent.right
             }
         }
@@ -35,4 +33,5 @@ Column {
             font.bold: true
         }
     }
+
 }

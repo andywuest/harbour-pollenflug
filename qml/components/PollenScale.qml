@@ -9,6 +9,13 @@ Column {
     property int boxes: 7 // TODO sollte vom client kommen
     property var colors: ["#006400", "#228b22", "#7cfc00", "#ffff00", "#ee9a00", "#cd0000", "#8b3a62"]
 
+    function resolveBoxColor(index) {
+        if (scaleColumn.pollution >= 0 && index <= scaleColumn.pollution) {
+            return scaleColumn.colors[index];
+        }
+        return "transparent";
+    }
+
     Row {
         id: scaleRow
         width: parent.width - (2 * Theme.paddingMedium) - (6 * Theme.paddingSmall)
@@ -24,7 +31,7 @@ Column {
                 width: parent.width / scaleColumn.boxes
                 height: parent.width / scaleColumn.boxes
                 border.color: Theme.highlightColor
-                color: (index < scaleColumn.pollution ? scaleColumn.colors[index] : "transparent")
+                color: resolveBoxColor(index);
                 border.width: 1
             }
         }

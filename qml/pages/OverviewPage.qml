@@ -53,6 +53,10 @@ Page {
         loaded = true;
     }
 
+    function isPollenDatePresent() {
+        return (lastestPollenData && lastestPollenData.pollenData && lastestPollenData.pollenData.length > 0);
+    }
+
     // TODO create component from it
     Column {
         id: noPollenDataConfiguredColumn
@@ -61,7 +65,7 @@ Page {
         width: parent.width - 2 * x
         spacing: Theme.paddingSmall
 
-        visible: !(lastestPollenData.pollenData.length > 0)
+        visible: !isPollenDatePresent()
 
         Label {
             topPadding: Theme.paddingLarge
@@ -121,7 +125,7 @@ Page {
                 id: pollenHeader
                 //: OverviewPage header
                 title: qsTr("Allergen")
-                visible: (lastestPollenData.pollenData.length > 0)
+                visible: isPollenDatePresent()
             }
 
             SilicaListView {

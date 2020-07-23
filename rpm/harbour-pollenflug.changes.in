@@ -12,5 +12,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* xx.xx.2020 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.1.1-1
+- Fixed sizing of pollen image in overview (too small for large screens)
+- Fixed display of app name (Pollenflug instead of harbour-pollenflug)
+- Fixed display of pollution (is one box more)
+
 * 19.07.2020 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.1.0-1
 - Initial release

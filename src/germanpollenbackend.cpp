@@ -38,6 +38,7 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollutionIndexToLabelMap.insert("3", tr("hohe Belastung"));
 
     // used for scale index
+    this->pollutionIndexToIndexMap.insert("-1", -1);
     this->pollutionIndexToIndexMap.insert("0", 0);
     this->pollutionIndexToIndexMap.insert("0-1", 1);
     this->pollutionIndexToIndexMap.insert("1", 2);

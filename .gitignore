@@ -10,3 +10,4 @@ harbour-pollenflug
 /rpm/harbour-pollenflug.spec
 /.idea/
 /sdk-harbour-rpmvalidator/
+/RPMS/*.rpm

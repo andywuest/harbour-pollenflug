@@ -4,11 +4,11 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>About Pollenflug</source>
+        <source>Über Pollenflug</source>
         <extracomment>AboutPage title - header
 ----------
 AboutPage title - about text title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Über Pollenflug"></translation>
     </message>
     <message>
         <source>Version</source>
@@ -18,7 +18,7 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Author</source>
         <extracomment>AboutPage author label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Autor"></translation>
     </message>
     <message>
         <source>Source code</source>
@@ -31,7 +31,7 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
+        <source>Wenn Sie an einer Allergie leiden, können Sie die Pollensituation in Ihrer Nähe auf verschiedene Allergene beobachten. Pollenflug ist Open Source und unter der GPL v3 lizenziert.</source>
         <extracomment>AboutPage text - about text</extracomment>
         <translation type="unfinished"></translation>
     </message>
@@ -39,15 +39,15 @@ AboutPage title - about text title</extracomment>
 <context>
     <name>CoverPage</name>
     <message>
-        <source>Loading...</source>
+        <source>Lade...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Today</source>
+        <source>Heute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tomorrow</source>
+        <source>Morgen</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -117,7 +117,7 @@ AboutPage title - about text title</extracomment>
 <context>
     <name>LoadingIndicator</name>
     <message>
-        <source>Loading...</source>
+        <source>Lade...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -144,18 +144,18 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No data available - please configure your state and region properly.</source>
+        <source>Keine Daten - bitte wähle Dein Bundesland und die Region.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PollenDateRow</name>
     <message>
-        <source>Today</source>
+        <source>Heute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tomorrow</source>
+        <source>Morgen</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -169,7 +169,7 @@ AboutPage title - about text title</extracomment>
 <context>
     <name>SettingsPage</name>
     <message>
-        <source>Settings</source>
+        <source>Einstellungen</source>
         <extracomment>SettingsPage settings title</extracomment>
         <translation type="unfinished"></translation>
     </message>
@@ -199,7 +199,7 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select the region where you live</source>
+        <source>Wähle Deine Region</source>
         <extracomment>SettingsPage part region description</extracomment>
         <translation type="unfinished"></translation>
     </message>
@@ -240,7 +240,7 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select the state where you live</source>
+        <source>Wähle Dein Bundesland</source>
         <extracomment>SettingsPage region description</extracomment>
         <translation type="unfinished"></translation>
     </message>

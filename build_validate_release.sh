@@ -20,7 +20,7 @@ ssh -p 2222 -i ~/SailfishOS/vmshare/ssh/private_keys/engine/mersdk mersdk@localh
   set -x
   cd /home/src1/projects/sailfishos/github/$PROJECT
   rm *.o
-  mb2 --no-snapshot -t $TARGET-armv7hl build
+  mb2 --snapshot -t $TARGET-armv7hl build
 EOF
 
 # checkout rpm validator if not yet here

@@ -3,6 +3,7 @@ moc*.cpp
 Makefile
 *.list
 harbour-pollenflug
+*_original.png
 
 /backup_pollen.tar
 /pollenflug.iml

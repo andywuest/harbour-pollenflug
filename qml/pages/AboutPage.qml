@@ -89,6 +89,17 @@ Page {
                 }
             }
 
+            LabelText {
+                anchors {
+                    left: parent.left
+                    margins: Theme.paddingLarge
+                }
+                //: AboutPage contributors label
+                label: qsTr("Contributors")
+                text: "planetos82 (icon)"
+                separator: true
+            }
+
             BackgroundItem {
                 id: clickableUrlIcons
                 contentHeight: iconLabelUrl.height

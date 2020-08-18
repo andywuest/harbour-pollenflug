@@ -1,3 +1,4 @@
+
 /*
  * harbour-watchlist - Sailfish OS Version
  * Copyright © 2017 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
@@ -26,40 +27,43 @@ import "../js/functions.js" as Functions
 
 CoverBackground {
     id: coverPage
-    property bool loading : false
+    property bool loading: false
 
     function connectSlots() {
-        console.log("connect - slots");
-        var dataBackend = Functions.getDataBackend();
-        dataBackend.pollenDataAvailable.connect(pollenDataAvailable);
-        dataBackend.requestError.connect(errorResultHandler);
+        console.log("connect - slots")
+        var dataBackend = Functions.getDataBackend()
+        dataBackend.pollenDataAvailable.connect(pollenDataAvailable)
+        dataBackend.requestError.connect(errorResultHandler)
     }
 
     function updatePollenData() {
-        loading = true;
+        loading = true
 
-        var region = Functions.calculateRegion(pollenflugSettings.region);
-        var partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
+        var region = Functions.calculateRegion(pollenflugSettings.region)
+        var partRegion = Functions.calculatePartRegion(
+                    region, pollenflugSettings.partRegion)
 
-        Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
+        Functions.getDataBackend().fetchPollenData(
+                    Functions.getSelectedPollenList(pollenflugSettings),
+                    region, partRegion)
     }
 
     function pollenDataAvailable(result) {
-        console.log(result);
-        lastestPollenData = JSON.parse(result);
+        console.log(result)
+        lastestPollenData = JSON.parse(result)
 
         if (coverModel) {
-            coverModel.clear();
+            coverModel.clear()
             for (var i = 0; i < lastestPollenData.pollenData.length; i++) {
-                coverModel.append(lastestPollenData.pollenData[i]);
+                coverModel.append(lastestPollenData.pollenData[i])
             }
         }
 
-        loading = false;
+        loading = false
     }
 
     function errorResultHandler(result) {
-        loading = false;
+        loading = false
     }
 
     Column {
@@ -120,11 +124,31 @@ CoverBackground {
         }
     }
 
+    Image {
+        id: backgroundImage
+        source: "../icons/background" + (Theme.colorScheme ? "-black" : "") + ".png"
+        anchors {
+            verticalCenter: parent.verticalCenter
+
+            bottom: parent.bottom
+            bottomMargin: Theme.paddingMedium
+
+            right: parent.right
+            rightMargin: Theme.paddingMedium
+        }
+
+        fillMode: Image.PreserveAspectFit
+        opacity: 0.15
+    }
+
     SilicaListView {
         id: coverListView
 
         visible: !coverPage.loading
-        Behavior on opacity { NumberAnimation {} }
+        Behavior on opacity {
+            NumberAnimation {
+            }
+        }
         opacity: coverPage.loading ? 0 : 1
 
         anchors.fill: parent
@@ -192,7 +216,7 @@ CoverBackground {
                         truncationMode: TruncationMode.Fade
 
                         Component.onCompleted: {
-                            pollutionLabel.text = (coverActionPrevious.enabled ? coverModel.get(index).today.pollutionLabel : coverModel.get(index).tomorrow.pollutionLabel);
+                            pollutionLabel.text = (coverActionPrevious.enabled ? coverModel.get(index).today.pollutionLabel : coverModel.get(index).tomorrow.pollutionLabel)
                         }
                     }
                 }
@@ -208,8 +232,7 @@ CoverBackground {
     }
 
     Component.onCompleted: {
-        connectSlots();
+        connectSlots()
         updatePollenData()
     }
-
 }

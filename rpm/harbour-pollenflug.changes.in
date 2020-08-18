@@ -13,7 +13,8 @@
 # - Summary of changes
 
 * xx.xx.2020 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.1.2-1
-- Added app icon (provided by planetos82). Thanks!!
+- Added app icon / background image for cover page (provided by planetos82). Thanks!!
+- All labels within the app should be english now (when it makes sense)
 
 * 30.07.2020 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.1.1-1
 - Fixed sizing of pollen image in overview (too small for large screens)

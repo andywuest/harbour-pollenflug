@@ -52,6 +52,8 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/pages/icons/graeser.svg \
     qml/pages/icons/hasel.svg \
     qml/pages/icons/roggen.svg \
+    qml/pages/icons/background.png \
+    qml/pages/icons/background-black.png \
     harbour-pollenflug.desktop
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172

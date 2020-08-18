@@ -59,63 +59,63 @@ AboutPage title - about text title</extracomment>
 <context>
     <name>GermanPollenBackend</name>
     <message>
-        <source>Beifuss</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Birke</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Erle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Esche</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gräser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hasel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ambrosia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Roggen</source>
+        <source>Mugwort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>keine Belastung</source>
+        <source>Birch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>keine bis geringe Belastung</source>
+        <source>Alder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>geringe Belastung</source>
+        <source>Ash Tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>geringe bis mittlere Belastung</source>
+        <source>Grass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>mittlere Belastung</source>
+        <source>Hazel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>mittlere bis hohe Belastung</source>
+        <source>Rye</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>hohe Belastung</source>
+        <source>no pollen exposure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>none to small pollen exposure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>small pollen exposure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>small to medium pollen exposure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>medium pollen exposure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>medium to high pollen exposure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>high pollen exposure</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -179,10 +179,6 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ort</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Schleswig-Holstein und Hamburg</source>
         <translation type="unfinished"></translation>
     </message>
@@ -196,11 +192,6 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Allergen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gegend</source>
-        <extracomment>SettingsPage part region</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -250,43 +241,24 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bundesland</source>
-        <extracomment>SettingsPage region</extracomment>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>State</source>
+        <extracomment>SettingsPage state</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Region</source>
+        <extracomment>SettingsPage part region</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>constants</name>
     <message>
-        <source>Beifuß</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Birke</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Erle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Esche</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gräser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hasel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ambrosia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Roggen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -387,6 +359,34 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Mainfranken</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mugwort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Birch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ash Tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hazel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rye</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

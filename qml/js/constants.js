@@ -20,21 +20,21 @@ function createPollenItem(id, label, imageSource) {
 
 function buildPollenList() {
     var pollenList = []
-    pollenList.push(createPollenItem(MUGWORT_ID, qsTr("Beifuß"),
+    pollenList.push(createPollenItem(MUGWORT_ID, qsTr("Mugwort"), // Beifuß
                                      "../icons/beifuss.svg"))
-    pollenList.push(createPollenItem(BIRCH_ID, qsTr("Birke"),
+    pollenList.push(createPollenItem(BIRCH_ID, qsTr("Birch"), // Birke
                                      "../icons/birke.svg"))
-    pollenList.push(createPollenItem(ALDER_ID, qsTr("Erle"),
+    pollenList.push(createPollenItem(ALDER_ID, qsTr("Alder"), // Erle
                                      "../icons/erle.svg"))
-    pollenList.push(createPollenItem(ASH_TREE_ID, qsTr("Esche"),
+    pollenList.push(createPollenItem(ASH_TREE_ID, qsTr("Ash Tree"), // Esche
                                      "../icons/esche.svg"))
-    pollenList.push(createPollenItem(GRASS_ID, qsTr("Gräser"),
+    pollenList.push(createPollenItem(GRASS_ID, qsTr("Grass"), // Gräser
                                      "../icons/graeser.svg"))
-    pollenList.push(createPollenItem(HAZEL_ID, qsTr("Hasel"),
+    pollenList.push(createPollenItem(HAZEL_ID, qsTr("Hazel"), // Hasel
                                      "../icons/hasel.svg"))
-    pollenList.push(createPollenItem(AMBROSIA_ID, qsTr("Ambrosia"),
+    pollenList.push(createPollenItem(AMBROSIA_ID, qsTr("Ambrosia"), // Ambrosia
                                      "../icons/ambrosia.svg"))
-    pollenList.push(createPollenItem(RYE_ID, qsTr("Roggen"),
+    pollenList.push(createPollenItem(RYE_ID, qsTr("Rye"), // Roggen
                                      "../icons/roggen.svg"))
     return pollenList
 }

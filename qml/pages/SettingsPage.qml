@@ -1,4 +1,3 @@
-
 /*
  * harbour-watchlist - Sailfish OS Version
  * Copyright © 2017 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
@@ -36,7 +35,7 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
-            pollenflugSettings.region = regionComboBox.currentIndex;
+            pollenflugSettings.region = stateComboBox.currentIndex;
             pollenflugSettings.partRegion = partRegionComboBox.currentIndex;
             console.log("region : " + pollenflugSettings.region)
             console.log("partRegion : " + pollenflugSettings.partRegion)
@@ -85,13 +84,13 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Ort")
+                text: qsTr("Location")
             }
 
             ComboBox {
-                id: regionComboBox
-                //: SettingsPage region
-                label: qsTr("Bundesland")
+                id: stateComboBox
+                //: SettingsPage state
+                label: qsTr("State")
                 currentIndex: pollenflugSettings.region
                 //: SettingsPage region description
                 description: qsTr("Select the state where you live")
@@ -148,7 +147,7 @@ Page {
             ComboBox {
                 id: partRegionComboBox
                 //: SettingsPage part region
-                label: qsTr("Gegend")
+                label: qsTr("Region")
                 currentIndex: pollenflugSettings.partRegion
                 //: SettingsPage part region description
                 description: qsTr("Select the region where you live")
@@ -228,7 +227,7 @@ Page {
     Component.onCompleted: {
         console.log("read config value : " + pollenflugSettings.region + "/"
                     + pollenflugSettings.partRegion)
-        regionComboBox.currentIndex = pollenflugSettings.region
+        stateComboBox.currentIndex = pollenflugSettings.region
         populatePartRegions((pollenflugSettings.region + 1) * 10, false)
         if (pollenflugSettings.partRegion >= 0) {
             partRegionComboBox.currentIndex = pollenflugSettings.partRegion

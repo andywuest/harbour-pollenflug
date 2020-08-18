@@ -19,23 +19,23 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToKeyMap.insert(8, "Roggen");
 
     // TODO english
-    this->pollenIdToLabelMap.insert(1, tr("Beifuss"));
-    this->pollenIdToLabelMap.insert(2, tr("Birke"));
-    this->pollenIdToLabelMap.insert(3, tr("Erle"));
-    this->pollenIdToLabelMap.insert(4, tr("Esche"));
-    this->pollenIdToLabelMap.insert(5, tr("Gräser"));
-    this->pollenIdToLabelMap.insert(6, tr("Hasel"));
-    this->pollenIdToLabelMap.insert(7, tr("Ambrosia"));
-    this->pollenIdToLabelMap.insert(8, tr("Roggen"));
+    this->pollenIdToLabelMap.insert(1, tr("Mugwort")); // Beifuss
+    this->pollenIdToLabelMap.insert(2, tr("Birch")); // Birke
+    this->pollenIdToLabelMap.insert(3, tr("Alder")); // Erle
+    this->pollenIdToLabelMap.insert(4, tr("Ash Tree")); // Esche
+    this->pollenIdToLabelMap.insert(5, tr("Grass")); // Gräser
+    this->pollenIdToLabelMap.insert(6, tr("Hazel")); // Hasel
+    this->pollenIdToLabelMap.insert(7, tr("Ambrosia")); // Ambrosia
+    this->pollenIdToLabelMap.insert(8, tr("Rye")); // Roggen
 
     // used for label
-    this->pollutionIndexToLabelMap.insert("0", tr("keine Belastung"));
-    this->pollutionIndexToLabelMap.insert("0-1", tr("keine bis geringe Belastung"));
-    this->pollutionIndexToLabelMap.insert("1", tr("geringe Belastung"));
-    this->pollutionIndexToLabelMap.insert("1-2", tr("geringe bis mittlere Belastung"));
-    this->pollutionIndexToLabelMap.insert("2", tr("mittlere Belastung"));
-    this->pollutionIndexToLabelMap.insert("2-3", tr("mittlere bis hohe Belastung"));
-    this->pollutionIndexToLabelMap.insert("3", tr("hohe Belastung"));
+    this->pollutionIndexToLabelMap.insert("0", tr("no pollen exposure")); // keine Belastung
+    this->pollutionIndexToLabelMap.insert("0-1", tr("none to small pollen exposure")); // keine bis geringe Belastung
+    this->pollutionIndexToLabelMap.insert("1", tr("small pollen exposure")); // geringe Belastung
+    this->pollutionIndexToLabelMap.insert("1-2", tr("small to medium pollen exposure")); // geringe bis mittlere Belastung
+    this->pollutionIndexToLabelMap.insert("2", tr("medium pollen exposure")); // mittlere Belastung
+    this->pollutionIndexToLabelMap.insert("2-3", tr("medium to high pollen exposure")); // mittlere bis hohe Belastung
+    this->pollutionIndexToLabelMap.insert("3", tr("high pollen exposure")); // hohe Belastung
 
     // used for scale index
     this->pollutionIndexToIndexMap.insert("-1", -1);

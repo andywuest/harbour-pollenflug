@@ -4,6 +4,7 @@ Makefile
 *.list
 harbour-pollenflug
 *_original.png
+*.qm
 
 /backup_pollen.tar
 /pollenflug.iml

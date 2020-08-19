@@ -8,122 +8,122 @@
         <extracomment>AboutPage title - header
 ----------
 AboutPage title - about text title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Über Pollenflug"></translation>
     </message>
     <message>
         <source>Version</source>
         <extracomment>AboutPage version label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Version"></translation>
     </message>
     <message>
         <source>Author</source>
         <extracomment>AboutPage author label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Autor"></translation>
     </message>
     <message>
         <source>Source code</source>
         <extracomment>AboutPage about source label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Quellcode"></translation>
     </message>
     <message>
         <source>Icons</source>
         <extracomment>AboutPage icon source label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Icons"></translation>
     </message>
     <message>
         <source>If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
         <extracomment>AboutPage text - about text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Wenn Sie an einer Allergie leiden, können Sie die Pollensituation in Ihrer Nähe auf verschiedene Allergene beobachten. Pollenflug ist Open Source und unter der GPL v3 lizenziert."></translation>
     </message>
     <message>
         <source>Contributors</source>
         <extracomment>AboutPage contributors label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Mitwirkende"></translation>
     </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation type="Lade..."></translation>
     </message>
     <message>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="Heute"></translation>
     </message>
     <message>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="Morgen"></translation>
     </message>
 </context>
 <context>
     <name>GermanPollenBackend</name>
     <message>
         <source>Ambrosia</source>
-        <translation type="unfinished"></translation>
+        <translation type="Ambrosia"></translation>
     </message>
     <message>
         <source>Mugwort</source>
-        <translation type="unfinished"></translation>
+        <translation type="Beifuß"></translation>
     </message>
     <message>
         <source>Birch</source>
-        <translation type="unfinished"></translation>
+        <translation type="Birke"></translation>
     </message>
     <message>
         <source>Alder</source>
-        <translation type="unfinished"></translation>
+        <translation type="Erle"></translation>
     </message>
     <message>
         <source>Ash Tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="Esche"></translation>
     </message>
     <message>
         <source>Grass</source>
-        <translation type="unfinished"></translation>
+        <translation type="Gräser"></translation>
     </message>
     <message>
         <source>Hazel</source>
-        <translation type="unfinished"></translation>
+        <translation type="Hasel"></translation>
     </message>
     <message>
         <source>Rye</source>
-        <translation type="unfinished"></translation>
+        <translation type="Roggen"></translation>
     </message>
     <message>
         <source>no pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation type="keine Belastung"></translation>
     </message>
     <message>
         <source>none to small pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation type="keine bis geringe Belastung"></translation>
     </message>
     <message>
         <source>small pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation type="geringe Belastung"></translation>
     </message>
     <message>
         <source>small to medium pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation type="geringe bis mittlere Belastung"></translation>
     </message>
     <message>
         <source>medium pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation type="mittlere Belastung"></translation>
     </message>
     <message>
         <source>medium to high pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation type="mittlere bis hohe Belastung"></translation>
     </message>
     <message>
         <source>high pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation type="hohe Belastung"></translation>
     </message>
 </context>
 <context>
     <name>LoadingIndicator</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation type="Lade..."></translation>
     </message>
 </context>
 <context>
@@ -131,37 +131,37 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>About</source>
         <extracomment>OverviewPage about menu item</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Über"></translation>
     </message>
     <message>
         <source>Settings</source>
         <extracomment>OverviewPage settings menu item</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Einstellungen"></translation>
     </message>
     <message>
         <source>Refresh</source>
         <extracomment>OverviewPage refrehs menu item</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Aktualisierung"></translation>
     </message>
     <message>
         <source>Allergen</source>
         <extracomment>OverviewPage header</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Allergen"></translation>
     </message>
     <message>
         <source>No data available - please configure your state and region properly.</source>
-        <translation type="unfinished"></translation>
+        <translation type="Keine Daten verfügbar - bitte konfigurieren Sie Ihr Bundesland und Ihre Region richtig"></translation>
     </message>
 </context>
 <context>
     <name>PollenDateRow</name>
     <message>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="Heute"></translation>
     </message>
     <message>
         <source>Tomorrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="Morgen"></translation>
     </message>
 </context>
 <context>
@@ -176,7 +176,7 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Settings</source>
         <extracomment>SettingsPage settings title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Einstellungen"></translation>
     </message>
     <message>
         <source>Schleswig-Holstein und Hamburg</source>
@@ -192,12 +192,12 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Allergen</source>
-        <translation type="unfinished"></translation>
+        <translation type="Allergen"></translation>
     </message>
     <message>
         <source>Select the region where you live</source>
         <extracomment>SettingsPage part region description</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Wählen Sie die Region aus"></translation>
     </message>
     <message>
         <source>Nordrhein-Westfalen</source>
@@ -238,28 +238,28 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Select the state where you live</source>
         <extracomment>SettingsPage region description</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Wählen Sie Ihr Bundesland"></translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation type="Ort"></translation>
     </message>
     <message>
         <source>State</source>
         <extracomment>SettingsPage state</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Bundesland"></translation>
     </message>
     <message>
         <source>Region</source>
         <extracomment>SettingsPage part region</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="Region"></translation>
     </message>
 </context>
 <context>
     <name>constants</name>
     <message>
         <source>Ambrosia</source>
-        <translation type="unfinished"></translation>
+        <translation type="Ambrosia"></translation>
     </message>
     <message>
         <source>Inseln und Marschen</source>
@@ -363,31 +363,31 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Mugwort</source>
-        <translation type="unfinished"></translation>
+        <translation type="Beifuß"></translation>
     </message>
     <message>
         <source>Birch</source>
-        <translation type="unfinished"></translation>
+        <translation type="Birke"></translation>
     </message>
     <message>
         <source>Alder</source>
-        <translation type="unfinished"></translation>
+        <translation type="Erle"></translation>
     </message>
     <message>
         <source>Ash Tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="Esche"></translation>
     </message>
     <message>
         <source>Grass</source>
-        <translation type="unfinished"></translation>
+        <translation type="Gräser"></translation>
     </message>
     <message>
         <source>Hazel</source>
-        <translation type="unfinished"></translation>
+        <translation type="Hasel"></translation>
     </message>
     <message>
         <source>Rye</source>
-        <translation type="unfinished"></translation>
+        <translation type="Roggen"></translation>
     </message>
 </context>
 </TS>

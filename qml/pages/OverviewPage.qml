@@ -93,7 +93,7 @@ Page {
             width: parent.width - 2 * x
             spacing: Theme.paddingSmall
 
-            visible: !isPollenDatePresent()
+            visible: (!isPollenDatePresent() && loaded)
 
             Label {
                 topPadding: Theme.paddingLarge

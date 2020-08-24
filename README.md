@@ -1,4 +1,4 @@
-# Watchlist
+# Pollenflug
 
 This repository contains the sources of the pollenflug application for Sailfish OS.
 
@@ -30,12 +30,9 @@ Simply clone this repository.
 ## License
 Licensed under GNU GPLv3
 
-<!--
-
 ## Translations
 
 Watchlist was translated to several languages. Thanks to all contributors!
-- German: me :-)
--->
+- German: me, monkeyisland1992
 
 

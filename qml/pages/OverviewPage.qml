@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import Nemo.Notifications 1.0
 
 import "../components"
 import "../components/thirdparty"
@@ -13,6 +14,7 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
+    property bool networkError: false
     property bool loaded : false
     property int iconSize: 92
 
@@ -44,17 +46,22 @@ Page {
             }
         }
 
+        networkError = false;
         loaded = true;
     }
 
     function errorResultHandler(result) {
-        // TODO
-//        stockUpdateProblemNotification.show(result)
+        pollenUpdateProblemNotification.show(result)
+        networkError = true;
         loaded = true;
     }
 
     function isPollenDatePresent() {
         return (lastestPollenData && lastestPollenData.pollenData && lastestPollenData.pollenData.length > 0);
+    }
+
+    AppNotification {
+        id: pollenUpdateProblemNotification
     }
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
@@ -93,7 +100,7 @@ Page {
             width: parent.width - 2 * x
             spacing: Theme.paddingSmall
 
-            visible: (!isPollenDatePresent() && loaded)
+            visible: (!isPollenDatePresent() && loaded && !networkError)
 
             Label {
                 topPadding: Theme.paddingLarge

@@ -94,6 +94,17 @@ Page {
                     left: parent.left
                     margins: Theme.paddingLarge
                 }
+                //: AboutPage translators label
+                label: qsTr("Translators")
+                text: qsTr("monkeyisland1992 (de)")
+                separator: true
+            }
+
+            LabelText {
+                anchors {
+                    left: parent.left
+                    margins: Theme.paddingLarge
+                }
                 //: AboutPage contributors label
                 label: qsTr("Contributors")
                 text: "planetos82 (icon)"

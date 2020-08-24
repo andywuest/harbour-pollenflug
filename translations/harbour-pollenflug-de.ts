@@ -40,6 +40,15 @@ AboutPage title - about text title</extracomment>
         <extracomment>AboutPage contributors label</extracomment>
         <translation>Mitwirkende</translation>
     </message>
+    <message>
+        <source>Translators</source>
+        <extracomment>AboutPage translators label</extracomment>
+        <translation>Übersetzer</translation>
+    </message>
+    <message>
+        <source>monkeyisland1992 (de)</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>

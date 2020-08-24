@@ -33,6 +33,8 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/components/PollenTitleRow.qml \
     qml/components/thirdparty/LabelText.qml \
     qml/components/thirdparty/LoadingIndicator.qml \
+    qml/components/thirdparty/AppNotification.qml \
+    qml/components/thirdparty/AppNotificationItem.qml \
     qml/cover/CoverPage.qml \
     qml/js/constants.js \
     qml/js/functions.js \

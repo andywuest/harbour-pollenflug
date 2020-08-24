@@ -1,6 +1,6 @@
 Name: harbour-pollenflug
-Summary: Application that show the pollenflug
-Version: 0.1.2
+Summary: Application that show the pollenflug in Germany
+Version: 0.1.3
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS

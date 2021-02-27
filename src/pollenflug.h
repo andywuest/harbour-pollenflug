@@ -8,7 +8,7 @@
 #include <QVariant>
 
 #include "germanpollenbackend.h"
-// #include "onvistanews.h"
+#include "frenchpollenbackend.h"
 
 class Pollenflug : public QObject {
     Q_OBJECT
@@ -16,6 +16,7 @@ public:
     explicit Pollenflug(QObject *parent = nullptr);
     ~Pollenflug();
     GermanPollenBackend *getGermanPollenBackend();
+    FrenchPollenBackend *getFrenchPollenBackend();
 
 signals:
 
@@ -27,6 +28,7 @@ private:
 
     // pollen backends
     GermanPollenBackend *germanPollenBackend;
+    FrenchPollenBackend *frenchPollenBackend;
 
     QSettings settings;
 

@@ -72,6 +72,8 @@ TRANSLATIONS += translations/harbour-pollenflug-de.ts \
     translations/harbour-pollenflug-fr.ts
 
 HEADERS += \
-    src/constants.h \
     src/germanpollenbackend.h \
     src/pollenflug.h
+
+include(harbour-pollenflug.pri)
+

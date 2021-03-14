@@ -26,11 +26,22 @@ protected:
     QNetworkReply *executeGetRequest(const QUrl &url);
 
     QString parsePollenData(QByteArray searchReply); // TODO rename
-    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString dayString);
+    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString value);
 
 private slots:
     void handleFetchPollenDataFinished();
     void handleRequestError(QNetworkReply::NetworkError error);
+
+private:
+
+    QMap<int, QString> pollenIdToPollenNameMap;
+    QMap<int, QString> pollenIdToLabelMap;
+    QMap<QString, QString> pollutionIndexToLabelMap;
+    QMap<QString, int> pollutionIndexToIndexMap;
+    QList<int> pollenIds;
+    QString regionId;
+
+    QJsonObject getNodeForPollenId(QJsonArray risksArray, int pollenId);
 
 #ifdef UNIT_TEST
     friend class FrenchPollenBackendTests;

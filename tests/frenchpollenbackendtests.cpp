@@ -32,9 +32,37 @@ void FrenchPollenBackendTests::testParsePollenData() {
 
     QTextStream in(&f);
     QByteArray data = in.readAll().toUtf8();
+
+    // ALDER and Hazel for region 01
+    frenchPollenBackend->regionId = "01";
+    frenchPollenBackend->pollenIds = QList<int>()
+            << Pollen::Alder
+            << Pollen::Hazel;
+
     QString parsedResult = frenchPollenBackend->parsePollenData(data);
+    qDebug() << "result : " << parsedResult;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(parsedResult.toUtf8());
-    QCOMPARE(jsonDocument.isArray(), true);
-    QJsonArray resultArray = jsonDocument.array();
-    QCOMPARE(resultArray.size(), 1);
+    QCOMPARE(jsonDocument.isObject(), true);
+    QCOMPARE(jsonDocument.object().value("maxDaysPrediction"), 1);
+    QCOMPARE(jsonDocument.object().value("region"), "01");
+    QCOMPARE(jsonDocument.object().value("partRegion"), "-");
+
+    QJsonArray pollenData = jsonDocument.object().value("pollenData").toArray();
+    QCOMPARE(pollenData.isEmpty(), false);
+    QCOMPARE(pollenData.size(), 2);
+    QCOMPARE(pollenData.at(0).toObject().value("id"), 3);
+    QCOMPARE(pollenData.at(0).toObject().value("label"), "Alder");
+    QJsonObject todayAlder = pollenData.at(0).toObject().value("today").toObject();
+    QCOMPARE(todayAlder.value("pollutionIndex"), 3);
+    QCOMPARE(todayAlder.value("pollutionLabel"), "medium pollen exposure");
+
+    // TODO read pollution
+
+    QCOMPARE(pollenData.at(1).toObject().value("id"), 6);
+    QCOMPARE(pollenData.at(1).toObject().value("label"), "Hazel");
+    QJsonObject todayHazel = pollenData.at(1).toObject().value("today").toObject();
+    QCOMPARE(todayHazel.value("pollutionIndex"), 2);
+    QCOMPARE(todayHazel.value("pollutionLabel"), "small pollen exposure");
+
+    // TODO read pollution
 }

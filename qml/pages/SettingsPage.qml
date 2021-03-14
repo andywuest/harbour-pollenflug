@@ -32,11 +32,13 @@ Page {
     property int iconSize: 64
     property var partRegionNames: []
 
+    // move country specific stuff to individual component
+
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
-            pollenflugSettings.region = stateComboBox.currentIndex;
-            pollenflugSettings.partRegion = partRegionComboBox.currentIndex;
+            pollenflugSettings.region = stateGermanyComboBox.currentIndex;
+            pollenflugSettings.partRegion = partRegionGermanyComboBox.currentIndex;
             console.log("region : " + pollenflugSettings.region)
             console.log("partRegion : " + pollenflugSettings.partRegion)
             pollenflugSettings.sync()
@@ -45,22 +47,22 @@ Page {
 
     function populatePartRegions(partRegionId) {
         var partRegionList = Constants.GERMAN_REGION_ID_TO_PART_REGIONS[partRegionId]
-        partRegionComboBox.currentIndex = -1
+        partRegionGermanyComboBox.currentIndex = -1
         if (partRegionList && partRegionList.length > 0) {
-            partRegionsModel.clear();
+            partRegionsGermanyModel.clear();
 
             for (var j = 0; j < partRegionList.length; j++) {
                 var item = {};
                 item.label = partRegionList[j];
-                partRegionsModel.append(item);
+                partRegionsGermanyModel.append(item);
             }
 
-            partRegionComboBox.currentIndex = -1;
-            partRegionComboBox.currentItem = null;
-            partRegionComboBox.visible = true
+            partRegionGermanyComboBox.currentIndex = -1;
+            partRegionGermanyComboBox.currentItem = null;
+            partRegionGermanyComboBox.visible = true
         } else {
-            partRegionsModel.clear();
-            partRegionComboBox.visible = false
+            partRegionsGermanyModel.clear();
+            partRegionGermanyComboBox.visible = false
         }
     }
 
@@ -88,7 +90,7 @@ Page {
             }
 
             ComboBox {
-                id: stateComboBox
+                id: stateGermanyComboBox
                 //: SettingsPage state
                 label: qsTr("State")
                 currentIndex: pollenflugSettings.region
@@ -138,14 +140,14 @@ Page {
             }
 
             ListModel {
-                        id: partRegionsModel
+                        id: partRegionsGermanyModel
                         ListElement {
                             label: ""
                         }
                     }
 
             ComboBox {
-                id: partRegionComboBox
+                id: partRegionGermanyComboBox
                 //: SettingsPage part region
                 label: qsTr("Region")
                 currentIndex: pollenflugSettings.partRegion
@@ -154,7 +156,7 @@ Page {
                 menu: ContextMenu {
                     Repeater {
                         id: partRegionRepeater
-                        model: partRegionsModel
+                        model: partRegionsGermanyModel
                         delegate : MenuItem {
                             text: label
                         }
@@ -227,10 +229,10 @@ Page {
     Component.onCompleted: {
         console.log("read config value : " + pollenflugSettings.region + "/"
                     + pollenflugSettings.partRegion)
-        stateComboBox.currentIndex = pollenflugSettings.region
+        stateGermanyComboBox.currentIndex = pollenflugSettings.region
         populatePartRegions((pollenflugSettings.region + 1) * 10, false)
         if (pollenflugSettings.partRegion >= 0) {
-            partRegionComboBox.currentIndex = pollenflugSettings.partRegion
+            partRegionGermanyComboBox.currentIndex = pollenflugSettings.partRegion
         }
     }
 }

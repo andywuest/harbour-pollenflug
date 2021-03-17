@@ -12,8 +12,14 @@ ApplicationWindow {
         id: pollenflugSettings
         path: "/apps/harbour-pollenflug/settings"
 
+        property int country: -1
+
+        // germany
         property int region: 10 // TODO fix
         property int partRegion: 1 // TODO fix
+
+        // france
+        property int departement: -1
 
         property bool isMugwortSelected: false // Beifuß
         property bool isBirchSelected: false // Birke

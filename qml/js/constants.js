@@ -1,4 +1,9 @@
 
+// supported countries - order of countries in settings comboBox
+var COUNTRY_MAP = [];
+COUNTRY_MAP[0] = "Germany";
+COUNTRY_MAP[1] = "France";
+
 var MUGWORT_ID = 1;
 var BIRCH_ID = 2;
 var ALDER_ID = 3;

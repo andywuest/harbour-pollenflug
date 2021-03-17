@@ -41,11 +41,9 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
-            // TODO in the component
-            // pollenflugSettings.region = stateGermanyComboBox.currentIndex;
-            // pollenflugSettings.partRegion = partRegionGermanyComboBox.currentIndex;
-            console.log("region : " + pollenflugSettings.region)
-            console.log("partRegion : " + pollenflugSettings.partRegion)
+            countrySpecificLoader.item.updateConfiguration();
+            pollenflugSettings.country = countryComboBox.currentIndex;
+            console.log("country : " + pollenflugSettings.country)
             pollenflugSettings.sync()
         }
     }
@@ -84,21 +82,19 @@ Page {
                 menu: ContextMenu {
                     MenuItem {
                         text: qsTr("Germany");
-                        onClicked: switchToCountrySettings("Germany");
-
                     }
                     MenuItem {
                         text: qsTr("France")
-                        onClicked: switchToCountrySettings("France");
                     }
                 }
                 onCurrentIndexChanged: {
-                    onClicked: console.log("selected index : " + currentIndex);
+                    onClicked: switchToCountrySettings(Constants.COUNTRY_MAP[currentIndex]);
                 }
             }
 
             Loader {
                 id: countrySpecificLoader
+                width: parent.width
                 opacity: status === Loader.Ready ? 1.0 : 0.0
                 Behavior on opacity { FadeAnimator {} }
             }
@@ -165,13 +161,12 @@ Page {
         }
     }
 
-//    Component.onCompleted: {
-//        console.log("read config value : " + pollenflugSettings.region + "/"
-//                    + pollenflugSettings.partRegion)
-//        stateGermanyComboBox.currentIndex = pollenflugSettings.region
-//        populatePartRegions((pollenflugSettings.region + 1) * 10, false)
-//        if (pollenflugSettings.partRegion >= 0) {
-//            partRegionGermanyComboBox.currentIndex = pollenflugSettings.partRegion
-//        }
-//    }
+    Component.onCompleted: {
+      console.log("read config value country : " + pollenflugSettings.country);
+      if (pollenflugSettings.country >= 0) {
+          countryComboBox.currentIndex = pollenflugSettings.country;
+          switchToCountrySettings(Constants.COUNTRY_MAP[pollenflugSettings.country]);
+      }
+    }
+
 }

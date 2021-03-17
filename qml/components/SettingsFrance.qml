@@ -4,8 +4,12 @@ import Nemo.Configuration 1.0
 
 Column {
     id: settingsColumn
-    width: parent.width
     height: childrenRect.height
+
+    function updateConfiguration() {
+        pollenflugSettings.departement = departementFranceComboBox.currentIndex;
+        console.log("[FR] departement : " + pollenflugSettings.departement)
+    }
 
     ComboBox {
         id: departementFranceComboBox
@@ -41,8 +45,13 @@ Column {
             }
         }
         onCurrentIndexChanged: {
-            onClicked: console.log("selected index : " + currentIndex);
+            onClicked: console.log("[FR] selected index : " + currentIndex);
         }
+    }
+
+    Component.onCompleted: {
+        console.log("[FR] read config value : " + pollenflugSettings.departement);
+        departementFranceComboBox.currentIndex = pollenflugSettings.departement;
     }
 
 }

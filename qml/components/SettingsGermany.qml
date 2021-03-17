@@ -7,10 +7,16 @@ import "../js/constants.js" as Constants
 
 Column {
     id: settingsColumn
-    width: parent.width
     height: childrenRect.height
 
     property var partRegionNames: []
+
+    function updateConfiguration() {
+        pollenflugSettings.region = stateGermanyComboBox.currentIndex;
+        pollenflugSettings.partRegion = partRegionGermanyComboBox.currentIndex;
+        console.log("[DE] region : " + pollenflugSettings.region)
+        console.log("[DE] partRegion : " + pollenflugSettings.partRegion)
+    }
 
     function populatePartRegions(partRegionId) {
         var partRegionList = Constants.GERMAN_REGION_ID_TO_PART_REGIONS[partRegionId]
@@ -112,7 +118,7 @@ Column {
     }
 
     Component.onCompleted: {
-        console.log("read config value : " + pollenflugSettings.region + "/"
+        console.log("[DE] read config value : " + pollenflugSettings.region + "/"
                     + pollenflugSettings.partRegion);
         stateGermanyComboBox.currentIndex = pollenflugSettings.region;
         populatePartRegions((pollenflugSettings.region + 1) * 10, false);

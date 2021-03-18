@@ -41,7 +41,12 @@ function getSelectedPollenList(settings) {
 }
 
 function getDataBackend() {
-    return germanPollenBackend;
+    if (COUNTRY_GERMANY === pollenflugSettings.country) {
+        return germanPollenBackend;
+    } else if (COUNTRY_FRANCE === pollenflugSettings.country) {
+        return frenchPollenBackend;
+    }
+    console.error("pollen backend not found !");
 }
 
 function addDays(date, days) {

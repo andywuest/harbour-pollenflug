@@ -29,20 +29,31 @@ import "../js/constants.js" as Constants
 
 Page {
     id: settingsPage
-    property int iconSize: 64
-    property var partRegionNames: [] // TODO obsolet??
 
-    // move country specific stuff to individual component
-
-    function switchToCountrySettings(country) {
+    function switchToCountrySettings(countryValue) {
+        pollenflugSettings.country = countryValue;
+        var country = Constants.COUNTRY_MAP[countryValue];
+        console.log("_" + countryValue + ", " + country);
         countrySpecificLoader.source = "../components/Settings" + country + ".qml";
+    }
+
+    function updateComboBoxSelection(comboBox, selectedValue) {
+        var menuItems = comboBox.menu.children
+        var n = menuItems.length
+        for (var i=0; i<n; i++) {
+            if (menuItems[i].value === selectedValue) {
+                comboBox.currentIndex = i
+                console.log("updated index + " + i);
+                return;
+            }
+        }
     }
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
             countrySpecificLoader.item.updateConfiguration();
-            pollenflugSettings.country = countryComboBox.currentIndex;
+            // pollenflugSettings.country = countryComboBox.currentIndex;
             console.log("country : " + pollenflugSettings.country)
             pollenflugSettings.sync()
         }
@@ -80,15 +91,25 @@ Page {
                 //: SettingsPage region description
                 description: qsTr("Select the country where you live")
                 menu: ContextMenu {
+                    id: countryMenu
                     MenuItem {
+                        readonly property int value: Constants.COUNTRY_GERMANY
                         text: qsTr("Germany");
                     }
                     MenuItem {
+                        readonly property int value: Constants.COUNTRY_FRANCE
                         text: qsTr("France")
                     }
                 }
+
                 onCurrentIndexChanged: {
-                    onClicked: switchToCountrySettings(Constants.COUNTRY_MAP[currentIndex]);
+                    onClicked: countryMenu.children[currentIndex] && switchToCountrySettings(countryMenu.children[currentIndex].value);
+                }              
+
+                Component.onCompleted: {
+                    console.log("read config value country : " + pollenflugSettings.country);
+                    switchToCountrySettings(pollenflugSettings.country)
+                    updateComboBoxSelection(countryComboBox, pollenflugSettings.country);
                 }
             }
 
@@ -153,20 +174,12 @@ Page {
 
             PollenIconTextSwitch {
                 pollenId: Constants.RYE_ID
-                checked: pollenflugSettings.isRyeSelected
+                checked: pollenflugSettings.isRyeSelected                
                 onCheckedChanged: {
                     pollenflugSettings.isRyeSelected = checked
                 }
             }
         }
-    }
-
-    Component.onCompleted: {
-      console.log("read config value country : " + pollenflugSettings.country);
-      if (pollenflugSettings.country >= 0) {
-          countryComboBox.currentIndex = pollenflugSettings.country;
-          switchToCountrySettings(Constants.COUNTRY_MAP[pollenflugSettings.country]);
-      }
     }
 
 }

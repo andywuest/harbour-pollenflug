@@ -164,3 +164,7 @@ QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSour
     jsonObject.insert("pollutionLabel", this->pollutionIndexToLabelMap[riskLevelValue]);
     return jsonObject;
 }
+
+bool FrenchPollenBackend::isPollenDataProvided(int pollenId) {
+    return this->pollenIdToPollenNameMap.contains(pollenId);
+}

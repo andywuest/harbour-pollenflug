@@ -174,3 +174,7 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
 
     return dataToString;
 }
+
+bool GermanPollenBackend::isPollenDataProvided(int pollenId) {
+    return this->pollenIdToKeyMap.contains(pollenId);
+}

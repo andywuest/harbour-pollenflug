@@ -15,6 +15,7 @@ private slots:
     void testIngConvertTimestampToLocalTimestamp();
     void testIsValidSecurityCategory();
     void testParsePollenData();
+    void testIsPollenDataProvided();
 };
 
 #endif // FRENCHPOLLENBACKENDTEST_H

@@ -22,6 +22,11 @@ void FrenchPollenBackendTests::testIsValidSecurityCategory() {
 //    QCOMPARE(ingDibaBackend->isValidSecurityCategory("NIX"), false);
 }
 
+void FrenchPollenBackendTests::testIsPollenDataProvided() {
+    QCOMPARE(frenchPollenBackend->isPollenDataProvided(Pollen::Mugwort), true);
+    QCOMPARE(frenchPollenBackend->isPollenDataProvided(Pollen::Rye), false);
+}
+
 void FrenchPollenBackendTests::testParsePollenData() {
     QString testFile = "fr.json";
     QFile f("testdata/" + testFile);

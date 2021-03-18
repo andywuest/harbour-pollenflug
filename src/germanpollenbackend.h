@@ -15,6 +15,7 @@ public:
     ~GermanPollenBackend();
 
     Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, int regionId, int partRegionId);
+    Q_INVOKABLE bool isPollenDataProvided(int pollenId);
 
     // signals for the qml part
     Q_SIGNAL void requestError(const QString &errorMessage);

@@ -9,7 +9,6 @@ class FrenchPollenBackendTests : public QObject {
 
 private:
     FrenchPollenBackend *frenchPollenBackend;
-
 private slots:
     void init();
     void testIngConvertTimestampToLocalTimestamp();

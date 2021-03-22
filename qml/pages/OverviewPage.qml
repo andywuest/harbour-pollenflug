@@ -28,8 +28,13 @@ Page {
     function updatePollenData() {
         loaded = false;
 
-        var region = Functions.calculateRegion(pollenflugSettings.region);
-        var partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
+        var region, partRegion;
+        if (Constants.COUNTRY_GERMANY === pollenflugSettings.country) {
+            region = Functions.calculateRegion(pollenflugSettings.region);
+            partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
+        } else if (Constants.COUNTRY_FRANCE === pollenflugSettings.country) {
+            region = pollenflugSettings.departement;
+        }
 
         Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
     }
@@ -186,6 +191,9 @@ Page {
                     }
                 }
             }
+        }
+
+        VerticalScrollDecorator {
         }
     }
 

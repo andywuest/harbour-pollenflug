@@ -7,14 +7,18 @@ Row {
     id: tilesRow
     width: parent.width
 
+    property int scaleElements: 1
+
     PollenLabel {
         id: todayLabel
         text: qsTr("Today")
+        visible: scaleElements >= 1
     }
 
     PollenLabel {
         id: tomorrowLabel
         text: qsTr("Tomorrow")
+        visible: scaleElements >= 2
     }
 
     PollenLabel {
@@ -23,6 +27,11 @@ Row {
             var date = Functions.addDays(new Date(), 2);
             return date.toLocaleDateString(Qt.locale(), "dd.MM.yyyy");
         }
+        visible: scaleElements >= 3
+    }
+
+    Component.onCompleted: {
+        tilesRow.x = Functions.calculateScaleXOffset(parent.width, scaleElements);
     }
 
 }

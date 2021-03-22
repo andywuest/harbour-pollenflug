@@ -36,8 +36,8 @@ private:
 
 protected:
 
-    QString applicationName;
-    QString applicationVersion;
+    // QString applicationName;
+    // QString applicationVersion;
     QNetworkAccessManager *manager;
 
     QNetworkReply *executeGetRequest(const QUrl &url);

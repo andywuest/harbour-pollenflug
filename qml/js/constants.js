@@ -16,6 +16,8 @@ var HAZEL_ID = 6;
 var AMBROSIA_ID = 7;
 var RYE_ID = 8;
 
+var MAX_SCALE_ELEMENTS = 3;
+
 function createPollenItem(id, label, imageSource) {
     var entry = {
 

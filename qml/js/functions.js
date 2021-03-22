@@ -1,6 +1,12 @@
 
 Qt.include('constants.js');
 
+function calculateScaleXOffset(parentWidth, scaleElements) {
+    var offset = (parentWidth - (parentWidth * scaleElements / MAX_SCALE_ELEMENTS)) / 2;
+    console.log("Parent width: " + parentWidth + ", offset : " + offset);
+    return offset;
+}
+
 function addPollenToModel(model, settings) {
     for (var i = 0; i < POLLEN_DATA_LIST.length; i++) {
         addIfActive(POLLEN_DATA_LIST, i, MUGWORT_ID, settings.isMugwortSelected, model)

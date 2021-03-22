@@ -66,11 +66,17 @@ void FrenchPollenBackend::handleRequestError(QNetworkReply::NetworkError error) 
     emit requestError("Return code: " + QString::number(static_cast<int>(error)) + " - " + reply->errorString());
 }
 
-void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, int regionId, int partRegionId) {
+void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, int partRegionId) {
     qDebug() << "FrenchPollenBackend::fetchPollenData";
     qDebug() << pollenIds;
 
-    // TODO
+    this->pollenIds = pollenIds;
+    this->regionId = regionId;
+
+    QNetworkReply *reply = executeGetRequest(QUrl(FRENCH_POLLEN_API));
+
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleRequestError(QNetworkReply::NetworkError)));
+    connect(reply, SIGNAL(finished()), this, SLOT(handleFetchPollenDataFinished()));
 }
 
 void FrenchPollenBackend::handleFetchPollenDataFinished() {

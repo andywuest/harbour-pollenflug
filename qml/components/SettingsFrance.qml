@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
+import "../js/constants.js" as Constants
+
 Column {
     id: settingsColumn
     height: childrenRect.height
@@ -20,7 +22,8 @@ Column {
         description: qsTr("Select the departement where you live")
         menu: ContextMenu {
             MenuItem {
-                text: qsTr("Ain") // 10
+                readonly property int value: Constants.DEPARTEMENT_AIN
+                text: qsTr("Ain")
             }
             MenuItem {
                 text: qsTr("Aisne") // 20

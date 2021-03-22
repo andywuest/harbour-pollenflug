@@ -21,12 +21,21 @@ Page {
     function connectSlots() {
         console.log("connect - slots");
         var dataBackend = Functions.getDataBackend();
-        dataBackend.pollenDataAvailable.connect(pollenDataAvailable);
+        dataBackend.pollenDataAvailable.connect(pollenDataHandler);
         dataBackend.requestError.connect(errorResultHandler);
+    }
+
+    function disconnectSlots() {
+        console.log("disconnect - slots");
+        var dataBackend = Functions.getDataBackend();
+        dataBackend.pollenDataAvailable.disconnect(pollenDataHandler);
+        dataBackend.requestError.disconnect(errorResultHandler);
     }
 
     function updatePollenData() {
         loaded = false;
+        disconnectSlots(); // reconnect the slots - in case the backend has changed
+        connectSlots();
 
         var region, partRegion;
         if (Constants.COUNTRY_GERMANY === pollenflugSettings.country) {
@@ -39,7 +48,7 @@ Page {
         Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
     }
 
-    function pollenDataAvailable(result) {
+    function pollenDataHandler(result) {
         //console.log(result);
         lastestPollenData = JSON.parse(result);
 

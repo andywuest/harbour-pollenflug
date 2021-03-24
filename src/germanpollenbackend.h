@@ -14,7 +14,7 @@ public:
     explicit  GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent = 0);
     ~GermanPollenBackend();
 
-    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, int regionId, int partRegionId);
+    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
     Q_INVOKABLE bool isPollenDataProvided(int pollenId);
 
     // signals for the qml part

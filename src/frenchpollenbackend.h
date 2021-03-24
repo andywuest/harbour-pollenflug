@@ -13,7 +13,7 @@ public:
     explicit  FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent = 0);
     ~FrenchPollenBackend();
 
-    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, int partRegionId); // TODO partRegion also QString
+    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
     Q_INVOKABLE bool isPollenDataProvided(int pollenId);
 
     // signals for the qml part

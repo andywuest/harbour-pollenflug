@@ -66,9 +66,12 @@ void FrenchPollenBackend::handleRequestError(QNetworkReply::NetworkError error) 
     emit requestError("Return code: " + QString::number(static_cast<int>(error)) + " - " + reply->errorString());
 }
 
-void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, int partRegionId) {
+void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId) {
     qDebug() << "FrenchPollenBackend::fetchPollenData";
     qDebug() << pollenIds;
+
+    // TODO remove the pollenIds that we do not support
+
 
     this->pollenIds = pollenIds;
     this->regionId = regionId;

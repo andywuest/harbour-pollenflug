@@ -3,7 +3,6 @@ Qt.include('constants.js');
 
 function calculateScaleXOffset(parentWidth, scaleElements) {
     var offset = (parentWidth - (parentWidth * scaleElements / MAX_SCALE_ELEMENTS)) / 2;
-    console.log("Parent width: " + parentWidth + ", offset : " + offset);
     return offset;
 }
 

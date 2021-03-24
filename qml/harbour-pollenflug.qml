@@ -21,7 +21,7 @@ ApplicationWindow {
         property int partRegion: 1 // TODO fix
 
         // france
-        property int departement: -1
+        property string departement: ""
 
         property bool isMugwortSelected: false // Beifuß
         property bool isBirchSelected: false // Birke

@@ -21,20 +21,34 @@ Page {
     function connectSlots() {
         console.log("connect - slots");
         var dataBackend = Functions.getDataBackend();
-        dataBackend.pollenDataAvailable.connect(pollenDataAvailable);
+        dataBackend.pollenDataAvailable.connect(pollenDataHandler);
         dataBackend.requestError.connect(errorResultHandler);
+    }
+
+    function disconnectSlots() {
+        console.log("disconnect - slots");
+        var dataBackend = Functions.getDataBackend();
+        dataBackend.pollenDataAvailable.disconnect(pollenDataHandler);
+        dataBackend.requestError.disconnect(errorResultHandler);
     }
 
     function updatePollenData() {
         loaded = false;
+        disconnectSlots(); // reconnect the slots - in case the backend has changed
+        connectSlots();
 
-        var region = Functions.calculateRegion(pollenflugSettings.region);
-        var partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
+        var region, partRegion;
+        if (Constants.COUNTRY_GERMANY === pollenflugSettings.country) {
+            region = Functions.calculateRegion(pollenflugSettings.region);
+            partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
+        } else if (Constants.COUNTRY_FRANCE === pollenflugSettings.country) {
+            region = pollenflugSettings.departement;
+        }
 
         Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
     }
 
-    function pollenDataAvailable(result) {
+    function pollenDataHandler(result) {
         //console.log(result);
         lastestPollenData = JSON.parse(result);
 
@@ -44,6 +58,8 @@ Page {
             for (var i = 0; i < lastestPollenData.pollenData.length; i++) {
                 pollenModel.append(lastestPollenData.pollenData[i]);
             }
+
+            pollenHeader.visible = true;
         }
 
         networkError = false;
@@ -52,6 +68,7 @@ Page {
 
     function errorResultHandler(result) {
         pollenUpdateProblemNotification.show(result)
+        pollenHeader.visible = false;
         networkError = true;
         loaded = true;
     }
@@ -132,7 +149,7 @@ Page {
                 id: pollenHeader
                 //: OverviewPage header
                 title: qsTr("Allergen")
-                visible: isPollenDatePresent()
+                visible: true
             }
 
             SilicaListView {
@@ -187,6 +204,9 @@ Page {
                 }
             }
         }
+
+        VerticalScrollDecorator {
+        }
     }
 
     LoadingIndicator {
@@ -210,7 +230,8 @@ Page {
 
     Component.onCompleted: {
         Functions.addPollenToModel(pollenModel, pollenflugSettings)
-        connectSlots();
-        updatePollenData();
+
+        // connectSlots();
+        //updatePollenData();
     }
 }

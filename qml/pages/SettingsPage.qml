@@ -29,38 +29,33 @@ import "../js/constants.js" as Constants
 
 Page {
     id: settingsPage
-    property int iconSize: 64
-    property var partRegionNames: []
+
+    function switchToCountrySettings(countryValue) {
+        pollenflugSettings.country = countryValue;
+        var country = Constants.COUNTRY_MAP[countryValue];
+        console.log("_" + countryValue + ", " + country);
+        countrySpecificLoader.source = "../components/Settings" + country + ".qml";
+    }
+
+    function updateComboBoxSelection(comboBox, selectedValue) {
+        var menuItems = comboBox.menu.children
+        var n = menuItems.length
+        for (var i=0; i<n; i++) {
+            if (menuItems[i].value === selectedValue) {
+                comboBox.currentIndex = i
+                console.log("updated index + " + i);
+                return;
+            }
+        }
+    }
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
-            pollenflugSettings.region = stateComboBox.currentIndex;
-            pollenflugSettings.partRegion = partRegionComboBox.currentIndex;
-            console.log("region : " + pollenflugSettings.region)
-            console.log("partRegion : " + pollenflugSettings.partRegion)
+            countrySpecificLoader.item.updateConfiguration();
+            // pollenflugSettings.country = countryComboBox.currentIndex;
+            console.log("country : " + pollenflugSettings.country)
             pollenflugSettings.sync()
-        }
-    }
-
-    function populatePartRegions(partRegionId) {
-        var partRegionList = Constants.GERMAN_REGION_ID_TO_PART_REGIONS[partRegionId]
-        partRegionComboBox.currentIndex = -1
-        if (partRegionList && partRegionList.length > 0) {
-            partRegionsModel.clear();
-
-            for (var j = 0; j < partRegionList.length; j++) {
-                var item = {};
-                item.label = partRegionList[j];
-                partRegionsModel.append(item);
-            }
-
-            partRegionComboBox.currentIndex = -1;
-            partRegionComboBox.currentItem = null;
-            partRegionComboBox.visible = true
-        } else {
-            partRegionsModel.clear();
-            partRegionComboBox.visible = false
         }
     }
 
@@ -69,6 +64,7 @@ Page {
         anchors.fill: parent
 
         // Tell SilicaFlickable the height of its content.
+        width: parent.width
         contentHeight: settingsColumn.height
 
         // Place our content in a Column.  The PageHeader is always placed at the top
@@ -88,78 +84,40 @@ Page {
             }
 
             ComboBox {
-                id: stateComboBox
+                id: countryComboBox
                 //: SettingsPage state
-                label: qsTr("State")
+                label: qsTr("Country")
                 currentIndex: pollenflugSettings.region
                 //: SettingsPage region description
-                description: qsTr("Select the state where you live")
+                description: qsTr("Select the country where you live")
                 menu: ContextMenu {
+                    id: countryMenu
                     MenuItem {
-                        text: qsTr("Schleswig-Holstein und Hamburg") // 10
+                        readonly property int value: Constants.COUNTRY_GERMANY
+                        text: qsTr("Germany");
                     }
                     MenuItem {
-                        text: qsTr("Mecklenburg-Vorpommern") // 20
-                    }
-                    MenuItem {
-                        text: qsTr("Niedersachsen und Bremen") // 30
-                    }
-                    MenuItem {
-                        text: qsTr("Nordrhein-Westfalen") // 40
-                    }
-                    MenuItem {
-                        text: qsTr("Brandenburg und Berlin") // 50
-                    }
-                    MenuItem {
-                        text: qsTr("Sachsen-Anhalt") // 60
-                    }
-                    MenuItem {
-                        text: qsTr("Thüringen") // 70
-                    }
-                    MenuItem {
-                        text: qsTr("Sachsen") // 80
-                    }
-                    MenuItem {
-                        text: qsTr("Hessen") // 90
-                    }
-                    MenuItem {
-                        text: qsTr("Rheinland-Pfalz und Saarland") // 100
-                    }
-                    MenuItem {
-                        text: qsTr("Baden-Württemberg") // 110
-                    }
-                    MenuItem {
-                        text: qsTr("Bayern") // 120
+                        readonly property int value: Constants.COUNTRY_FRANCE
+                        text: qsTr("France")
                     }
                 }
+
                 onCurrentIndexChanged: {
-                    onClicked: populatePartRegions(Functions.calculateRegion(currentIndex), true)
+                    onClicked: countryMenu.children[currentIndex] && switchToCountrySettings(countryMenu.children[currentIndex].value);
+                }              
+
+                Component.onCompleted: {
+                    console.log("read config value country : " + pollenflugSettings.country);
+                    switchToCountrySettings(pollenflugSettings.country)
+                    updateComboBoxSelection(countryComboBox, pollenflugSettings.country);
                 }
             }
 
-            ListModel {
-                        id: partRegionsModel
-                        ListElement {
-                            label: ""
-                        }
-                    }
-
-            ComboBox {
-                id: partRegionComboBox
-                //: SettingsPage part region
-                label: qsTr("Region")
-                currentIndex: pollenflugSettings.partRegion
-                //: SettingsPage part region description
-                description: qsTr("Select the region where you live")
-                menu: ContextMenu {
-                    Repeater {
-                        id: partRegionRepeater
-                        model: partRegionsModel
-                        delegate : MenuItem {
-                            text: label
-                        }
-                    }
-                }
+            Loader {
+                id: countrySpecificLoader
+                width: parent.width
+                opacity: status === Loader.Ready ? 1.0 : 0.0
+                Behavior on opacity { FadeAnimator {} }
             }
 
             SectionHeader {
@@ -216,21 +174,16 @@ Page {
 
             PollenIconTextSwitch {
                 pollenId: Constants.RYE_ID
-                checked: pollenflugSettings.isRyeSelected
+                checked: pollenflugSettings.isRyeSelected                
                 onCheckedChanged: {
                     pollenflugSettings.isRyeSelected = checked
                 }
             }
         }
+
+        VerticalScrollDecorator {
+        }
+
     }
 
-    Component.onCompleted: {
-        console.log("read config value : " + pollenflugSettings.region + "/"
-                    + pollenflugSettings.partRegion)
-        stateComboBox.currentIndex = pollenflugSettings.region
-        populatePartRegions((pollenflugSettings.region + 1) * 10, false)
-        if (pollenflugSettings.partRegion >= 0) {
-            partRegionComboBox.currentIndex = pollenflugSettings.partRegion
-        }
-    }
 }

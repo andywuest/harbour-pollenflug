@@ -13,3 +13,5 @@ harbour-pollenflug
 /.idea/
 /sdk-harbour-rpmvalidator/
 /RPMS/*.rpm
+/tests/harbour-pollenflug-tests.pro.user
+/build-harbour-pollenflug-tests-Qt_5_9_5_in_PATH_System-Debug/

@@ -3,6 +3,8 @@ import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 import "pages"
 
+import "js/constants.js" as Constants
+
 ApplicationWindow {
 
     property var lastestPollenData: ({})
@@ -12,8 +14,14 @@ ApplicationWindow {
         id: pollenflugSettings
         path: "/apps/harbour-pollenflug/settings"
 
+        property int country: Constants.COUNTRY_GERMANY;
+
+        // germany
         property int region: 10 // TODO fix
         property int partRegion: 1 // TODO fix
+
+        // france
+        property string departement: ""
 
         property bool isMugwortSelected: false // Beifuß
         property bool isBirchSelected: false // Birke

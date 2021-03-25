@@ -31,6 +31,8 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/components/PollenScale.qml \
     qml/components/PollenTile.qml \
     qml/components/PollenTitleRow.qml \
+    qml/components/SettingsFrance.qml \
+    qml/components/SettingsGermany.qml \
     qml/components/thirdparty/LabelText.qml \
     qml/components/thirdparty/LoadingIndicator.qml \
     qml/components/thirdparty/AppNotification.qml \
@@ -72,6 +74,8 @@ TRANSLATIONS += translations/harbour-pollenflug-de.ts \
     translations/harbour-pollenflug-fr.ts
 
 HEADERS += \
-    src/constants.h \
     src/germanpollenbackend.h \
     src/pollenflug.h
+
+include(harbour-pollenflug.pri)
+

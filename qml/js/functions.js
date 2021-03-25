@@ -1,6 +1,11 @@
 
 Qt.include('constants.js');
 
+function calculateScaleXOffset(parentWidth, scaleElements) {
+    var offset = (parentWidth - (parentWidth * scaleElements / MAX_SCALE_ELEMENTS)) / 2;
+    return offset;
+}
+
 function addPollenToModel(model, settings) {
     for (var i = 0; i < POLLEN_DATA_LIST.length; i++) {
         addIfActive(POLLEN_DATA_LIST, i, MUGWORT_ID, settings.isMugwortSelected, model)
@@ -41,7 +46,12 @@ function getSelectedPollenList(settings) {
 }
 
 function getDataBackend() {
-    return germanPollenBackend;
+    if (COUNTRY_GERMANY === pollenflugSettings.country) {
+        return germanPollenBackend;
+    } else if (COUNTRY_FRANCE === pollenflugSettings.country) {
+        return frenchPollenBackend;
+    }
+    console.error("pollen backend not found !");
 }
 
 function addDays(date, days) {

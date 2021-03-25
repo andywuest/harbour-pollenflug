@@ -65,15 +65,15 @@ AboutPage title - about text title</extracomment>
     <name>FrenchPollenBackend</name>
     <message>
         <source>Mugwort</source>
-        <translation type="unfinished"></translation>
+        <translation>Armoise</translation>
     </message>
     <message>
         <source>Birch</source>
-        <translation type="unfinished"></translation>
+        <translation>Bouleau</translation>
     </message>
     <message>
         <source>Alder</source>
-        <translation type="unfinished"></translation>
+        <translation>Aulne</translation>
     </message>
     <message>
         <source>Grass</source>
@@ -85,11 +85,11 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Ambrosia</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambroisie</translation>
     </message>
     <message>
         <source>no pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation>aucune exposition au pollen</translation>
     </message>
     <message>
         <source>very small pollen exposure</source>
@@ -97,15 +97,15 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>small pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation>faible exposition au pollen</translation>
     </message>
     <message>
         <source>medium pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation>exposition moyenne au pollen</translation>
     </message>
     <message>
         <source>high pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation>forte exposition au pollen</translation>
     </message>
     <message>
         <source>very high pollen exposure</source>
@@ -700,7 +700,7 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Settings</source>
         <extracomment>SettingsPage settings title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <source>Location</source>
@@ -726,7 +726,7 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Allergen</source>
-        <translation type="unfinished"></translation>
+        <translation>Allergène</translation>
     </message>
 </context>
 <context>

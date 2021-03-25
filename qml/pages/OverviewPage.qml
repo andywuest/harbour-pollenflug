@@ -58,6 +58,8 @@ Page {
             for (var i = 0; i < lastestPollenData.pollenData.length; i++) {
                 pollenModel.append(lastestPollenData.pollenData[i]);
             }
+
+            pollenHeader.visible = true;
         }
 
         networkError = false;
@@ -66,6 +68,7 @@ Page {
 
     function errorResultHandler(result) {
         pollenUpdateProblemNotification.show(result)
+        pollenHeader.visible = false;
         networkError = true;
         loaded = true;
     }
@@ -146,7 +149,7 @@ Page {
                 id: pollenHeader
                 //: OverviewPage header
                 title: qsTr("Allergen")
-                visible: isPollenDatePresent()
+                visible: true
             }
 
             SilicaListView {
@@ -227,7 +230,8 @@ Page {
 
     Component.onCompleted: {
         Functions.addPollenToModel(pollenModel, pollenflugSettings)
-        connectSlots();
-        updatePollenData();
+
+        // connectSlots();
+        //updatePollenData();
     }
 }

@@ -32,26 +32,31 @@ Column {
         if (dataToday) {
             pollenPollutionRow.pollutionLabelToday = dataToday.pollutionLabel;
             pollenPollutionScaleRow.pollutionScaleToday = dataToday.pollutionIndex;
-            pollenPollutionScaleRow.scaleElements = 1;
-            pollenPollutionRow.scaleElements = 1;
-            pollenDateRow.scaleElements = 1;
+//            pollenPollutionScaleRow.scaleElements = 1;
+//            pollenPollutionRow.scaleElements = 1;
+//            pollenDateRow.scaleElements = 1;
         }
         if (dataTomorrow) {
             pollenPollutionRow.pollutionLabelTomorrow = dataTomorrow.pollutionLabel;
             pollenPollutionScaleRow.pollutionScaleTomorrow = dataTomorrow.pollutionIndex;
-            pollenPollutionScaleRow.scaleElements = 2;
-            pollenPollutionRow.scaleElements = 2;
-            pollenDateRow.scaleElements = 2;
+//            pollenPollutionScaleRow.scaleElements = 2;
+//            pollenPollutionRow.scaleElements = 2;
+//            pollenDateRow.scaleElements = 2;
         }
         if (dataDayAfterTomorrow) {
             pollenPollutionRow.pollutionLabelDayAfterTomorrow = dataDayAfterTomorrow.pollutionLabel;
             if (dataDayAfterTomorrow.pollutionIndex >= 0) {
                 pollenPollutionScaleRow.pollutionScaleDayAfterTomorrow = dataDayAfterTomorrow.pollutionIndex;
-                pollenPollutionScaleRow.scaleElements = 3;
-                pollenPollutionRow.scaleElements = 3;
-                pollenDateRow.scaleElements = 3;
+//                pollenPollutionScaleRow.scaleElements = 3;
+//                pollenPollutionRow.scaleElements = 3;
+//                pollenDateRow.scaleElements = 3;
              }
         }
+
+        pollenPollutionScaleRow.scaleElements = 3;
+        pollenPollutionRow.scaleElements = 3;
+        pollenDateRow.scaleElements = 3;
+
         titleRowImage.titleImage = tileImage;
         checkIsUpToDate();
     }

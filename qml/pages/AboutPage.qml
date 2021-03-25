@@ -96,7 +96,8 @@ Page {
                 }
                 //: AboutPage translators label
                 label: qsTr("Translators")
-                text: qsTr("monkeyisland1992 (de)")
+                text: "monkeyisland1992 (de)\n"
+                        + "Quentin Pagès (fr)"
                 separator: true
             }
 

@@ -15,6 +15,7 @@ private slots:
     void testIsValidSecurityCategory();
     void testParsePollenData();
     void testIsPollenDataProvided();
+    void testRemoveUnsupportedPollens();
 };
 
 #endif // FRENCHPOLLENBACKENDTEST_H

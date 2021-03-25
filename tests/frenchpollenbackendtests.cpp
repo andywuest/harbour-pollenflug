@@ -27,6 +27,13 @@ void FrenchPollenBackendTests::testIsPollenDataProvided() {
     QCOMPARE(frenchPollenBackend->isPollenDataProvided(Pollen::Rye), false);
 }
 
+void FrenchPollenBackendTests::testRemoveUnsupportedPollens() {
+    QList<int> providedPollenIds = QList<int>() << Pollen::Mugwort << Pollen::Rye;
+    QList<int> supportedPollenIds = frenchPollenBackend->removeUnsupportedPollens(providedPollenIds);
+    QCOMPARE(supportedPollenIds.size(), 1);
+    QCOMPARE(supportedPollenIds.at(0), (int) Pollen::Mugwort);
+}
+
 void FrenchPollenBackendTests::testParsePollenData() {
     QString testFile = "fr.json";
     QFile f("testdata/" + testFile);
@@ -48,7 +55,7 @@ void FrenchPollenBackendTests::testParsePollenData() {
     qDebug() << "result : " << parsedResult;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(parsedResult.toUtf8());
     QCOMPARE(jsonDocument.isObject(), true);
-    QCOMPARE(jsonDocument.object().value("maxDaysPrediction"), 1);
+    QCOMPARE(jsonDocument.object().value("maxDaysPrediction"), 3);
     QCOMPARE(jsonDocument.object().value("region"), "01");
     QCOMPARE(jsonDocument.object().value("partRegion"), "-");
 

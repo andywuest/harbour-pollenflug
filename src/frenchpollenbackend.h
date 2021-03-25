@@ -28,6 +28,7 @@ protected:
 
     QString parsePollenData(QByteArray searchReply); // TODO rename
     QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString value);
+    QList<int> removeUnsupportedPollens(const QList<int> &pollenIds);
 
 private slots:
     void handleFetchPollenDataFinished();

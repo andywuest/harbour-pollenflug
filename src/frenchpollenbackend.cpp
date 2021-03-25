@@ -68,12 +68,9 @@ void FrenchPollenBackend::handleRequestError(QNetworkReply::NetworkError error) 
 
 void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId) {
     qDebug() << "FrenchPollenBackend::fetchPollenData";
-    qDebug() << pollenIds;
+    qDebug() << pollenIds << " region : " << regionId << ", " << partRegionId;
 
-    // TODO remove the pollenIds that we do not support
-
-
-    this->pollenIds = pollenIds;
+    this->pollenIds = removeUnsupportedPollens(pollenIds);
     this->regionId = regionId;
 
     QNetworkReply *reply = executeGetRequest(QUrl(FRENCH_POLLEN_API));
@@ -119,7 +116,7 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
     resultObject.insert("lastUpdate", ""); // TODO not supported
     resultObject.insert("nextUpdate", ""); // TODO not supported
     resultObject.insert("scaleElements", 6); // predefined
-    resultObject.insert("maxDaysPrediction", 1); // predefined
+    resultObject.insert("maxDaysPrediction", 3); // predefined - only one day - but we show 3 anyway
     resultObject.insert("region", this->regionId); // dynamic from request
     resultObject.insert("partRegion", "-"); // not supported
 
@@ -128,7 +125,7 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
     for (int i = 0; i < this->pollenIds.size(); i++) {
         int pollenId = this->pollenIds.at(i);
         QJsonObject pollenIdNode = getNodeForPollenId(risks, pollenId);
-        qDebug() << "found node : " << pollenIdNode;
+        // qDebug() << "found node : " << pollenIdNode;
 
         QJsonObject pollenResultObject;
         pollenResultObject.insert("label", this->pollenIdToLabelMap[pollenId]);
@@ -150,11 +147,11 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
 QJsonObject FrenchPollenBackend::getNodeForPollenId(QJsonArray risksArray, int pollenId) {
     if (this->pollenIdToPollenNameMap.contains(pollenId)) {
         QString key = this->pollenIdToPollenNameMap[pollenId];
-        qDebug() << " found value for key " << pollenId;
+        // qDebug() << " found value for key " << pollenId;
 
         foreach (const QJsonValue &riskNode, risksArray) {
             QString pollenName = riskNode.toObject().value("pollenName").toString();
-            qDebug() << "pollenname : " << pollenName;
+            // qDebug() << "pollenname : " << pollenName;
             if (QString::compare(pollenName, key, Qt::CaseInsensitive) == 0) {
                 return riskNode.toObject();
             }
@@ -176,4 +173,14 @@ QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSour
 
 bool FrenchPollenBackend::isPollenDataProvided(int pollenId) {
     return this->pollenIdToPollenNameMap.contains(pollenId);
+}
+
+QList<int> FrenchPollenBackend::removeUnsupportedPollens(const QList<int> &pollenIds) {
+    QList<int> supportedPollenIds;
+    for (auto pollenId : pollenIds) {
+        if (isPollenDataProvided(pollenId)) {
+            supportedPollenIds.append(pollenId);
+        }
+    }
+    return supportedPollenIds;
 }

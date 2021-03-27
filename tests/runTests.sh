@@ -7,6 +7,6 @@ rm moc_*
 
 qmake 
 make
-./FrenchPollenBackendTest
+./FrenchBackendTest
 
 

@@ -40,6 +40,7 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/cover/CoverPage.qml \
     qml/js/constants.js \
     qml/js/functions.js \
+    qml/pages/MapPage.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/SettingsPage.qml \

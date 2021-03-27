@@ -8,6 +8,15 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     qDebug() << "Initializing German Pollen Backend...";
     this->manager = manager;
 
+    this->pollenIdToMapKey.insert(Pollen::Mugwort, "5");
+    this->pollenIdToMapKey.insert(Pollen::Birch, "2");
+    this->pollenIdToMapKey.insert(Pollen::Alder, "1");
+    this->pollenIdToMapKey.insert(Pollen::AshTree, "7");
+    this->pollenIdToMapKey.insert(Pollen::Grass, "3");
+    this->pollenIdToMapKey.insert(Pollen::Hazel, "0");
+    this->pollenIdToMapKey.insert(Pollen::Ambrosia, "6");
+    this->pollenIdToMapKey.insert(Pollen::Rye, "4");
+
     // internally used in json object lookup
     this->pollenIdToKeyMap.insert(Pollen::Mugwort, "Beifuss");
     this->pollenIdToKeyMap.insert(Pollen::Birch, "Birke");
@@ -162,6 +171,8 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
                  pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("today")));
                  pollenResultObject.insert("tomorrow", createResultPollenObject(pollenIdNode, QString("tomorrow")));
                  pollenResultObject.insert("dayAfterTomorrow", createResultPollenObject(pollenIdNode, QString("dayafter_to")));
+                 const QString mapUrl = QString("https://www.dwd.de/DWD/warnungen/medizin/pollen/pollen_1_%1.png").arg(this->pollenIdToMapKey[pollenId]);
+                 pollenResultObject.insert("todayMapUrl" , mapUrl);
 
                  resultArray.push_back(pollenResultObject);
              }

@@ -192,6 +192,7 @@ Page {
 
                                 updateUI();
                             }
+
                         }
 
                         Separator {
@@ -199,6 +200,14 @@ Page {
                             width: parent.width
                             color: Theme.primaryColor
                             horizontalAlignment: Qt.AlignHCenter
+                        }
+                    }
+
+                    onClicked: {
+                        if (pollenModel.get(index).todayMapUrl) {
+                            pageStack.push(Qt.resolvedUrl("MapPage.qml"), { mapUrl: pollenModel.get(index).todayMapUrl });
+                        } else {
+                            console.log("No mapUrl found for index " + index);
                         }
                     }
                 }

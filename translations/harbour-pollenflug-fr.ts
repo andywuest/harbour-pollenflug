@@ -33,7 +33,7 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
         <extracomment>AboutPage text - about text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Si vous êtes sensible aux allergies liées au pollent vous pouvez vous informer sur la situation dans votre région. Pollenflug est libre et sous licence GPL v3</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -77,11 +77,11 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Grass</source>
-        <translation type="unfinished"></translation>
+        <translation>Graminée</translation>
     </message>
     <message>
         <source>Hazel</source>
-        <translation type="unfinished"></translation>
+        <translation>Noisetier</translation>
     </message>
     <message>
         <source>Ambrosia</source>
@@ -93,7 +93,7 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>very small pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation>très faible exposition au pollen</translation>
     </message>
     <message>
         <source>small pollen exposure</source>
@@ -109,7 +109,7 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>very high pollen exposure</source>
-        <translation type="unfinished"></translation>
+        <translation>exposition au pollen très élévée</translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@ AboutPage title - about text title</extracomment>
     </message>
     <message>
         <source>Grass</source>
-        <translation>Graminéee</translation>
+        <translation>Graminée</translation>
     </message>
     <message>
         <source>Hazel</source>
@@ -232,12 +232,12 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Departement</source>
         <extracomment>SettingsPage state</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Département</translation>
     </message>
     <message>
         <source>Select the departement where you live</source>
         <extracomment>SettingsPage region description</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez votre département de résidence</translation>
     </message>
     <message>
         <source>Ain</source>
@@ -629,12 +629,12 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>State</source>
         <extracomment>SettingsPage state</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>État</translation>
     </message>
     <message>
         <source>Select the state where you live</source>
         <extracomment>SettingsPage region description</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez votre État de résidence</translation>
     </message>
     <message>
         <source>Schleswig-Holstein und Hamburg</source>
@@ -714,15 +714,15 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Select the country where you live</source>
         <extracomment>SettingsPage region description</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez votre pays de résidence</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Allemagne</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished"></translation>
+        <translation>France</translation>
     </message>
     <message>
         <source>Allergen</source>
@@ -733,7 +733,7 @@ AboutPage title - about text title</extracomment>
     <name>constants</name>
     <message>
         <source>Ambrosia</source>
-        <translation type="unfinished">Ambroisie</translation>
+        <translation>Ambroisie</translation>
     </message>
     <message>
         <source>Inseln und Marschen</source>

@@ -36,6 +36,7 @@ private slots:
 
 private:
 
+    QMap<int, QString> pollenIdToMapKey;
     QMap<int, QString> pollenIdToPollenNameMap;
     QMap<int, QString> pollenIdToLabelMap;
     QMap<QString, QString> pollutionIndexToLabelMap;

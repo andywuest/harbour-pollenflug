@@ -85,7 +85,7 @@ void GermanPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString r
     this->regionId = regionId.toInt();
     this->partRegionId = partRegionId.toInt();
 
-    QNetworkReply *reply = executeGetRequest(QUrl(GERMAN_POLLEN_API));
+    QNetworkReply *reply = executeGetRequest(QUrl(POLLEN_API_GERMANY));
 
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleRequestError(QNetworkReply::NetworkError)));
     connect(reply, SIGNAL(finished()), this, SLOT(handleFetchPollenDataFinished()));
@@ -171,7 +171,7 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
                  pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("today")));
                  pollenResultObject.insert("tomorrow", createResultPollenObject(pollenIdNode, QString("tomorrow")));
                  pollenResultObject.insert("dayAfterTomorrow", createResultPollenObject(pollenIdNode, QString("dayafter_to")));
-                 const QString mapUrl = QString("https://www.dwd.de/DWD/warnungen/medizin/pollen/pollen_1_%1.png").arg(this->pollenIdToMapKey[pollenId]);
+                 const QString mapUrl = QString(MAP_URL_GERMANY).arg(this->pollenIdToMapKey[pollenId]);
                  pollenResultObject.insert("todayMapUrl" , mapUrl);
 
                  resultArray.push_back(pollenResultObject);

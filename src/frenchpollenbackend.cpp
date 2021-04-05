@@ -8,6 +8,15 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     qDebug() << "Initializing French Pollen Backend...";
     this->manager = manager;
 
+    this->pollenIdToMapKey.insert(Pollen::Mugwort, "armoise");
+    this->pollenIdToMapKey.insert(Pollen::Birch, "bouleau");
+    this->pollenIdToMapKey.insert(Pollen::Alder, "aulne");
+    // this->pollenIdToMapKey.insert(Pollen::AshTree, "7");
+    this->pollenIdToMapKey.insert(Pollen::Grass, "graminees");
+    this->pollenIdToMapKey.insert(Pollen::Hazel, "noisetier");
+    this->pollenIdToMapKey.insert(Pollen::Ambrosia, "ambroisie");
+    // this->pollenIdToMapKey.insert(Pollen::Rye, "4");
+
     // internally used in json object lookup
     this->pollenIdToPollenNameMap.insert(Pollen::Mugwort, "Armoise");
     this->pollenIdToPollenNameMap.insert(Pollen::Birch, "Bouleau");
@@ -73,7 +82,7 @@ void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString r
     this->pollenIds = removeUnsupportedPollens(pollenIds);
     this->regionId = regionId;
 
-    QNetworkReply *reply = executeGetRequest(QUrl(FRENCH_POLLEN_API));
+    QNetworkReply *reply = executeGetRequest(QUrl(POLLEN_API_FRANCE));
 
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleRequestError(QNetworkReply::NetworkError)));
     connect(reply, SIGNAL(finished()), this, SLOT(handleFetchPollenDataFinished()));
@@ -132,6 +141,8 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
         pollenResultObject.insert("id", pollenId);
         pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("level")));
         // tomorrow / dayAfterTomorrow not supported
+        const QString mapUrl = QString(MAP_URL_FRANCE).arg(this->pollenIdToMapKey[pollenId]);
+        pollenResultObject.insert("todayMapUrl" , mapUrl);
 
         resultArray.push_back(pollenResultObject);
     }

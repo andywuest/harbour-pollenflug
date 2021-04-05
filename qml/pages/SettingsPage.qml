@@ -37,18 +37,6 @@ Page {
         countrySpecificLoader.source = "../components/Settings" + country + ".qml";
     }
 
-    function updateComboBoxSelection(comboBox, selectedValue) {
-        var menuItems = comboBox.menu.children
-        var n = menuItems.length
-        for (var i=0; i<n; i++) {
-            if (menuItems[i].value === selectedValue) {
-                comboBox.currentIndex = i
-                console.log("updated index + " + i);
-                return;
-            }
-        }
-    }
-
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
             console.log("storing settings!")
@@ -109,7 +97,7 @@ Page {
                 Component.onCompleted: {
                     console.log("read config value country : " + pollenflugSettings.country);
                     switchToCountrySettings(pollenflugSettings.country)
-                    updateComboBoxSelection(countryComboBox, pollenflugSettings.country);
+                    Functions.updateComboBoxSelection(countryComboBox, pollenflugSettings.country);
                 }
             }
 

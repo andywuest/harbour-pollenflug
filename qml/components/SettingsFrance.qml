@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
 import "../js/constants.js" as Constants
+import "../js/functions.js" as Functions
 
 Column {
     id: settingsColumn
@@ -12,18 +13,6 @@ Column {
         if (departementsMenu.children[departementFranceComboBox.currentIndex]) {
             pollenflugSettings.departement = departementsMenu.children[departementFranceComboBox.currentIndex].value;
             console.log("[FR] departement : " + pollenflugSettings.departement)
-        }
-    }
-
-    function updateComboBoxSelection(comboBox, selectedValue) {
-        var menuItems = comboBox.menu.children
-        var n = menuItems.length
-        for (var i=0; i<n; i++) {
-            if (menuItems[i].value === selectedValue) {
-                comboBox.currentIndex = i
-                console.log("[FR] select index + " + i + "  - value : " + selectedValue + ", " + menuItems[i].text);
-                return;
-            }
         }
     }
 
@@ -48,7 +37,7 @@ Column {
 
         Component.onCompleted: {
             console.log("read config value departement : " + pollenflugSettings.departement);
-            updateComboBoxSelection(departementFranceComboBox, pollenflugSettings.departement);
+            Functions.updateComboBoxSelection(departementFranceComboBox, pollenflugSettings.departement);
         }
     }
 

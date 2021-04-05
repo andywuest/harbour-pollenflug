@@ -60,6 +60,19 @@ function addDays(date, days) {
   return copy;
 }
 
+// preselect the selected value for a comboBox
+function updateComboBoxSelection(comboBox, selectedValue) {
+    var menuItems = comboBox.menu.children
+    var n = menuItems.length
+    for (var i=0; i<n; i++) {
+        if (menuItems[i].value === selectedValue) {
+            comboBox.currentIndex = i
+            console.log("select index + " + i + "  - value : " + selectedValue + ", " + menuItems[i].text);
+            return;
+        }
+    }
+}
+
 // TODO germany specific functions
 function calculateRegion(storedRegion) {
     return (storedRegion + 1) * 10;

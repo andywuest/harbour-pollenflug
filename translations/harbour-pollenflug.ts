@@ -200,12 +200,12 @@ AboutPage title - about text title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Allergen</source>
-        <extracomment>OverviewPage header</extracomment>
+        <source>No data available - please configure your state and region properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No data available - please configure your state and region properly.</source>
+        <source>Allergen</source>
+        <extracomment>OverviewPage header</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

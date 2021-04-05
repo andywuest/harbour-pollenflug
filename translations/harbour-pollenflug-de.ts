@@ -200,13 +200,13 @@ AboutPage title - about text title</extracomment>
         <translation>Aktualisierung</translation>
     </message>
     <message>
+        <source>No data available - please configure your state and region properly.</source>
+        <translation>Keine Daten verfügbar - bitte konfigurieren Sie Ihr Bundesland und Ihre Region richtig.</translation>
+    </message>
+    <message>
         <source>Allergen</source>
         <extracomment>OverviewPage header</extracomment>
         <translation></translation>
-    </message>
-    <message>
-        <source>No data available - please configure your state and region properly.</source>
-        <translation>Keine Daten verfügbar - bitte konfigurieren Sie Ihr Bundesland und Ihre Region richtig.</translation>
     </message>
 </context>
 <context>

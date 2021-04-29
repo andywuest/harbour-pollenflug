@@ -12,6 +12,11 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* xx.x.2021 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.2.2-1
+- show page header (with pollen name) for page with map
+- use full width for the pollen map image (nice, especially for large devices)
+- show country / region in overview page in page header
+
 * 09.04.2021 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.2.1-1
 - updated French translation (Quentin Pagès)
 - show pollen map for allergen when clicking on pollen entry

@@ -19,14 +19,14 @@ Page {
     property int iconSize: 92
 
     function connectSlots() {
-        console.log("connect - slots");
+        console.log("[OverviewPage] connect - slots");
         var dataBackend = Functions.getDataBackend();
         dataBackend.pollenDataAvailable.connect(pollenDataHandler);
         dataBackend.requestError.connect(errorResultHandler);
     }
 
     function disconnectSlots() {
-        console.log("disconnect - slots");
+        console.log("[OverviewPage] disconnect - slots");
         var dataBackend = Functions.getDataBackend();
         dataBackend.pollenDataAvailable.disconnect(pollenDataHandler);
         dataBackend.requestError.disconnect(errorResultHandler);
@@ -37,13 +37,21 @@ Page {
         disconnectSlots(); // reconnect the slots - in case the backend has changed
         connectSlots();
 
+        var pageHeaderDescription;
         var region, partRegion;
         if (Constants.COUNTRY_GERMANY === pollenflugSettings.country) {
             region = Functions.calculateRegion(pollenflugSettings.region);
             partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
+            pageHeaderDescription = Constants.COUNTRY_MAP[pollenflugSettings.country];
+            pageHeaderDescription += " - " + Constants.GERMAN_REGION_ID_TO_PART_REGIONS[region][pollenflugSettings.partRegion];
         } else if (Constants.COUNTRY_FRANCE === pollenflugSettings.country) {
             region = pollenflugSettings.departement;
+            pageHeaderDescription = Constants.COUNTRY_MAP[pollenflugSettings.country];
+            // TODO determine departement
+            // pageHeaderDescription += " " + Constants.GERMAN_REGION_ID_TO_PART_REGIONS[region][pollenflugSettings.partRegion];
         }
+
+        pollenHeader.description = pageHeaderDescription;
 
         Functions.getDataBackend().fetchPollenData(Functions.getSelectedPollenList(pollenflugSettings), region, partRegion);
     }
@@ -205,7 +213,8 @@ Page {
 
                     onClicked: {
                         if (pollenModel.get(index).todayMapUrl) {
-                            pageStack.push(Qt.resolvedUrl("MapPage.qml"), { mapUrl: pollenModel.get(index).todayMapUrl });
+                            pageStack.push(Qt.resolvedUrl("MapPage.qml"), { mapUrl: pollenModel.get(index).todayMapUrl,
+                                           pollenName: pollenModel.get(index).label });
                         } else {
                             console.log("No mapUrl found for index " + index);
                         }
@@ -239,8 +248,5 @@ Page {
 
     Component.onCompleted: {
         Functions.addPollenToModel(pollenModel, pollenflugSettings)
-
-        // connectSlots();
-        //updatePollenData();
     }
 }

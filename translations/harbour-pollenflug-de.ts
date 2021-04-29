@@ -183,6 +183,13 @@ AboutPage title - about text title</extracomment>
     </message>
 </context>
 <context>
+    <name>MapPage</name>
+    <message>
+        <source>Pollen map</source>
+        <translation>Pollenkarte</translation>
+    </message>
+</context>
+<context>
     <name>OverviewPage</name>
     <message>
         <source>About</source>

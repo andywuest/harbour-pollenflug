@@ -1,3 +1,4 @@
+
 /*
  * harbour-pollenflug - Sailfish OS Version
  * Copyright © 2020 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
@@ -25,14 +26,49 @@ Page {
     id: mapPage
 
     property string mapUrl
+    property string pollenName
+
+    property int imageWidth;
+    property int imageHeight;
+
+    property real imageSizeFactor : imageWidth / imageHeight;
+    property real screenSizeFactor: mapPage.width / mapPage.height;
+    property real sizingFactor    : imageSizeFactor >= screenSizeFactor ? mapPage.width / imageWidth : mapPage.height / imageHeight;
+
+    PageHeader {
+        id: pageHeader
+        title: qsTr("Pollen map")
+        description: pollenName
+        leftMargin: Theme.itemSizeMedium
+        visible: true
+    }
 
     Image {
         id: mapImage
-        width: parent.width;
+        width: parent.width
+        anchors.margins: 0
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
         fillMode: Image.PreserveAspectFit
         source: mapUrl
+        onStatusChanged: {
+            if (mapImage.status === Image.Ready) {
+                console.log("[MapPage] painted width: " + mapImage.paintedWidth);
+                console.log("[MapPage] painted height: " + mapImage.paintedHeight);
+                mapPage.imageWidth = mapImage.paintedWidth;
+                mapPage.imageHeight = mapImage.paintedHeight;
+
+                mapImage.width = mapPage.imageWidth * mapPage.sizingFactor
+                mapImage.height = mapPage.imageHeight * mapPage.sizingFactor
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        console.log("[MapPage] page width: " + mapPage.width);
+        console.log("[MapPage] image width: " + mapImage.width);
+        console.log("[MapPage] painted width: " + mapImage.paintedWidth);
+        console.log("[MapPage] image url: " + mapUrl);
     }
 
 }

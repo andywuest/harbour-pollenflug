@@ -15,6 +15,18 @@ var GRASS_ID = 5;
 var HAZEL_ID = 6;
 var AMBROSIA_ID = 7;
 var RYE_ID = 8;
+var HORNBEAM_ID = 9;
+var CHESTNUT_ID = 10;
+var OAK_ID = 11;
+var CYPRESS_ID = 12;
+var OLIVE_ID = 13;
+var SORREL_ID = 14;
+var POPLAR_ID = 15;
+var PLANTAIN_ID = 16;
+var PLANE_ID = 17;
+var WILLOW_ID = 18;
+var LIME_ID = 19;
+var NETTLE_ID = 20;
 
 var MAX_SCALE_ELEMENTS = 3;
 
@@ -46,6 +58,31 @@ function buildPollenList() {
                                      "../icons/ambrosia.svg"))
     pollenList.push(createPollenItem(RYE_ID, qsTr("Rye"), // Roggen
                                      "../icons/roggen.svg"))
+    pollenList.push(createPollenItem(HORNBEAM_ID, qsTr("Hornbeam"), // Buche
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(CHESTNUT_ID, qsTr("Chestnut"), // Kastanie
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(OAK_ID, qsTr("Hornbeam"), // Eiche
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(CYPRESS_ID, qsTr("Hornbeam"), // Zypresse
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(OLIVE_ID, qsTr("Olive"), // Olive
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(SORREL_ID, qsTr("Sorrel"), // Sauerampfer
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(POPLAR_ID, qsTr("Poplar"), // Pappel
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(PLANTAIN_ID, qsTr("Plantain"), // Wegerich
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(PLANE_ID, qsTr("Plane"), // Platane
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(WILLOW_ID, qsTr("Willow"), // Weide
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(LIME_ID, qsTr("Lime"), // Linde
+        "../icons/xxx.svg"))
+    pollenList.push(createPollenItem(NETTLE_ID, qsTr("Nettle"), // Brennnessel
+        "../icons/xxx.svg"))
+
     return pollenList
 }
 

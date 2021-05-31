@@ -10,6 +10,18 @@ enum Pollen {
     Hazel = 6, // Hasel
     Ambrosia = 7, // Ambrosia
     Rye = 8, // Roggen
+    Hornbeam = 9, // Buche
+    Chestnut = 10, // Kastanie
+    Oak = 11, // Eiche
+    Cypress = 12, // Zypresse
+    Olive = 13, // Olive
+    Sorrel = 14, // Sauerampfer
+    Poplar = 15, // Pappel
+    Plantain = 16, // Wegerich
+    Plane = 17, // Platane
+    Willow = 18, // Weide
+    Lime = 19, // Linde
+    Nettle = 20 // Brennessel
 };
 
 const char MIME_TYPE_JSON[] = "application/json";

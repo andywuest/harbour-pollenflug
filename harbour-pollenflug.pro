@@ -15,8 +15,10 @@ TARGET = harbour-pollenflug
 CONFIG += sailfishapp
 
 SOURCES += src/harbour-pollenflug.cpp \
-    src/germanpollenbackend.cpp \
     src/pollenflug.cpp
+
+HEADERS += \
+    src/pollenflug.h
 
 DEFINES += VERSION_NUMBER=\\\"$$(VERSION_NUMBER)\\\"
 
@@ -73,10 +75,6 @@ CONFIG += sailfishapp_i18n
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-pollenflug-de.ts \
     translations/harbour-pollenflug-fr.ts
-
-HEADERS += \
-    src/germanpollenbackend.h \
-    src/pollenflug.h
 
 include(harbour-pollenflug.pri)
 

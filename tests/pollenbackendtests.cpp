@@ -1,40 +1,24 @@
-#include "frenchpollenbackendtests.h"
+#include "pollenbackendtests.h"
 #include <QtTest/QtTest>
 
-void FrenchPollenBackendTests::init() {
+void PollenBackendTests::init() {
     frenchPollenBackend = new FrenchPollenBackend(nullptr, nullptr);
+    germanPollenBackend = new GermanPollenBackend(nullptr, nullptr);
 }
 
-void FrenchPollenBackendTests::testIngConvertTimestampToLocalTimestamp() {
-    qDebug() << "dir : " << QCoreApplication::applicationFilePath();
-    qDebug() << "Timezone for test : " << QTimeZone::systemTimeZone();
-    QString testDate = QString("2020-10-14T20:22:24+02:00");
-    QTimeZone testTimeZone = QTimeZone("Europe/Berlin");
-//    QDateTime convertedDateTime = ingDibaBackend->convertTimestampToLocalTimestamp(testDate, testTimeZone);
-//    QString dateTimeFormatted = convertedDateTime.toString("yyyy-MM-dd") + " " + convertedDateTime.toString("hh:mm:ss");
-    QCOMPARE(QString("2020-10-14 20:22:24"), QString("2020-10-14 20:22:24"));
-}
-
-void FrenchPollenBackendTests::testIsValidSecurityCategory() {
-//    QCOMPARE(ingDibaBackend->isValidSecurityCategory("Fonds"), true);
-//    QCOMPARE(ingDibaBackend->isValidSecurityCategory("Aktien"), true);
-//    QCOMPARE(ingDibaBackend->isValidSecurityCategory("etfs"), true);
-//    QCOMPARE(ingDibaBackend->isValidSecurityCategory("NIX"), false);
-}
-
-void FrenchPollenBackendTests::testIsPollenDataProvided() {
+void PollenBackendTests::testIsFrenchPollenDataProvided() {
     QCOMPARE(frenchPollenBackend->isPollenDataProvided(Pollen::Mugwort), true);
     QCOMPARE(frenchPollenBackend->isPollenDataProvided(Pollen::Rye), false);
 }
 
-void FrenchPollenBackendTests::testRemoveUnsupportedPollens() {
+void PollenBackendTests::testRemoveFrenchUnsupportedPollens() {
     QList<int> providedPollenIds = QList<int>() << Pollen::Mugwort << Pollen::Rye;
     QList<int> supportedPollenIds = frenchPollenBackend->removeUnsupportedPollens(providedPollenIds);
     QCOMPARE(supportedPollenIds.size(), 1);
     QCOMPARE(supportedPollenIds.at(0), (int) Pollen::Mugwort);
 }
 
-void FrenchPollenBackendTests::testParsePollenData() {
+void PollenBackendTests::testParseFrenchPollenData() {
     QString testFile = "fr.json";
     QFile f("testdata/" + testFile);
     if (!f.open(QFile::ReadOnly | QFile::Text)) {

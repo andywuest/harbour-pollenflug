@@ -1,5 +1,5 @@
-#ifndef GERMANPOLLENBACKEND_H
-#define GERMANPOLLENBACKEND_H
+#ifndef GERMAN_POLLEN_BACKEND_H
+#define GERMAN_POLLEN_BACKEND_H
 
 #include <QObject>
 #include <QNetworkReply>
@@ -9,6 +9,7 @@
 #include "constants.h"
 #include "abstractpollen.h"
 
+// TODo extend abstract pollenbackend -> tests !!
 class GermanPollenBackend : public QObject {
     Q_OBJECT
 public:
@@ -43,6 +44,8 @@ protected:
 
     QNetworkReply *executeGetRequest(const QUrl &url);
 
+    void addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey); // TODO generic base class
+
     QString parsePollenData(QByteArray searchReply); // TODO rename
     QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString dayString);
 
@@ -52,4 +55,4 @@ private slots:
 
 };
 
-#endif // GERMANPOLLENBACKEND_H
+#endif // GERMAN_POLLEN_BACKEND_H

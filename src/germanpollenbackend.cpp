@@ -9,15 +9,16 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     qDebug() << "Initializing German Pollen Backend...";
     this->manager = manager;
 
-    this->pollenIdToPollenData.insert(Pollen::Mugwort, new GenericPollen(Pollen::Mugwort, "Beifuss", "5"));
-    this->pollenIdToPollenData.insert(Pollen::Birch, new GenericPollen(Pollen::Birch, "Birke", "2"));
-    this->pollenIdToPollenData.insert(Pollen::Alder, new GenericPollen(Pollen::Alder, "Erle", "1"));
-    this->pollenIdToPollenData.insert(Pollen::AshTree, new GenericPollen(Pollen::AshTree, "Esche", "7"));
-    this->pollenIdToPollenData.insert(Pollen::Grass, new GenericPollen(Pollen::Grass, "Graeser", "3"));
-    this->pollenIdToPollenData.insert(Pollen::Hazel, new GenericPollen(Pollen::Hazel, "Hasel", "0"));
-    this->pollenIdToPollenData.insert(Pollen::Ambrosia, new GenericPollen(Pollen::Ambrosia, "Ambrosia", "6"));
-    this->pollenIdToPollenData.insert(Pollen::Rye, new GenericPollen(Pollen::Rye, "Roggen", "4"));
+    addPollenData(Pollen::Mugwort, "Beifuss", "5");
+    addPollenData(Pollen::Birch, "Birke", "2");
+    addPollenData(Pollen::Alder, "Erle", "1");
+    addPollenData(Pollen::AshTree, "Esche", "7");
+    addPollenData(Pollen::Grass, "Graeser", "3");
+    addPollenData(Pollen::Hazel, "Hasel", "0");
+    addPollenData(Pollen::Ambrosia, "Ambrosia", "6");
+    addPollenData(Pollen::Rye, "Roggen", "4");
 
+    // TODO sollte entfallen
     this->pollenIdToMapKey.insert(Pollen::Mugwort, "5");
     this->pollenIdToMapKey.insert(Pollen::Birch, "2");
     this->pollenIdToMapKey.insert(Pollen::Alder, "1");
@@ -27,6 +28,7 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToMapKey.insert(Pollen::Ambrosia, "6");
     this->pollenIdToMapKey.insert(Pollen::Rye, "4");
 
+    // TODO sollte entfallen
     // internally used in json object lookup
     this->pollenIdToKeyMap.insert(Pollen::Mugwort, "Beifuss");
     this->pollenIdToKeyMap.insert(Pollen::Birch, "Birke");
@@ -37,6 +39,7 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToKeyMap.insert(Pollen::Ambrosia, "Ambrosia");
     this->pollenIdToKeyMap.insert(Pollen::Rye, "Roggen");
 
+    // TODO sollte entfallen
     // TODO english
     this->pollenIdToLabelMap.insert(Pollen::Mugwort, tr("Mugwort")); // Beifuss
     this->pollenIdToLabelMap.insert(Pollen::Birch, tr("Birch")); // Birke
@@ -71,8 +74,12 @@ GermanPollenBackend::~GermanPollenBackend() {
     qDebug() << "Shutting down German Pollen Backend...";
 }
 
+void GermanPollenBackend::addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
+    this->pollenIdToPollenData.insert(pollenId, new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
+}
+
 QNetworkReply *GermanPollenBackend::executeGetRequest(const QUrl &url) {
-    qDebug() << "AbstractDataBackend::executeGetRequest " << url;
+    qDebug() << "GermanPollenBackend::executeGetRequest " << url;
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, MIME_TYPE_JSON);
     request.setHeader(QNetworkRequest::UserAgentHeader, USER_AGENT);
@@ -82,7 +89,7 @@ QNetworkReply *GermanPollenBackend::executeGetRequest(const QUrl &url) {
 
 void GermanPollenBackend::handleRequestError(QNetworkReply::NetworkError error) {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    qWarning() << "AbstractDataBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString() << reply->readAll();
+    qWarning() << "GermanPollenBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString() << reply->readAll();
 
     emit requestError("Return code: " + QString::number(static_cast<int>(error)) + " - " + reply->errorString());
 }
@@ -122,7 +129,9 @@ bool GermanPollenBackend::isRegionNodeFound(int regionId, int partRegionId) {
 }
 
 QJsonObject GermanPollenBackend::getNodeForPollenId(QJsonObject pollenNode, int pollenId) {
+// TODO if (this->pollenIdToPollenData.contains(pollenId)) {
     if (this->pollenIdToKeyMap.contains(pollenId)) {
+        // TODO  QString key = this->pollenIdToPollenData[pollenId].getJsonLookupKey
         QString key = this->pollenIdToKeyMap[pollenId];
         qDebug() << " found value for key " << pollenId;
         return pollenNode.value(key).toObject();
@@ -198,4 +207,5 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
 
 bool GermanPollenBackend::isPollenDataProvided(int pollenId) {
     return this->pollenIdToKeyMap.contains(pollenId);
+    // TODO return this->pollenIdToPollenData.contains(pollenId);
 }

@@ -27,6 +27,8 @@ protected:
 
     QNetworkReply *executeGetRequest(const QUrl &url);
 
+    void addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey); // TODO generic base class
+
     QString parsePollenData(QByteArray searchReply); // TODO rename
     QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString value);
     QList<int> removeUnsupportedPollens(const QList<int> &pollenIds);

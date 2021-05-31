@@ -25,7 +25,7 @@ public:
 
 private:
 
-    QMap<int, AbstractPollen> pollenIdToPollenData;
+    QMap<int, AbstractPollen> pollenIdToPollenData; // TODO move to baseclass
     QMap<int, QString> pollenIdToMapKey;
     QMap<int, QString> pollenIdToKeyMap;
     QMap<int, QString> pollenIdToLabelMap;
@@ -40,9 +40,9 @@ private:
 
 protected:
 
-    QNetworkAccessManager *manager;
+    QNetworkAccessManager *manager; // TODO obsoelt
 
-    QNetworkReply *executeGetRequest(const QUrl &url);
+    QNetworkReply *executeGetRequest(const QUrl &url); // TODO baseclass
 
     void addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey); // TODO generic base class
 
@@ -50,8 +50,8 @@ protected:
     QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString dayString);
 
 private slots:
-    void handleFetchPollenDataFinished();
-    void handleRequestError(QNetworkReply::NetworkError error);
+    void handleFetchPollenDataFinished(); // virtual?
+    void handleRequestError(QNetworkReply::NetworkError error); // TDODo generic base class
 
 };
 

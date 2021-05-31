@@ -1,4 +1,4 @@
-#include "frenchpollenbackendtests.h"
+#include "pollenbackendtests.h"
 #include <QtTest/QtTest>
 
-QTEST_GUILESS_MAIN(FrenchPollenBackendTests)
+QTEST_GUILESS_MAIN(PollenBackendTests)

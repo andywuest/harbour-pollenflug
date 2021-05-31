@@ -1,4 +1,5 @@
 #include "germanpollenbackend.h"
+#include "genericpollen.h"
 
 #include <QJsonObject>
 #include <QJsonArray>
@@ -7,6 +8,15 @@
 GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent) : QObject(parent) {
     qDebug() << "Initializing German Pollen Backend...";
     this->manager = manager;
+
+    this->pollenIdToPollenData.insert(Pollen::Mugwort, new GenericPollen(Pollen::Mugwort, "Beifuss", "5"));
+    this->pollenIdToPollenData.insert(Pollen::Birch, new GenericPollen(Pollen::Birch, "Birke", "2"));
+    this->pollenIdToPollenData.insert(Pollen::Alder, new GenericPollen(Pollen::Alder, "Erle", "1"));
+    this->pollenIdToPollenData.insert(Pollen::AshTree, new GenericPollen(Pollen::AshTree, "Esche", "7"));
+    this->pollenIdToPollenData.insert(Pollen::Grass, new GenericPollen(Pollen::Grass, "Graeser", "3"));
+    this->pollenIdToPollenData.insert(Pollen::Hazel, new GenericPollen(Pollen::Hazel, "Hasel", "0"));
+    this->pollenIdToPollenData.insert(Pollen::Ambrosia, new GenericPollen(Pollen::Ambrosia, "Ambrosia", "6"));
+    this->pollenIdToPollenData.insert(Pollen::Rye, new GenericPollen(Pollen::Rye, "Roggen", "4"));
 
     this->pollenIdToMapKey.insert(Pollen::Mugwort, "5");
     this->pollenIdToMapKey.insert(Pollen::Birch, "2");

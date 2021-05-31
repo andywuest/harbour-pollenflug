@@ -6,6 +6,7 @@
 #include <QNetworkAccessManager>
 
 #include "constants.h"
+#include "abstractpollen.h"
 
 class FrenchPollenBackend : public QObject {
  Q_OBJECT
@@ -36,6 +37,7 @@ private slots:
 
 private:
 
+    QMap<int, AbstractPollen> pollenIdToPollenData;
     QMap<int, QString> pollenIdToMapKey;
     QMap<int, QString> pollenIdToPollenNameMap;
     QMap<int, QString> pollenIdToLabelMap;

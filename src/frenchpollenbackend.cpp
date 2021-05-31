@@ -1,4 +1,5 @@
 #include "frenchpollenbackend.h"
+#include "genericpollen.h"
 
 #include <QJsonObject>
 #include <QJsonArray>
@@ -7,6 +8,27 @@
 FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent) : QObject(parent) {
     qDebug() << "Initializing French Pollen Backend...";
     this->manager = manager;
+
+    this->pollenIdToPollenData.insert(Pollen::Mugwort, new GenericPollen(Pollen::Mugwort, "Armoise", "armoise"));
+    this->pollenIdToPollenData.insert(Pollen::Birch, new GenericPollen(Pollen::Birch, "Bouleau", "bouleau"));
+    this->pollenIdToPollenData.insert(Pollen::Alder, new GenericPollen(Pollen::Alder, "Aulne", "aulne"));
+    // this->pollenIdToPollenData(new GermanPollen(Pollen::AshTree, "Esche", "7"));
+    this->pollenIdToPollenData.insert(Pollen::Grass, new GenericPollen(Pollen::Grass, "Graminées", "graminees"));
+    this->pollenIdToPollenData.insert(Pollen::Hazel, new GenericPollen(Pollen::Hazel, "Noisetier", "noisetier"));
+    this->pollenIdToPollenData.insert(Pollen::Ambrosia, new GenericPollen(Pollen::Ambrosia, "Ambroisies", "ambroisie"));
+    // this->pollenIdToPollenData(new GermanPollen(Pollen::Rye, "Roggen", "4"));
+    this->pollenIdToPollenData.insert(Pollen::Hornbeam, new GenericPollen(Pollen::Hornbeam, "Charme", "charme"));
+    this->pollenIdToPollenData.insert(Pollen::Chestnut, new GenericPollen(Pollen::Chestnut, "Châtaignier", "chataignier"));
+    this->pollenIdToPollenData.insert(Pollen::Oak, new GenericPollen(Pollen::Oak, "Chêne", "chene"));
+    this->pollenIdToPollenData.insert(Pollen::Cypress, new GenericPollen(Pollen::Cypress, "Cupressacées", "cypres"));
+    this->pollenIdToPollenData.insert(Pollen::Olive, new GenericPollen(Pollen::Olive, "Olivier", "olivier"));
+    this->pollenIdToPollenData.insert(Pollen::Sorrel, new GenericPollen(Pollen::Sorrel, "Oseille", "oseille"));
+    this->pollenIdToPollenData.insert(Pollen::Poplar, new GenericPollen(Pollen::Poplar, "Peuplier", "peuplier"));
+    this->pollenIdToPollenData.insert(Pollen::Plantain, new GenericPollen(Pollen::Plantain, "Plantain", "plantain"));
+    this->pollenIdToPollenData.insert(Pollen::Plane, new GenericPollen(Pollen::Plane, "Platane", "platane"));
+    this->pollenIdToPollenData.insert(Pollen::Willow, new GenericPollen(Pollen::Willow, "Saule", "saule"));
+    this->pollenIdToPollenData.insert(Pollen::Lime, new GenericPollen(Pollen::Lime, "Tilleul", "tilleul"));
+    this->pollenIdToPollenData.insert(Pollen::Nettle, new GenericPollen(Pollen::Nettle, "Urticacées", "parietaire"));
 
     // mapping for map
     this->pollenIdToMapKey.insert(Pollen::Mugwort, "armoise");

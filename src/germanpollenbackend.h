@@ -7,6 +7,7 @@
 #include <QSequentialIterable>
 
 #include "constants.h"
+#include "abstractpollen.h"
 
 class GermanPollenBackend : public QObject {
     Q_OBJECT
@@ -23,6 +24,7 @@ public:
 
 private:
 
+    QMap<int, AbstractPollen> pollenIdToPollenData;
     QMap<int, QString> pollenIdToMapKey;
     QMap<int, QString> pollenIdToKeyMap;
     QMap<int, QString> pollenIdToLabelMap;
@@ -37,8 +39,6 @@ private:
 
 protected:
 
-    // QString applicationName;
-    // QString applicationVersion;
     QNetworkAccessManager *manager;
 
     QNetworkReply *executeGetRequest(const QUrl &url);

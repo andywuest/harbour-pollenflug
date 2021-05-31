@@ -8,6 +8,7 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     qDebug() << "Initializing French Pollen Backend...";
     this->manager = manager;
 
+    // mapping for map
     this->pollenIdToMapKey.insert(Pollen::Mugwort, "armoise");
     this->pollenIdToMapKey.insert(Pollen::Birch, "bouleau");
     this->pollenIdToMapKey.insert(Pollen::Alder, "aulne");
@@ -16,6 +17,18 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToMapKey.insert(Pollen::Hazel, "noisetier");
     this->pollenIdToMapKey.insert(Pollen::Ambrosia, "ambroisie");
     // this->pollenIdToMapKey.insert(Pollen::Rye, "4");
+    this->pollenIdToMapKey.insert(Pollen::Hornbeam, "charme");
+    this->pollenIdToMapKey.insert(Pollen::Chestnut, "chataignier");
+    this->pollenIdToMapKey.insert(Pollen::Oak, "chene");
+    this->pollenIdToMapKey.insert(Pollen::Cypress, "cypres");
+    this->pollenIdToMapKey.insert(Pollen::Olive, "olivier");
+    this->pollenIdToMapKey.insert(Pollen::Sorrel, "oseille");
+    this->pollenIdToMapKey.insert(Pollen::Poplar, "peuplier");
+    this->pollenIdToMapKey.insert(Pollen::Plantain, "plantain");
+    this->pollenIdToMapKey.insert(Pollen::Plane, "platane");
+    this->pollenIdToMapKey.insert(Pollen::Willow, "saule");
+    this->pollenIdToMapKey.insert(Pollen::Lime, "tilleul");
+    this->pollenIdToMapKey.insert(Pollen::Nettle, "parietaire");
 
     // internally used in json object lookup
     this->pollenIdToPollenNameMap.insert(Pollen::Mugwort, "Armoise");
@@ -27,6 +40,20 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToPollenNameMap.insert(Pollen::Ambrosia, "Ambroisies");
     // this->pollenIdToPollenNameMap.insert(8, "Roggen"); ?? TODO
 
+    // TODO fix from here
+    this->pollenIdToPollenNameMap.insert(Pollen::Hornbeam, "Charme");
+    this->pollenIdToPollenNameMap.insert(Pollen::Chestnut, "Châtaignier");
+    this->pollenIdToPollenNameMap.insert(Pollen::Oak, "Chêne");
+    this->pollenIdToPollenNameMap.insert(Pollen::Cypress, "Cupressacées");
+    this->pollenIdToPollenNameMap.insert(Pollen::Olive, "Olivier");
+    this->pollenIdToPollenNameMap.insert(Pollen::Sorrel, "Oseille");
+    this->pollenIdToPollenNameMap.insert(Pollen::Poplar, "Peuplier");
+    this->pollenIdToPollenNameMap.insert(Pollen::Plantain, "Plantain");
+    this->pollenIdToPollenNameMap.insert(Pollen::Plane, "Platane");
+    this->pollenIdToPollenNameMap.insert(Pollen::Willow, "Saule");
+    this->pollenIdToPollenNameMap.insert(Pollen::Lime, "Tilleul");
+    this->pollenIdToPollenNameMap.insert(Pollen::Nettle, "Urticacées");
+
     // TODO english
     this->pollenIdToLabelMap.insert(Pollen::Mugwort, tr("Mugwort")); // Beifuss
     this->pollenIdToLabelMap.insert(Pollen::Birch, tr("Birch")); // Birke
@@ -36,6 +63,18 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToLabelMap.insert(Pollen::Hazel, tr("Hazel")); // Hasel
     this->pollenIdToLabelMap.insert(Pollen::Ambrosia, tr("Ambrosia")); // Ambrosia
     // this->pollenIdToLabelMap.insert(8, tr("Rye")); // Roggen ?? TODO
+    this->pollenIdToLabelMap.insert(Pollen::Hornbeam, tr("Hornbeam")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Chestnut, tr("Chestnut")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Oak, tr("Oak")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Cypress, tr("Cypress")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Olive, tr("Olive")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Sorrel, tr("Sorrel")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Poplar, tr("Poplar")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Plantain, tr("Plantain")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Plane, tr("Plane")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Willow, tr("Willow")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Lime, tr("Lime")); // Ambrosia
+    this->pollenIdToLabelMap.insert(Pollen::Nettle, tr("Nettle")); // Ambrosia
 
     // TODO fix scaling
     // used for label

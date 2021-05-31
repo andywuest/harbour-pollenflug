@@ -9,27 +9,28 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     qDebug() << "Initializing French Pollen Backend...";
     this->manager = manager;
 
-    this->pollenIdToPollenData.insert(Pollen::Mugwort, new GenericPollen(Pollen::Mugwort, "Armoise", "armoise"));
-    this->pollenIdToPollenData.insert(Pollen::Birch, new GenericPollen(Pollen::Birch, "Bouleau", "bouleau"));
-    this->pollenIdToPollenData.insert(Pollen::Alder, new GenericPollen(Pollen::Alder, "Aulne", "aulne"));
+    addPollenData(Pollen::Mugwort, "Armoise", "armoise");
+    addPollenData(Pollen::Birch, "Bouleau", "bouleau");
+    addPollenData(Pollen::Alder, "Aulne", "aulne");
     // this->pollenIdToPollenData(new GermanPollen(Pollen::AshTree, "Esche", "7"));
-    this->pollenIdToPollenData.insert(Pollen::Grass, new GenericPollen(Pollen::Grass, "Graminées", "graminees"));
-    this->pollenIdToPollenData.insert(Pollen::Hazel, new GenericPollen(Pollen::Hazel, "Noisetier", "noisetier"));
-    this->pollenIdToPollenData.insert(Pollen::Ambrosia, new GenericPollen(Pollen::Ambrosia, "Ambroisies", "ambroisie"));
+    addPollenData(Pollen::Grass, "Graminées", "graminees");
+    addPollenData(Pollen::Hazel, "Noisetier", "noisetier");
+    addPollenData(Pollen::Ambrosia, "Ambroisies", "ambroisie");
     // this->pollenIdToPollenData(new GermanPollen(Pollen::Rye, "Roggen", "4"));
-    this->pollenIdToPollenData.insert(Pollen::Hornbeam, new GenericPollen(Pollen::Hornbeam, "Charme", "charme"));
-    this->pollenIdToPollenData.insert(Pollen::Chestnut, new GenericPollen(Pollen::Chestnut, "Châtaignier", "chataignier"));
-    this->pollenIdToPollenData.insert(Pollen::Oak, new GenericPollen(Pollen::Oak, "Chêne", "chene"));
-    this->pollenIdToPollenData.insert(Pollen::Cypress, new GenericPollen(Pollen::Cypress, "Cupressacées", "cypres"));
-    this->pollenIdToPollenData.insert(Pollen::Olive, new GenericPollen(Pollen::Olive, "Olivier", "olivier"));
-    this->pollenIdToPollenData.insert(Pollen::Sorrel, new GenericPollen(Pollen::Sorrel, "Oseille", "oseille"));
-    this->pollenIdToPollenData.insert(Pollen::Poplar, new GenericPollen(Pollen::Poplar, "Peuplier", "peuplier"));
-    this->pollenIdToPollenData.insert(Pollen::Plantain, new GenericPollen(Pollen::Plantain, "Plantain", "plantain"));
-    this->pollenIdToPollenData.insert(Pollen::Plane, new GenericPollen(Pollen::Plane, "Platane", "platane"));
-    this->pollenIdToPollenData.insert(Pollen::Willow, new GenericPollen(Pollen::Willow, "Saule", "saule"));
-    this->pollenIdToPollenData.insert(Pollen::Lime, new GenericPollen(Pollen::Lime, "Tilleul", "tilleul"));
-    this->pollenIdToPollenData.insert(Pollen::Nettle, new GenericPollen(Pollen::Nettle, "Urticacées", "parietaire"));
+    addPollenData(Pollen::Hornbeam, "Charme", "charme");
+    addPollenData(Pollen::Chestnut, "Châtaignier", "chataignier");
+    addPollenData(Pollen::Oak, "Chêne", "chene");
+    addPollenData(Pollen::Cypress, "Cupressacées", "cypres");
+    addPollenData(Pollen::Olive, "Olivier", "olivier");
+    addPollenData(Pollen::Sorrel, "Oseille", "oseille");
+    addPollenData(Pollen::Poplar, "Peuplier", "peuplier");
+    addPollenData(Pollen::Plantain, "Plantain", "plantain");
+    addPollenData(Pollen::Plane, "Platane", "platane");
+    addPollenData(Pollen::Willow, "Saule", "saule");
+    addPollenData(Pollen::Lime, "Tilleul", "tilleul");
+    addPollenData(Pollen::Nettle, "Urticacées", "parietaire");
 
+    // TODO should be obsolet
     // mapping for map
     this->pollenIdToMapKey.insert(Pollen::Mugwort, "armoise");
     this->pollenIdToMapKey.insert(Pollen::Birch, "bouleau");
@@ -52,6 +53,7 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToMapKey.insert(Pollen::Lime, "tilleul");
     this->pollenIdToMapKey.insert(Pollen::Nettle, "parietaire");
 
+    // TODO should be obsolet
     // internally used in json object lookup
     this->pollenIdToPollenNameMap.insert(Pollen::Mugwort, "Armoise");
     this->pollenIdToPollenNameMap.insert(Pollen::Birch, "Bouleau");
@@ -62,6 +64,7 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToPollenNameMap.insert(Pollen::Ambrosia, "Ambroisies");
     // this->pollenIdToPollenNameMap.insert(8, "Roggen"); ?? TODO
 
+    // TODO should be obsolet
     // TODO fix from here
     this->pollenIdToPollenNameMap.insert(Pollen::Hornbeam, "Charme");
     this->pollenIdToPollenNameMap.insert(Pollen::Chestnut, "Châtaignier");
@@ -76,6 +79,7 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     this->pollenIdToPollenNameMap.insert(Pollen::Lime, "Tilleul");
     this->pollenIdToPollenNameMap.insert(Pollen::Nettle, "Urticacées");
 
+    // TODO should be obsolet
     // TODO english
     this->pollenIdToLabelMap.insert(Pollen::Mugwort, tr("Mugwort")); // Beifuss
     this->pollenIdToLabelMap.insert(Pollen::Birch, tr("Birch")); // Birke
@@ -118,6 +122,10 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
 
 FrenchPollenBackend::~FrenchPollenBackend() {
     qDebug() << "Shutting down French Pollen Backend...";
+}
+
+void FrenchPollenBackend::addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
+    this->pollenIdToPollenData.insert(pollenId, new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
 }
 
 QNetworkReply *FrenchPollenBackend::executeGetRequest(const QUrl &url) {

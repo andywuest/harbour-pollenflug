@@ -4,10 +4,14 @@ QT -= gui
 CONFIG += c++11 qt
 
 SOURCES += testmain.cpp \
-    frenchpollenbackendtests.cpp
+    frenchpollenbackendtests.cpp \
+    abstractpollen.cpp \
+    genericpollen.cpp
 
 HEADERS += \
-    frenchpollenbackendtests.h
+    frenchpollenbackendtests.h \
+    abstractpollen.h \
+    genericpollen.h
 
 INCLUDEPATH += ../
 include(../harbour-pollenflug.pri)

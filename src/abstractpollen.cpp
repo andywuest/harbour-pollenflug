@@ -1,7 +1,7 @@
 #include "abstractpollen.h"
 #include "constants.h"
 
-void AbstractPollen::getPollenName(int pollenId) {
+QString AbstractPollen::getPollenName(int pollenId) {
     switch (pollenId) {
         case Pollen::Mugwort: return tr("Mugwort");
         case Pollen::Birch: return tr("Birch");
@@ -24,6 +24,35 @@ void AbstractPollen::getPollenName(int pollenId) {
         case Pollen::Lime: return tr("Lime");
         case Pollen::Nettle: return tr("Nettle");
     }
+    return QString("unsupported");
+}
 
+QString AbstractPollen::getPollenImageFileName(int pollenId) {
+  return getInternalPollenName(pollenId).append(".svg");
+}
+
+QString AbstractPollen::getInternalPollenName(int pollenId) {
+    switch (pollenId) {
+        case Pollen::Mugwort: return "mugwort";
+        case Pollen::Birch: return "birch";
+        case Pollen::Alder: return "alder";
+        case Pollen::Ash: return "ashtree";
+        case Pollen::Grass: return "grass";
+        case Pollen::Hazel: return "hazel";
+        case Pollen::Ambrosia: return "ambrosia";
+        case Pollen::Rye: return "rye";
+        case Pollen::Hornbeam: return "hornbeam";
+        case Pollen::Chestnut: return "chestnut";
+        case Pollen::Oak: return "oak";
+        case Pollen::Cypress: return "cypress";
+        case Pollen::Olive: return "olive";
+        case Pollen::Sorrel: return "sorrel";
+        case Pollen::Poplar: return "poplar";
+        case Pollen::Plantain: return "plantain";
+        case Pollen::Plane: return "plane";
+        case Pollen::Willow: return "willow";
+        case Pollen::Lime: return "lime";
+        case Pollen::Nettle: return "nettle";
+    }
     return QString("unsupported");
 }

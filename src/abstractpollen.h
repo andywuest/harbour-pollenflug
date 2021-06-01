@@ -6,9 +6,12 @@ public:
     AbstractPollen() = default;
 
 protected:
-    getPollenName(int pollenId);
+    QString getPollenName(int pollenId);
+    QString getPollenImageFileName(int pollenId);
 
 private:
+    QString getInternalPollenName();
+
 };
 
 #endif // ABSTRACT_POLLEN_H

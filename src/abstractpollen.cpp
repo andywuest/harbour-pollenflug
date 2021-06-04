@@ -1,6 +1,13 @@
 #include "abstractpollen.h"
 #include "constants.h"
 
+void AbstractPollen::AbstractPollen(int pollenId) {
+    this->pollenId = pollenId;
+}
+
+AbstractPollen::~AbstractPollen() {
+}
+
 QString AbstractPollen::getPollenName(int pollenId) {
     switch (pollenId) {
         case Pollen::Mugwort: return tr("Mugwort");

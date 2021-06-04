@@ -3,13 +3,18 @@
 
 class AbstractPollen {
 public:
-    AbstractPollen() = default;
+    explicit AbstractPollen(int pollenId);
+    ~AbstractPollen();
+
+    int getPollenId();
 
 protected:
     QString getPollenName(int pollenId);
     QString getPollenImageFileName(int pollenId);
 
 private:
+
+    int pollenId;
     QString getInternalPollenName();
 
 };

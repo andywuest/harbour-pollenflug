@@ -1,13 +1,12 @@
 #include "genericpollen.h"
 
-void GenericPollen::GenericPollen(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
-    this->pollenId = pollenId,
+void GenericPollen::GenericPollen(int pollenId, QString jsonLookupKey, QString pollenMapKey)
+    : AbstractPollen(pollenId) {
     this->jsonLookupKey = jsonLookupKey;
     this->pollenMapKey = pollenMapKey;
 }
 
-int GenericPollen::getPollenId() {
-  return this->pollenId;
+GenericPollen::~GenericPollen() {
 }
 
 QString GenericPollen::getJsonLookupKey() {
@@ -16,4 +15,8 @@ QString GenericPollen::getJsonLookupKey() {
 
 QString GenericPollen::getPollenMapKey() {
   return this->pollenMapKey;
+}
+
+int GenericPollen::getPollenId() {
+  return this->pollenId;
 }

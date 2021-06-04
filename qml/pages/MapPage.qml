@@ -64,6 +64,11 @@ Page {
         }
     }
 
+    ImageProgressIndicator {
+        image: mapImage
+        withPercentage: true
+    }
+
     Component.onCompleted: {
         console.log("[MapPage] page width: " + mapPage.width);
         console.log("[MapPage] image width: " + mapImage.width);

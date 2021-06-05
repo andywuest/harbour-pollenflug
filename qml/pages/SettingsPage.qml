@@ -1,6 +1,6 @@
 /*
- * harbour-watchlist - Sailfish OS Version
- * Copyright © 2017 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
+ * harbour-pollenflug - Sailfish OS Version
+ * Copyright © 2020 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import "../js/constants.js" as Constants
 
 Page {
     id: settingsPage
+    signal reloadOverviewPollens()
 
     function switchToCountrySettings(countryValue) {
         pollenflugSettings.country = countryValue;
@@ -44,6 +45,7 @@ Page {
             // pollenflugSettings.country = countryComboBox.currentIndex;
             console.log("country : " + pollenflugSettings.country)
             pollenflugSettings.sync()
+            reloadOverviewPollens()
         }
     }
 

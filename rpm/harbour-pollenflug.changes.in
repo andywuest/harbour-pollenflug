@@ -17,6 +17,7 @@
 - use full width for the pollen map image (nice, especially for large devices)
 - show country / region in overview page in page header
 - added image loading indicator for pollen image map
+- do not reload data whenever we return from the map page
 
 * 09.04.2021 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.2.1-1
 - updated French translation (Quentin Pagès)

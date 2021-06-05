@@ -176,6 +176,21 @@ AboutPage title - about text title</extracomment>
     </message>
 </context>
 <context>
+    <name>ImageProgressIndicator</name>
+    <message>
+        <source>%1 %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LoadingIndicator</name>
     <message>
         <source>Loading...</source>

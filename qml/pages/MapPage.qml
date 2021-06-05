@@ -1,4 +1,3 @@
-
 /*
  * harbour-pollenflug - Sailfish OS Version
  * Copyright © 2020 Andreas Wüst (andreas.wuest.freelancer@gmail.com)

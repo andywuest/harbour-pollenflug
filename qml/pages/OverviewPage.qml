@@ -16,7 +16,7 @@ Page {
 
     property bool networkError: false
     property bool loaded : false
-    property int iconSize: 92
+    readonly property int iconSize: 92
 
     function connectSlots() {
         console.log("[OverviewPage] connect - slots");
@@ -83,6 +83,11 @@ Page {
 
     function isPollenDatePresent() {
         return (lastestPollenData && lastestPollenData.pollenData && lastestPollenData.pollenData.length > 0);
+    }
+
+    function reloadOverviewPollens() {
+        console.log("[OverviewPage] reloading pollens");
+        updatePollenData(); // reload the pollen data
     }
 
     AppNotification {
@@ -239,14 +244,8 @@ Page {
         width: parent.width
     }
 
-    onStatusChanged: {
-        if (status === PageStatus.Active) {
-            console.log("status changed -> active now")
-            updatePollenData();
-        }
-    }
-
     Component.onCompleted: {
         Functions.addPollenToModel(pollenModel, pollenflugSettings)
+        updatePollenData();
     }
 }

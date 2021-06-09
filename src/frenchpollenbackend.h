@@ -52,7 +52,7 @@ private:
     QJsonObject getNodeForPollenId(QJsonArray risksArray, int pollenId);
 
 #ifdef UNIT_TEST
-    friend class FrenchPollenBackendTests;
+    friend class PollenBackendTests;
 #endif
 
 };

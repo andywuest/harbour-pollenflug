@@ -11,11 +11,16 @@ void PollenBackendTests::testIsFrenchPollenDataProvided() {
     QCOMPARE(frenchPollenBackend->isPollenDataProvided(Pollen::Rye), false);
 }
 
+void PollenBackendTests::testIsGermanPollenDataProvided() {
+    QCOMPARE(germanPollenBackend->isPollenDataProvided(Pollen::Grass), true);
+    QCOMPARE(germanPollenBackend->isPollenDataProvided(Pollen::Nettle), false);
+}
+
 void PollenBackendTests::testRemoveFrenchUnsupportedPollens() {
     QList<int> providedPollenIds = QList<int>() << Pollen::Mugwort << Pollen::Rye;
     QList<int> supportedPollenIds = frenchPollenBackend->removeUnsupportedPollens(providedPollenIds);
     QCOMPARE(supportedPollenIds.size(), 1);
-    QCOMPARE(supportedPollenIds.at(0), (int) Pollen::Mugwort);
+    QCOMPARE(supportedPollenIds.at(0), Pollen::Mugwort);
 }
 
 void PollenBackendTests::testParseFrenchPollenData() {

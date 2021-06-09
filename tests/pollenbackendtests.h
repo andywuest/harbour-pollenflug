@@ -17,6 +17,7 @@ private slots:
     void testIsFrenchPollenDataProvided();
     void testRemoveFrenchUnsupportedPollens();
     // TODO add german tests
+    void testIsGermanPollenDataProvided();
 };
 
 #endif // POLLEN_BACKEND_TEST_H

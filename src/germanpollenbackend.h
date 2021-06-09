@@ -3,17 +3,20 @@
 
 #include <QObject>
 #include <QNetworkReply>
+#include <QSharedPointer>
+#include <QMap>
 #include <QNetworkAccessManager>
 #include <QSequentialIterable>
 
 #include "constants.h"
 #include "abstractpollen.h"
+#include "genericpollen.h"
 
 // TODo extend abstract pollenbackend -> tests !!
 class GermanPollenBackend : public QObject {
     Q_OBJECT
 public:
-    explicit  GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent = 0);
+    explicit  GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent = nullptr);
     ~GermanPollenBackend();
 
     Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
@@ -25,10 +28,7 @@ public:
 
 private:
 
-    QMap<int, AbstractPollen> pollenIdToPollenData; // TODO move to baseclass
-    QMap<int, QString> pollenIdToMapKey;
-    QMap<int, QString> pollenIdToKeyMap;
-    QMap<int, QString> pollenIdToLabelMap;
+    QMap<int, QSharedPointer<GenericPollen>> pollenIdToPollenData; // TODO move to baseclass
     QMap<QString, QString> pollutionIndexToLabelMap;
     QMap<QString, int> pollutionIndexToIndexMap;
     QList<int> pollenIds;

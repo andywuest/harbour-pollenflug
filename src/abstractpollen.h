@@ -1,21 +1,25 @@
 #ifndef ABSTRACT_POLLEN_H
 #define ABSTRACT_POLLEN_H
 
-class AbstractPollen {
+#include <QObject>
+
+class AbstractPollen : public QObject {
+    Q_OBJECT
+
 public:
     explicit AbstractPollen(int pollenId);
     ~AbstractPollen();
 
     int getPollenId();
+    QString getPollenName(int pollenId);
 
 protected:
-    QString getPollenName(int pollenId);
     QString getPollenImageFileName(int pollenId);
 
 private:
 
     int pollenId;
-    QString getInternalPollenName();
+    QString getInternalPollenName(int pollenId);
 
 };
 

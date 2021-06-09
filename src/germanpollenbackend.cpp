@@ -18,38 +18,6 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
     addPollenData(Pollen::Ambrosia, "Ambrosia", "6");
     addPollenData(Pollen::Rye, "Roggen", "4");
 
-    // TODO sollte entfallen
-    this->pollenIdToMapKey.insert(Pollen::Mugwort, "5");
-    this->pollenIdToMapKey.insert(Pollen::Birch, "2");
-    this->pollenIdToMapKey.insert(Pollen::Alder, "1");
-    this->pollenIdToMapKey.insert(Pollen::AshTree, "7");
-    this->pollenIdToMapKey.insert(Pollen::Grass, "3");
-    this->pollenIdToMapKey.insert(Pollen::Hazel, "0");
-    this->pollenIdToMapKey.insert(Pollen::Ambrosia, "6");
-    this->pollenIdToMapKey.insert(Pollen::Rye, "4");
-
-    // TODO sollte entfallen
-    // internally used in json object lookup
-    this->pollenIdToKeyMap.insert(Pollen::Mugwort, "Beifuss");
-    this->pollenIdToKeyMap.insert(Pollen::Birch, "Birke");
-    this->pollenIdToKeyMap.insert(Pollen::Alder, "Erle");
-    this->pollenIdToKeyMap.insert(Pollen::AshTree, "Esche");
-    this->pollenIdToKeyMap.insert(Pollen::Grass, "Graeser");
-    this->pollenIdToKeyMap.insert(Pollen::Hazel, "Hasel");
-    this->pollenIdToKeyMap.insert(Pollen::Ambrosia, "Ambrosia");
-    this->pollenIdToKeyMap.insert(Pollen::Rye, "Roggen");
-
-    // TODO sollte entfallen
-    // TODO english
-    this->pollenIdToLabelMap.insert(Pollen::Mugwort, tr("Mugwort")); // Beifuss
-    this->pollenIdToLabelMap.insert(Pollen::Birch, tr("Birch")); // Birke
-    this->pollenIdToLabelMap.insert(Pollen::Alder, tr("Alder")); // Erle
-    this->pollenIdToLabelMap.insert(Pollen::AshTree, tr("Ash Tree")); // Esche
-    this->pollenIdToLabelMap.insert(Pollen::Grass, tr("Grass")); // Gräser
-    this->pollenIdToLabelMap.insert(Pollen::Hazel, tr("Hazel")); // Hasel
-    this->pollenIdToLabelMap.insert(Pollen::Ambrosia, tr("Ambrosia")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Rye, tr("Rye")); // Roggen
-
     // used for label
     this->pollutionIndexToLabelMap.insert("0", tr("no pollen exposure")); // keine Belastung
     this->pollutionIndexToLabelMap.insert("0-1", tr("none to small pollen exposure")); // keine bis geringe Belastung
@@ -75,7 +43,9 @@ GermanPollenBackend::~GermanPollenBackend() {
 }
 
 void GermanPollenBackend::addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
-    this->pollenIdToPollenData.insert(pollenId, new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
+    QSharedPointer<GenericPollen> pointer (new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
+    this->pollenIdToPollenData.insert(pollenId, pointer);
+    // this->pollenIdToPollenData.insert(pollenId, new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
 }
 
 QNetworkReply *GermanPollenBackend::executeGetRequest(const QUrl &url) {
@@ -129,10 +99,8 @@ bool GermanPollenBackend::isRegionNodeFound(int regionId, int partRegionId) {
 }
 
 QJsonObject GermanPollenBackend::getNodeForPollenId(QJsonObject pollenNode, int pollenId) {
-// TODO if (this->pollenIdToPollenData.contains(pollenId)) {
-    if (this->pollenIdToKeyMap.contains(pollenId)) {
-        // TODO  QString key = this->pollenIdToPollenData[pollenId].getJsonLookupKey
-        QString key = this->pollenIdToKeyMap[pollenId];
+    if (this->pollenIdToPollenData.contains(pollenId)) {
+        QString key = this->pollenIdToPollenData[pollenId]->getJsonLookupKey();
         qDebug() << " found value for key " << pollenId;
         return pollenNode.value(key).toObject();
     }
@@ -185,12 +153,13 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
                  QJsonObject pollenIdNode = getNodeForPollenId(responsePollenObject, pollenId);
 
                  QJsonObject pollenResultObject;
-                 pollenResultObject.insert("label", this->pollenIdToLabelMap[pollenId]);
+                 QSharedPointer<GenericPollen> pollenDataPointer = this->pollenIdToPollenData[pollenId];
+                 pollenResultObject.insert("label", pollenDataPointer->getPollenName(pollenId));
                  pollenResultObject.insert("id", pollenId);
                  pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("today")));
                  pollenResultObject.insert("tomorrow", createResultPollenObject(pollenIdNode, QString("tomorrow")));
                  pollenResultObject.insert("dayAfterTomorrow", createResultPollenObject(pollenIdNode, QString("dayafter_to")));
-                 const QString mapUrl = QString(MAP_URL_GERMANY).arg(this->pollenIdToMapKey[pollenId]);
+                 const QString mapUrl = QString(MAP_URL_GERMANY).arg(pollenDataPointer->getPollenMapKey());
                  pollenResultObject.insert("todayMapUrl" , mapUrl);
 
                  resultArray.push_back(pollenResultObject);
@@ -206,6 +175,5 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
 }
 
 bool GermanPollenBackend::isPollenDataProvided(int pollenId) {
-    return this->pollenIdToKeyMap.contains(pollenId);
-    // TODO return this->pollenIdToPollenData.contains(pollenId);
+    return this->pollenIdToPollenData.contains(pollenId);
 }

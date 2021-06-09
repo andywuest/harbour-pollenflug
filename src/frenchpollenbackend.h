@@ -1,17 +1,21 @@
-#ifndef FRENCHPOLLENBACKEND_H
-#define FRENCHPOLLENBACKEND_H
+#ifndef FRENCH_POLLEN_BACKEND_H
+#define FRENCH_POLLEN_BACKEND_H
 
 #include <QObject>
+#include <QSharedPointer>
 #include <QNetworkReply>
+#include <QMap>
 #include <QNetworkAccessManager>
 
 #include "constants.h"
 #include "abstractpollen.h"
+#include "genericpollen.h"
 
+// TODO extend generic base class
 class FrenchPollenBackend : public QObject {
  Q_OBJECT
 public:
-    explicit  FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent = 0);
+    explicit  FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent = nullptr);
     ~FrenchPollenBackend();
 
     Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
@@ -39,10 +43,7 @@ private slots:
 
 private:
 
-    QMap<int, AbstractPollen> pollenIdToPollenData;
-    QMap<int, QString> pollenIdToMapKey;
-    QMap<int, QString> pollenIdToPollenNameMap;
-    QMap<int, QString> pollenIdToLabelMap;
+    QMap<int, QSharedPointer<GenericPollen>> pollenIdToPollenData; // TODO generic base class
     QMap<QString, QString> pollutionIndexToLabelMap;
     QMap<QString, int> pollutionIndexToIndexMap;
     QList<int> pollenIds;
@@ -56,4 +57,4 @@ private:
 
 };
 
-#endif // FRENCHPOLLENBACKEND_H
+#endif // FRENCH_POLLEN_BACKEND_H

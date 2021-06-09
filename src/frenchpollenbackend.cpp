@@ -30,78 +30,6 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
     addPollenData(Pollen::Lime, "Tilleul", "tilleul");
     addPollenData(Pollen::Nettle, "Urticacées", "parietaire");
 
-    // TODO should be obsolet
-    // mapping for map
-    this->pollenIdToMapKey.insert(Pollen::Mugwort, "armoise");
-    this->pollenIdToMapKey.insert(Pollen::Birch, "bouleau");
-    this->pollenIdToMapKey.insert(Pollen::Alder, "aulne");
-    // this->pollenIdToMapKey.insert(Pollen::AshTree, "7");
-    this->pollenIdToMapKey.insert(Pollen::Grass, "graminees");
-    this->pollenIdToMapKey.insert(Pollen::Hazel, "noisetier");
-    this->pollenIdToMapKey.insert(Pollen::Ambrosia, "ambroisie");
-    // this->pollenIdToMapKey.insert(Pollen::Rye, "4");
-    this->pollenIdToMapKey.insert(Pollen::Hornbeam, "charme");
-    this->pollenIdToMapKey.insert(Pollen::Chestnut, "chataignier");
-    this->pollenIdToMapKey.insert(Pollen::Oak, "chene");
-    this->pollenIdToMapKey.insert(Pollen::Cypress, "cypres");
-    this->pollenIdToMapKey.insert(Pollen::Olive, "olivier");
-    this->pollenIdToMapKey.insert(Pollen::Sorrel, "oseille");
-    this->pollenIdToMapKey.insert(Pollen::Poplar, "peuplier");
-    this->pollenIdToMapKey.insert(Pollen::Plantain, "plantain");
-    this->pollenIdToMapKey.insert(Pollen::Plane, "platane");
-    this->pollenIdToMapKey.insert(Pollen::Willow, "saule");
-    this->pollenIdToMapKey.insert(Pollen::Lime, "tilleul");
-    this->pollenIdToMapKey.insert(Pollen::Nettle, "parietaire");
-
-    // TODO should be obsolet
-    // internally used in json object lookup
-    this->pollenIdToPollenNameMap.insert(Pollen::Mugwort, "Armoise");
-    this->pollenIdToPollenNameMap.insert(Pollen::Birch, "Bouleau");
-    this->pollenIdToPollenNameMap.insert(Pollen::Alder, "Aulne");
-    // this->pollenIdToPollenNameMap.insert(4, "Esche"); ?? TODO
-    this->pollenIdToPollenNameMap.insert(Pollen::Grass, "Graminées");
-    this->pollenIdToPollenNameMap.insert(Pollen::Hazel, "Noisetier");
-    this->pollenIdToPollenNameMap.insert(Pollen::Ambrosia, "Ambroisies");
-    // this->pollenIdToPollenNameMap.insert(8, "Roggen"); ?? TODO
-
-    // TODO should be obsolet
-    // TODO fix from here
-    this->pollenIdToPollenNameMap.insert(Pollen::Hornbeam, "Charme");
-    this->pollenIdToPollenNameMap.insert(Pollen::Chestnut, "Châtaignier");
-    this->pollenIdToPollenNameMap.insert(Pollen::Oak, "Chêne");
-    this->pollenIdToPollenNameMap.insert(Pollen::Cypress, "Cupressacées");
-    this->pollenIdToPollenNameMap.insert(Pollen::Olive, "Olivier");
-    this->pollenIdToPollenNameMap.insert(Pollen::Sorrel, "Oseille");
-    this->pollenIdToPollenNameMap.insert(Pollen::Poplar, "Peuplier");
-    this->pollenIdToPollenNameMap.insert(Pollen::Plantain, "Plantain");
-    this->pollenIdToPollenNameMap.insert(Pollen::Plane, "Platane");
-    this->pollenIdToPollenNameMap.insert(Pollen::Willow, "Saule");
-    this->pollenIdToPollenNameMap.insert(Pollen::Lime, "Tilleul");
-    this->pollenIdToPollenNameMap.insert(Pollen::Nettle, "Urticacées");
-
-    // TODO should be obsolet
-    // TODO english
-    this->pollenIdToLabelMap.insert(Pollen::Mugwort, tr("Mugwort")); // Beifuss
-    this->pollenIdToLabelMap.insert(Pollen::Birch, tr("Birch")); // Birke
-    this->pollenIdToLabelMap.insert(Pollen::Alder, tr("Alder")); // Erle
-    // this->pollenIdToLabelMap.insert(4, tr("Ash Tree")); // Esche
-    this->pollenIdToLabelMap.insert(Pollen::Grass, tr("Grass")); // Gräser
-    this->pollenIdToLabelMap.insert(Pollen::Hazel, tr("Hazel")); // Hasel
-    this->pollenIdToLabelMap.insert(Pollen::Ambrosia, tr("Ambrosia")); // Ambrosia
-    // this->pollenIdToLabelMap.insert(8, tr("Rye")); // Roggen ?? TODO
-    this->pollenIdToLabelMap.insert(Pollen::Hornbeam, tr("Hornbeam")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Chestnut, tr("Chestnut")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Oak, tr("Oak")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Cypress, tr("Cypress")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Olive, tr("Olive")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Sorrel, tr("Sorrel")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Poplar, tr("Poplar")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Plantain, tr("Plantain")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Plane, tr("Plane")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Willow, tr("Willow")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Lime, tr("Lime")); // Ambrosia
-    this->pollenIdToLabelMap.insert(Pollen::Nettle, tr("Nettle")); // Ambrosia
-
     // TODO fix scaling
     // used for label
     this->pollutionIndexToLabelMap.insert("0", tr("no pollen exposure")); // nul
@@ -125,7 +53,8 @@ FrenchPollenBackend::~FrenchPollenBackend() {
 }
 
 void FrenchPollenBackend::addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
-    this->pollenIdToPollenData.insert(pollenId, new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
+    QSharedPointer<GenericPollen> pointer (new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
+    this->pollenIdToPollenData.insert(pollenId, pointer);
 }
 
 QNetworkReply *FrenchPollenBackend::executeGetRequest(const QUrl &url) {
@@ -206,11 +135,12 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
         // qDebug() << "found node : " << pollenIdNode;
 
         QJsonObject pollenResultObject;
-        pollenResultObject.insert("label", this->pollenIdToLabelMap[pollenId]);
+        QSharedPointer<GenericPollen> pollenDataPointer = this->pollenIdToPollenData[pollenId];
+        pollenResultObject.insert("label", pollenDataPointer->getPollenName(pollenId));
         pollenResultObject.insert("id", pollenId);
         pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("level")));
         // tomorrow / dayAfterTomorrow not supported
-        const QString mapUrl = QString(MAP_URL_FRANCE).arg(this->pollenIdToMapKey[pollenId]);
+        const QString mapUrl = QString(MAP_URL_FRANCE).arg(pollenDataPointer->getPollenMapKey());
         pollenResultObject.insert("todayMapUrl" , mapUrl);
 
         resultArray.push_back(pollenResultObject);
@@ -225,8 +155,8 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
 }
 
 QJsonObject FrenchPollenBackend::getNodeForPollenId(QJsonArray risksArray, int pollenId) {
-    if (this->pollenIdToPollenNameMap.contains(pollenId)) {
-        QString key = this->pollenIdToPollenNameMap[pollenId];
+    if (this->pollenIdToPollenData.contains(pollenId)) {
+        QString key = this->pollenIdToPollenData[pollenId]->getJsonLookupKey();
         // qDebug() << " found value for key " << pollenId;
 
         foreach (const QJsonValue &riskNode, risksArray) {
@@ -252,7 +182,7 @@ QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSour
 }
 
 bool FrenchPollenBackend::isPollenDataProvided(int pollenId) {
-    return this->pollenIdToPollenNameMap.contains(pollenId);
+    return this->pollenIdToPollenData.contains(pollenId);
 }
 
 QList<int> FrenchPollenBackend::removeUnsupportedPollens(const QList<int> &pollenIds) {

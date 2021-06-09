@@ -1,7 +1,7 @@
 #include "abstractpollen.h"
 #include "constants.h"
 
-void AbstractPollen::AbstractPollen(int pollenId) {
+AbstractPollen::AbstractPollen(int pollenId) {
     this->pollenId = pollenId;
 }
 
@@ -13,7 +13,7 @@ QString AbstractPollen::getPollenName(int pollenId) {
         case Pollen::Mugwort: return tr("Mugwort");
         case Pollen::Birch: return tr("Birch");
         case Pollen::Alder: return tr("Alder");
-        case Pollen::Ash: return tr("Ash Tree");
+        case Pollen::AshTree: return tr("Ash Tree");
         case Pollen::Grass: return tr("Grass");
         case Pollen::Hazel: return tr("Hazel");
         case Pollen::Ambrosia: return tr("Ambrosia");
@@ -43,7 +43,7 @@ QString AbstractPollen::getInternalPollenName(int pollenId) {
         case Pollen::Mugwort: return "mugwort";
         case Pollen::Birch: return "birch";
         case Pollen::Alder: return "alder";
-        case Pollen::Ash: return "ashtree";
+        case Pollen::AshTree: return "ashtree";
         case Pollen::Grass: return "grass";
         case Pollen::Hazel: return "hazel";
         case Pollen::Ambrosia: return "ambrosia";

@@ -4,9 +4,6 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-pollenflug
 Exec=harbour-pollenflug
 Name=Pollenflug
-# translation example:
-# your app name in German locale (de)
-#
-# Remember to comment out the following line, if you do not want to use
-# a different app name in German locale (de).
-# Name[de]=harbour-pollenflug
+[X-HarbourBackup]
+BackupPathList=.local/share/harbour-pollenflug/
+BackupConfigList=/apps/harbour-pollenflug/

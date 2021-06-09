@@ -31,6 +31,7 @@ ApplicationWindow {
         property bool isHazelSelected: false // Hasel
         property bool isAmbrosiaSelected: false // Ambrosia
         property bool isRyeSelected: false // Roggen
+        property bool isNettleSelected: false // Brennnessel
     }
 
     initialPage: Component {

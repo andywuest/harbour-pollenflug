@@ -167,6 +167,15 @@ Page {
                     pollenflugSettings.isRyeSelected = checked
                 }
             }
+
+            PollenIconTextSwitch {
+                pollenId: Constants.NETTLE_ID
+                checked: pollenflugSettings.isNettleSelected
+                onCheckedChanged: {
+                    pollenflugSettings.isNettleSelected = checked
+                }
+            }
+
         }
 
         VerticalScrollDecorator {

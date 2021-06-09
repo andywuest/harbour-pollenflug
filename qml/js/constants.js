@@ -81,7 +81,7 @@ function buildPollenList() {
     pollenList.push(createPollenItem(LIME_ID, qsTr("Lime"), // Linde
         "../icons/xxx.svg"))
     pollenList.push(createPollenItem(NETTLE_ID, qsTr("Nettle"), // Brennnessel
-        "../icons/xxx.svg"))
+        "../icons/oak.svg")) // TODO fix icon
 
     return pollenList
 }

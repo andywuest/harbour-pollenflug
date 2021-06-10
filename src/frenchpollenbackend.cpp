@@ -182,7 +182,19 @@ QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSour
 }
 
 bool FrenchPollenBackend::isPollenDataProvided(int pollenId) {
-    return this->pollenIdToPollenData.contains(pollenId);
+    // TODO for some reason the map contains an entry for a not supported pollenId with
+    // a null value
+    return this->pollenIdToPollenData.contains(pollenId) && this->pollenIdToPollenData[pollenId] != nullptr;
+}
+
+QString FrenchPollenBackend::getPollenName(int pollenId) {
+    // TODO call static method??
+    return this->pollenIdToPollenData[pollenId]->getPollenName(pollenId);
+}
+
+QString FrenchPollenBackend::getPollenImageName(int pollenId) {
+    // TODO call static method??
+    return this->pollenIdToPollenData[pollenId]->getPollenImageFileName(pollenId);
 }
 
 QList<int> FrenchPollenBackend::removeUnsupportedPollens(const QList<int> &pollenIds) {

@@ -174,6 +174,18 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
     return dataToString;
 }
 
+QString GermanPollenBackend::getPollenName(int pollenId) {
+    // TODO call static method??
+    return this->pollenIdToPollenData[pollenId]->getPollenName(pollenId);
+}
+
+QString GermanPollenBackend::getPollenImageName(int pollenId) {
+    // TODO call static method??
+    return this->pollenIdToPollenData[pollenId]->getPollenImageFileName(pollenId);
+}
+
 bool GermanPollenBackend::isPollenDataProvided(int pollenId) {
-    return this->pollenIdToPollenData.contains(pollenId);
+    // TODO for some reason the map contains an entry for a not supported pollenId with
+    // a null value
+    return this->pollenIdToPollenData.contains(pollenId) && this->pollenIdToPollenData[pollenId] != nullptr;
 }

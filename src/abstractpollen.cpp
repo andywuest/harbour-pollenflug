@@ -1,6 +1,8 @@
 #include "abstractpollen.h"
 #include "constants.h"
 
+#include <QDebug>
+
 AbstractPollen::AbstractPollen(int pollenId) {
     this->pollenId = pollenId;
 }
@@ -61,5 +63,6 @@ QString AbstractPollen::getInternalPollenName(int pollenId) {
         case Pollen::Lime: return "lime";
         case Pollen::Nettle: return "nettle";
     }
+    qDebug() << "Unsupported pollenId : " << pollenId;
     return QString("unsupported");
 }

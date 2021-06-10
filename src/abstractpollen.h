@@ -12,8 +12,6 @@ public:
 
     int getPollenId();
     QString getPollenName(int pollenId);
-
-protected:
     QString getPollenImageFileName(int pollenId);
 
 private:

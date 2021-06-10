@@ -20,6 +20,8 @@ public:
 
     Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
     Q_INVOKABLE bool isPollenDataProvided(int pollenId);
+    Q_INVOKABLE QString getPollenName(int pollenId);
+    Q_INVOKABLE QString getPollenImageName(int pollenId);
 
     // signals for the qml part
     Q_SIGNAL void requestError(const QString &errorMessage);

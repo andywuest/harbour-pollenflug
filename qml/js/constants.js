@@ -35,8 +35,8 @@ function createPollenItem(id, label, imageSource) {
 
     }
     entry.id = id
-    entry.label = label
-    entry.imageSource = imageSource
+    // entry.label = label
+    // entry.imageSource = imageSource
     return entry
 }
 

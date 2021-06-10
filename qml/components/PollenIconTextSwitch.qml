@@ -10,7 +10,7 @@ IconTextSwitch {
     id: pollenIconTextSwitch
 
     property int pollenId
-    property int iconSize: 64
+    readonly property int iconSize: 64
 
     icon.width: iconSize
     icon.height: iconSize
@@ -18,8 +18,10 @@ IconTextSwitch {
     visible: Functions.getDataBackend().isPollenDataProvided(pollenId);
 
     Component.onCompleted: {
-        pollenIconTextSwitch.text = Constants.POLLEN_DATA_MAP[pollenId].label
-        pollenIconTextSwitch.icon.source = Constants.POLLEN_DATA_MAP[pollenId].imageSource
+        pollenIconTextSwitch.text = Functions.getDataBackend().getPollenName(pollenId);
+                // Constants.POLLEN_DATA_MAP[pollenId].label
+        pollenIconTextSwitch.icon.source = "../icons/" + Functions.getDataBackend().getPollenImageName(pollenId);
+                // Constants.POLLEN_DATA_MAP[pollenId].imageSource
     }
 
 }

@@ -186,7 +186,8 @@ Page {
                             id: pollenRow
                             width: parent.width
                             //tileImage: imageSource
-                            headerLabel: label
+                            headerLabel: ""
+                                // label ---- TODO kann headerLabel hier entfernt
 
                             Component.onCompleted: {
                                 // TODO find better way to update values in component
@@ -194,7 +195,9 @@ Page {
                                 dataToday = currentModelItem.today;
                                 dataTomorrow = currentModelItem.tomorrow;
                                 dataDayAfterTomorrow = currentModelItem.dayAfterTomorrow;
-                                tileImage = Constants.POLLEN_DATA_LIST[currentModelItem.id - 1].imageSource;
+                                tileImage = "../icons/" + Functions.getDataBackend().getPollenImageName(currentModelItem.id);
+                                pollenRow.headerLabel = Functions.getDataBackend().getPollenName(currentModelItem.id)
+                                        // Constants.POLLEN_DATA_LIST[currentModelItem.id - 1].imageSource;
                                 pollenNextUpdate = (lastestPollenData.nextUpdate ? lastestPollenData.nextUpdate : "");
                                 pollenLastUpdate = (lastestPollenData.lastUpdate ? lastestPollenData.nextUpdate : "");
 

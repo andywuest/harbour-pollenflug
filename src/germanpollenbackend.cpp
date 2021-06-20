@@ -5,9 +5,8 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 
-GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent) : QObject(parent) {
+GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent) : AbstractBackend(manager, parent) {
     qDebug() << "Initializing German Pollen Backend...";
-    this->manager = manager;
 
     addPollenData(Pollen::Mugwort, "Beifuss", "5");
     addPollenData(Pollen::Birch, "Birke", "2");
@@ -42,33 +41,11 @@ GermanPollenBackend::~GermanPollenBackend() {
     qDebug() << "Shutting down German Pollen Backend...";
 }
 
-void GermanPollenBackend::addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
-    QSharedPointer<GenericPollen> pointer (new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
-    this->pollenIdToPollenData.insert(pollenId, pointer);
-    // this->pollenIdToPollenData.insert(pollenId, new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
-}
-
-QNetworkReply *GermanPollenBackend::executeGetRequest(const QUrl &url) {
-    qDebug() << "GermanPollenBackend::executeGetRequest " << url;
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, MIME_TYPE_JSON);
-    request.setHeader(QNetworkRequest::UserAgentHeader, USER_AGENT);
-
-    return manager->get(request);
-}
-
-void GermanPollenBackend::handleRequestError(QNetworkReply::NetworkError error) {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    qWarning() << "GermanPollenBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString() << reply->readAll();
-
-    emit requestError("Return code: " + QString::number(static_cast<int>(error)) + " - " + reply->errorString());
-}
-
 void GermanPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId) {
     qDebug() << "GermanPollenBackend::fetchPollenData";
     qDebug() << pollenIds;
 
-    this->pollenIds = pollenIds;
+    this->pollenIds = removeUnsupportedPollens(pollenIds);
     this->regionId = regionId.toInt();
     this->partRegionId = partRegionId.toInt();
 
@@ -172,20 +149,4 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
     QString dataToString(resultDocument.toJson());
 
     return dataToString;
-}
-
-QString GermanPollenBackend::getPollenName(int pollenId) {
-    // TODO call static method??
-    return this->pollenIdToPollenData[pollenId]->getPollenName(pollenId);
-}
-
-QString GermanPollenBackend::getPollenImageName(int pollenId) {
-    // TODO call static method??
-    return this->pollenIdToPollenData[pollenId]->getPollenImageFileName(pollenId);
-}
-
-bool GermanPollenBackend::isPollenDataProvided(int pollenId) {
-    // TODO for some reason the map contains an entry for a not supported pollenId with
-    // a null value
-    return this->pollenIdToPollenData.contains(pollenId) && this->pollenIdToPollenData[pollenId] != nullptr;
 }

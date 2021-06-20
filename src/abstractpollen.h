@@ -11,13 +11,13 @@ public:
     ~AbstractPollen();
 
     int getPollenId();
-    QString getPollenName(int pollenId);
-    QString getPollenImageFileName(int pollenId);
+    static QString getPollenName(int pollenId);
+    static QString getPollenImageFileName(int pollenId);
 
 private:
 
     int pollenId;
-    QString getInternalPollenName(int pollenId);
+    static QString getInternalPollenName(int pollenId);
 
 };
 

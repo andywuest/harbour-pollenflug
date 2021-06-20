@@ -5,9 +5,8 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 
-FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent) : QObject(parent) {
+FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent) : AbstractBackend(manager, parent) {
     qDebug() << "Initializing French Pollen Backend...";
-    this->manager = manager;
 
     addPollenData(Pollen::Mugwort, "Armoise", "armoise");
     addPollenData(Pollen::Birch, "Bouleau", "bouleau");
@@ -50,27 +49,6 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
 
 FrenchPollenBackend::~FrenchPollenBackend() {
     qDebug() << "Shutting down French Pollen Backend...";
-}
-
-void FrenchPollenBackend::addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
-    QSharedPointer<GenericPollen> pointer (new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
-    this->pollenIdToPollenData.insert(pollenId, pointer);
-}
-
-QNetworkReply *FrenchPollenBackend::executeGetRequest(const QUrl &url) {
-    qDebug() << "FrenchPollenBackend::executeGetRequest " << url;
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, MIME_TYPE_JSON);
-    request.setHeader(QNetworkRequest::UserAgentHeader, USER_AGENT);
-
-    return manager->get(request);
-}
-
-void FrenchPollenBackend::handleRequestError(QNetworkReply::NetworkError error) {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    qWarning() << "AbstractDataBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString() << reply->readAll();
-
-    emit requestError("Return code: " + QString::number(static_cast<int>(error)) + " - " + reply->errorString());
 }
 
 void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId) {
@@ -179,30 +157,4 @@ QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSour
     jsonObject.insert("pollutionIndex", this->pollutionIndexToIndexMap[riskLevelValue]);
     jsonObject.insert("pollutionLabel", this->pollutionIndexToLabelMap[riskLevelValue]);
     return jsonObject;
-}
-
-bool FrenchPollenBackend::isPollenDataProvided(int pollenId) {
-    // TODO for some reason the map contains an entry for a not supported pollenId with
-    // a null value
-    return this->pollenIdToPollenData.contains(pollenId) && this->pollenIdToPollenData[pollenId] != nullptr;
-}
-
-QString FrenchPollenBackend::getPollenName(int pollenId) {
-    // TODO call static method??
-    return this->pollenIdToPollenData[pollenId]->getPollenName(pollenId);
-}
-
-QString FrenchPollenBackend::getPollenImageName(int pollenId) {
-    // TODO call static method??
-    return this->pollenIdToPollenData[pollenId]->getPollenImageFileName(pollenId);
-}
-
-QList<int> FrenchPollenBackend::removeUnsupportedPollens(const QList<int> &pollenIds) {
-    QList<int> supportedPollenIds;
-    for (auto pollenId : pollenIds) {
-        if (isPollenDataProvided(pollenId)) {
-            supportedPollenIds.append(pollenId);
-        }
-    }
-    return supportedPollenIds;
 }

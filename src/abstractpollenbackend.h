@@ -11,7 +11,7 @@ class AbstractPollenBackend : public QObject {
     Q_OBJECT
 public:
     explicit AbstractPollenBackend(QNetworkAccessManager *manager, QObject *parent = nullptr);
-    ~AbstractPollenBackend() = 0;
+    ~AbstractPollenBackend() override;
 
     // signals for the qml part
     Q_SIGNAL void requestError(const QString &errorMessage);

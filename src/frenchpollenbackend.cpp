@@ -87,7 +87,6 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
     QJsonArray risks = countyObject.value("risks").toArray();
 
     QJsonDocument resultDocument;
-    QJsonArray contentArray;
 
     QJsonArray resultArray;
 
@@ -99,8 +98,6 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
                         3);                        // predefined - only one day - but we show 3 anyway
     resultObject.insert("region", this->regionId); // dynamic from request
     resultObject.insert("partRegion", "-");        // not supported
-
-    QJsonArray responseContentArray = responseObject.value("content").toArray();
 
     for (int i = 0; i < this->pollenIds.size(); i++) {
         int pollenId = this->pollenIds.at(i);

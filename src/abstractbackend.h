@@ -14,7 +14,7 @@ class AbstractBackend : public QObject {
 
 public:
     explicit AbstractBackend(QNetworkAccessManager *manager, QObject *parent);
-    ~AbstractBackend();
+    ~AbstractBackend() override;
 
     Q_INVOKABLE QString getPollenName(int pollenId);
     Q_INVOKABLE QString getPollenImageName(int pollenId);

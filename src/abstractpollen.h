@@ -8,7 +8,7 @@ class AbstractPollen : public QObject {
 
 public:
     explicit AbstractPollen(int pollenId);
-    ~AbstractPollen();
+    ~AbstractPollen() = default;
 
     int getPollenId();
     static QString getPollenName(int pollenId);

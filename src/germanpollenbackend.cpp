@@ -96,7 +96,6 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
 
     QJsonObject responseObject = jsonDocument.object();
     QJsonDocument resultDocument;
-    QJsonArray contentArray;
 
     QJsonArray resultArray;
 

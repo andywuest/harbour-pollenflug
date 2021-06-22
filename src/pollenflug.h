@@ -14,7 +14,7 @@ class Pollenflug : public QObject {
     Q_OBJECT
 public:
     explicit Pollenflug(QObject *parent = nullptr);
-    ~Pollenflug();
+    ~Pollenflug() = default;
     GermanPollenBackend *getGermanPollenBackend();
     FrenchPollenBackend *getFrenchPollenBackend();
 

@@ -27,9 +27,6 @@ Pollenflug::Pollenflug(QObject *parent)
     frenchPollenBackend = new FrenchPollenBackend(this->networkAccessManager, this);
 }
 
-Pollenflug::~Pollenflug() {
-}
-
 GermanPollenBackend *Pollenflug::getGermanPollenBackend() {
     return this->germanPollenBackend;
 }

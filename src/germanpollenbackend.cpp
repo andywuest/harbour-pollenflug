@@ -119,8 +119,7 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
         if (isRegionNodeFound(regionId, partRegionId) == true) {
             QJsonObject responsePollenObject = rootObject.value("Pollen").toObject();
 
-            for (int i = 0; i < this->pollenIds.size(); i++) {
-                int pollenId = this->pollenIds.at(i);
+            for (int pollenId : this->pollenIds) {
                 QJsonObject pollenIdNode = getNodeForPollenId(responsePollenObject, pollenId);
 
                 QJsonObject pollenResultObject;

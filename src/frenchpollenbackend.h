@@ -16,7 +16,7 @@ public:
 
 protected:
     QString parsePollenData(QByteArray searchReply) override;
-    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString value);
+    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, const QString &value);
 
 private:
     QString regionId;

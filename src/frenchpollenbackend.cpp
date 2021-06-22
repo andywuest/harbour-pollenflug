@@ -99,8 +99,7 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
     resultObject.insert("region", this->regionId); // dynamic from request
     resultObject.insert("partRegion", "-");        // not supported
 
-    for (int i = 0; i < this->pollenIds.size(); i++) {
-        int pollenId = this->pollenIds.at(i);
+    for (int pollenId : this->pollenIds) {
         QJsonObject pollenIdNode = getNodeForPollenId(risks, pollenId);
         // qDebug() << "found node : " << pollenIdNode;
 
@@ -141,7 +140,7 @@ QJsonObject FrenchPollenBackend::getNodeForPollenId(QJsonArray risksArray, int p
     return QJsonObject();
 }
 
-QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSourceNode, QString value) {
+QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSourceNode, const QString &value) {
     QJsonObject jsonObject;
     int riskLevel = pollenSourceNode.value(value).toInt();
     QString riskLevelValue;

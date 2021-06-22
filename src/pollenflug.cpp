@@ -17,12 +17,11 @@
  */
 #include "pollenflug.h"
 
-
-Pollenflug::Pollenflug(QObject *parent) : QObject(parent),
-    networkAccessManager(new QNetworkAccessManager(this)),
-    networkConfigurationManager(new QNetworkConfigurationManager(this)),
-    settings("harbour-pollenflug", "settings") {
-
+Pollenflug::Pollenflug(QObject *parent)
+    : QObject(parent)
+    , networkAccessManager(new QNetworkAccessManager(this))
+    , networkConfigurationManager(new QNetworkConfigurationManager(this))
+    , settings("harbour-pollenflug", "settings") {
     // pollen backends
     germanPollenBackend = new GermanPollenBackend(this->networkAccessManager, this);
     frenchPollenBackend = new FrenchPollenBackend(this->networkAccessManager, this);

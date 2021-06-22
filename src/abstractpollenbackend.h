@@ -22,7 +22,6 @@ protected:
 
 protected slots:
     void handleRequestError(QNetworkReply::NetworkError error);
-
 };
 
 #endif // ABSTRACT_POLLEN_BACKEND_H

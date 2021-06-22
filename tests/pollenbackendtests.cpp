@@ -36,9 +36,7 @@ void PollenBackendTests::testParseFrenchPollenData() {
 
     // ALDER and Hazel for region 01
     frenchPollenBackend->regionId = "01";
-    frenchPollenBackend->pollenIds = QList<int>()
-            << Pollen::Alder
-            << Pollen::Hazel;
+    frenchPollenBackend->pollenIds = QList<int>() << Pollen::Alder << Pollen::Hazel;
 
     QString parsedResult = frenchPollenBackend->parsePollenData(data);
     qDebug() << "result : " << parsedResult;

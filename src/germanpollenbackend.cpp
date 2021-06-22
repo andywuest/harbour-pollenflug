@@ -1,11 +1,12 @@
 #include "germanpollenbackend.h"
 #include "genericpollen.h"
 
-#include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
 
-GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent) : AbstractBackend(manager, parent) {
+GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent)
+    : AbstractBackend(manager, parent) {
     qDebug() << "Initializing German Pollen Backend...";
 
     addPollenData(Pollen::Mugwort, "Beifuss", "5");
@@ -19,12 +20,15 @@ GermanPollenBackend::GermanPollenBackend(QNetworkAccessManager *manager, QObject
 
     // used for label
     this->pollutionIndexToLabelMap.insert("0", tr("no pollen exposure")); // keine Belastung
-    this->pollutionIndexToLabelMap.insert("0-1", tr("none to small pollen exposure")); // keine bis geringe Belastung
-    this->pollutionIndexToLabelMap.insert("1", tr("small pollen exposure")); // geringe Belastung
-    this->pollutionIndexToLabelMap.insert("1-2", tr("small to medium pollen exposure")); // geringe bis mittlere Belastung
-    this->pollutionIndexToLabelMap.insert("2", tr("medium pollen exposure")); // mittlere Belastung
-    this->pollutionIndexToLabelMap.insert("2-3", tr("medium to high pollen exposure")); // mittlere bis hohe Belastung
-    this->pollutionIndexToLabelMap.insert("3", tr("high pollen exposure")); // hohe Belastung
+    this->pollutionIndexToLabelMap.insert("0-1",
+                                          tr("none to small pollen exposure")); // keine bis geringe Belastung
+    this->pollutionIndexToLabelMap.insert("1", tr("small pollen exposure"));    // geringe Belastung
+    this->pollutionIndexToLabelMap.insert("1-2",
+                                          tr("small to medium pollen exposure")); // geringe bis mittlere Belastung
+    this->pollutionIndexToLabelMap.insert("2", tr("medium pollen exposure"));     // mittlere Belastung
+    this->pollutionIndexToLabelMap.insert("2-3",
+                                          tr("medium to high pollen exposure")); // mittlere bis hohe Belastung
+    this->pollutionIndexToLabelMap.insert("3", tr("high pollen exposure"));      // hohe Belastung
 
     // used for scale index
     this->pollutionIndexToIndexMap.insert("-1", -1);
@@ -51,20 +55,11 @@ void GermanPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString r
 
     QNetworkReply *reply = executeGetRequest(QUrl(POLLEN_API_GERMANY));
 
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleRequestError(QNetworkReply::NetworkError)));
+    connect(reply,
+            SIGNAL(error(QNetworkReply::NetworkError)),
+            this,
+            SLOT(handleRequestError(QNetworkReply::NetworkError)));
     connect(reply, SIGNAL(finished()), this, SLOT(handleFetchPollenDataFinished()));
-}
-
-void GermanPollenBackend::handleFetchPollenDataFinished() {
-    qDebug() << "GermanPollenBackend::handleFetchPollenDataFinished";
-
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    reply->deleteLater();
-    if (reply->error() != QNetworkReply::NoError) {
-        return;
-    }
-
-    emit pollenDataAvailable(parsePollenData(reply->readAll()));
 }
 
 bool GermanPollenBackend::isRegionNodeFound(int regionId, int partRegionId) {
@@ -108,9 +103,9 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
     QJsonObject resultObject;
     resultObject.insert("lastUpdate", responseObject.value("last_update"));
     resultObject.insert("nextUpdate", responseObject.value("next_update"));
-    resultObject.insert("scaleElements", 7); // predefined
-    resultObject.insert("maxDaysPrediction", 3); // predefined
-    resultObject.insert("region", this->regionId); // dynamic from request
+    resultObject.insert("scaleElements", 7);               // predefined
+    resultObject.insert("maxDaysPrediction", 3);           // predefined
+    resultObject.insert("region", this->regionId);         // dynamic from request
     resultObject.insert("partRegion", this->partRegionId); // dynamic from request
 
     QJsonArray responseContentArray = responseObject.value("content").toArray();
@@ -118,30 +113,31 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
     qDebug() << "region/partregion (requested): " << this->regionId << "/" << this->partRegionId;
 
     foreach (const QJsonValue &value, responseContentArray) {
-         QJsonObject rootObject = value.toObject();
-         int regionId = rootObject.value("region_id").toInt();
-         int partRegionId = rootObject.value("partregion_id").toInt();
+        QJsonObject rootObject = value.toObject();
+        int regionId = rootObject.value("region_id").toInt();
+        int partRegionId = rootObject.value("partregion_id").toInt();
 
-         if (isRegionNodeFound(regionId, partRegionId) == true) {
-             QJsonObject responsePollenObject = rootObject.value("Pollen").toObject();
+        if (isRegionNodeFound(regionId, partRegionId) == true) {
+            QJsonObject responsePollenObject = rootObject.value("Pollen").toObject();
 
-             for (int i = 0; i < this->pollenIds.size(); i++) {
-                 int pollenId = this->pollenIds.at(i);
-                 QJsonObject pollenIdNode = getNodeForPollenId(responsePollenObject, pollenId);
+            for (int i = 0; i < this->pollenIds.size(); i++) {
+                int pollenId = this->pollenIds.at(i);
+                QJsonObject pollenIdNode = getNodeForPollenId(responsePollenObject, pollenId);
 
-                 QJsonObject pollenResultObject;
-                 QSharedPointer<GenericPollen> pollenDataPointer = this->pollenIdToPollenData[pollenId];
-                 pollenResultObject.insert("label", pollenDataPointer->getPollenName(pollenId));
-                 pollenResultObject.insert("id", pollenId);
-                 pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("today")));
-                 pollenResultObject.insert("tomorrow", createResultPollenObject(pollenIdNode, QString("tomorrow")));
-                 pollenResultObject.insert("dayAfterTomorrow", createResultPollenObject(pollenIdNode, QString("dayafter_to")));
-                 const QString mapUrl = QString(MAP_URL_GERMANY).arg(pollenDataPointer->getPollenMapKey());
-                 pollenResultObject.insert("todayMapUrl" , mapUrl);
+                QJsonObject pollenResultObject;
+                QSharedPointer<GenericPollen> pollenDataPointer = this->pollenIdToPollenData[pollenId];
+                pollenResultObject.insert("label", pollenDataPointer->getPollenName(pollenId));
+                pollenResultObject.insert("id", pollenId);
+                pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("today")));
+                pollenResultObject.insert("tomorrow", createResultPollenObject(pollenIdNode, QString("tomorrow")));
+                pollenResultObject.insert("dayAfterTomorrow",
+                                          createResultPollenObject(pollenIdNode, QString("dayafter_to")));
+                const QString mapUrl = QString(MAP_URL_GERMANY).arg(pollenDataPointer->getPollenMapKey());
+                pollenResultObject.insert("todayMapUrl", mapUrl);
 
-                 resultArray.push_back(pollenResultObject);
-             }
-         }
+                resultArray.push_back(pollenResultObject);
+            }
+        }
     }
     resultObject.insert("pollenData", resultArray);
 

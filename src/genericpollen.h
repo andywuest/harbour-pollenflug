@@ -12,10 +12,8 @@ public:
     QString getPollenMapKey();
 
 private:
-
     QString jsonLookupKey;
     QString pollenMapKey;
-
 };
 
 #endif // GENERIC_POLLEN_H

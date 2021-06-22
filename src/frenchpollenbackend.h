@@ -3,23 +3,20 @@
 
 #include <QObject>
 
-#include "constants.h"
 #include "abstractbackend.h"
+#include "constants.h"
 
 class FrenchPollenBackend : public AbstractBackend {
     Q_OBJECT
 public:
-    explicit  FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent = nullptr);
-    ~FrenchPollenBackend();
+    explicit FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent = nullptr);
+    ~FrenchPollenBackend() override;
 
     Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
 
 protected:
-    QString parsePollenData(QByteArray searchReply); // TODO rename -> abstract in basisklasse
+    QString parsePollenData(QByteArray searchReply) override;
     QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString value);
-
-private slots:
-    void handleFetchPollenDataFinished();
 
 private:
     QString regionId;
@@ -29,7 +26,6 @@ private:
 #ifdef UNIT_TEST
     friend class PollenBackendTests; // to test non public methods
 #endif
-
 };
 
 #endif // FRENCH_POLLEN_BACKEND_H

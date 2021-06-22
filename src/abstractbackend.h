@@ -1,11 +1,11 @@
 #ifndef ABSTRACT_BACKEND_H
 #define ABSTRACT_BACKEND_H
 
+#include <QMap>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QObject>
 #include <QSharedPointer>
-#include <QMap>
-#include <QNetworkReply>
-#include <QNetworkAccessManager>
 
 #include "genericpollen.h"
 
@@ -26,6 +26,7 @@ public:
 
 protected slots:
     void handleRequestError(QNetworkReply::NetworkError error);
+    void handleFetchPollenDataFinished();
     QList<int> removeUnsupportedPollens(const QList<int> &pollenIds);
 
 protected:
@@ -38,8 +39,8 @@ protected:
     QList<int> pollenIds;
 
     QNetworkReply *executeGetRequest(const QUrl &url);
+    virtual QString parsePollenData(QByteArray searchReply) = 0;
     void addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey);
-
 };
 
 #endif // ABSTRACT_BACKEND_H

@@ -2,9 +2,6 @@
 #include "constants.h"
 
 #include <QDebug>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
 
 AbstractPollenBackend::AbstractPollenBackend(QNetworkAccessManager *manager, QObject *parent)
     : QObject(parent) {
@@ -18,7 +15,8 @@ AbstractPollenBackend::~AbstractPollenBackend() {
 
 void AbstractPollenBackend::handleRequestError(QNetworkReply::NetworkError error) {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    qWarning() << "AbstractPollenBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString() << reply->readAll();
+    qWarning() << "AbstractPollenBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString()
+               << reply->readAll();
 
     emit requestError("Return code: " + QString::number(static_cast<int>(error)) + " - " + reply->errorString());
 }

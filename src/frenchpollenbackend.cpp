@@ -1,21 +1,20 @@
 #include "frenchpollenbackend.h"
 #include "genericpollen.h"
 
-#include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
 
-FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent) : AbstractBackend(manager, parent) {
+FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject *parent)
+    : AbstractBackend(manager, parent) {
     qDebug() << "Initializing French Pollen Backend...";
 
     addPollenData(Pollen::Mugwort, "Armoise", "armoise");
     addPollenData(Pollen::Birch, "Bouleau", "bouleau");
     addPollenData(Pollen::Alder, "Aulne", "aulne");
-    // this->pollenIdToPollenData(new GermanPollen(Pollen::AshTree, "Esche", "7"));
     addPollenData(Pollen::Grass, "Graminées", "graminees");
     addPollenData(Pollen::Hazel, "Noisetier", "noisetier");
     addPollenData(Pollen::Ambrosia, "Ambroisies", "ambroisie");
-    // this->pollenIdToPollenData(new GermanPollen(Pollen::Rye, "Roggen", "4"));
     addPollenData(Pollen::Hornbeam, "Charme", "charme");
     addPollenData(Pollen::Chestnut, "Châtaignier", "chataignier");
     addPollenData(Pollen::Oak, "Chêne", "chene");
@@ -31,11 +30,14 @@ FrenchPollenBackend::FrenchPollenBackend(QNetworkAccessManager *manager, QObject
 
     // TODO fix scaling
     // used for label
-    this->pollutionIndexToLabelMap.insert("0", tr("no pollen exposure")); // nul
+    this->pollutionIndexToLabelMap.insert("0", tr("no pollen exposure"));         // nul
     this->pollutionIndexToLabelMap.insert("1", tr("very small pollen exposure")); // très faible
-    this->pollutionIndexToLabelMap.insert("2", tr("small pollen exposure")); // faible
-    this->pollutionIndexToLabelMap.insert("3", tr("medium pollen exposure")); // moyen
-    this->pollutionIndexToLabelMap.insert("4", tr("high pollen exposure")); // élevé
+    this->pollutionIndexToLabelMap.insert("2",
+                                          tr("small pollen exposure")); // faible
+    this->pollutionIndexToLabelMap.insert("3",
+                                          tr("medium pollen exposure")); // moyen
+    this->pollutionIndexToLabelMap.insert("4",
+                                          tr("high pollen exposure"));           // élevé
     this->pollutionIndexToLabelMap.insert("5", tr("very high pollen exposure")); // très élevé
 
     // used for scale index
@@ -60,20 +62,11 @@ void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString r
 
     QNetworkReply *reply = executeGetRequest(QUrl(POLLEN_API_FRANCE));
 
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleRequestError(QNetworkReply::NetworkError)));
+    connect(reply,
+            SIGNAL(error(QNetworkReply::NetworkError)),
+            this,
+            SLOT(handleRequestError(QNetworkReply::NetworkError)));
     connect(reply, SIGNAL(finished()), this, SLOT(handleFetchPollenDataFinished()));
-}
-
-void FrenchPollenBackend::handleFetchPollenDataFinished() {
-    qDebug() << "FrenchPollenBackend::handleFetchPollenDataFinished";
-
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    reply->deleteLater();
-    if (reply->error() != QNetworkReply::NoError) {
-        return;
-    }
-
-    emit pollenDataAvailable(parsePollenData(reply->readAll()));
 }
 
 QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
@@ -88,7 +81,8 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
     QJsonObject responseObject = jsonDocument.object();
     // the vigilanceMapCountries does provide a String that contains json data
 
-    QJsonDocument countiesDocument = QJsonDocument::fromJson(responseObject.value("vigilanceMapCounties").toString().toUtf8());
+    QJsonDocument countiesDocument = QJsonDocument::fromJson(
+        responseObject.value("vigilanceMapCounties").toString().toUtf8());
     QJsonObject countyObject = countiesDocument.object().value(this->regionId).toObject();
     QJsonArray risks = countyObject.value("risks").toArray();
 
@@ -98,12 +92,13 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
     QJsonArray resultArray;
 
     QJsonObject resultObject;
-    resultObject.insert("lastUpdate", ""); // TODO not supported
-    resultObject.insert("nextUpdate", ""); // TODO not supported
+    resultObject.insert("lastUpdate", "");   // TODO not supported
+    resultObject.insert("nextUpdate", "");   // TODO not supported
     resultObject.insert("scaleElements", 6); // predefined
-    resultObject.insert("maxDaysPrediction", 3); // predefined - only one day - but we show 3 anyway
+    resultObject.insert("maxDaysPrediction",
+                        3);                        // predefined - only one day - but we show 3 anyway
     resultObject.insert("region", this->regionId); // dynamic from request
-    resultObject.insert("partRegion", "-"); // not supported
+    resultObject.insert("partRegion", "-");        // not supported
 
     QJsonArray responseContentArray = responseObject.value("content").toArray();
 
@@ -119,7 +114,7 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
         pollenResultObject.insert("today", createResultPollenObject(pollenIdNode, QString("level")));
         // tomorrow / dayAfterTomorrow not supported
         const QString mapUrl = QString(MAP_URL_FRANCE).arg(pollenDataPointer->getPollenMapKey());
-        pollenResultObject.insert("todayMapUrl" , mapUrl);
+        pollenResultObject.insert("todayMapUrl", mapUrl);
 
         resultArray.push_back(pollenResultObject);
     }

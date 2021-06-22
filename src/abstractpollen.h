@@ -15,10 +15,8 @@ public:
     static QString getPollenImageFileName(int pollenId);
 
 private:
-
     int pollenId;
     static QString getInternalPollenName(int pollenId);
-
 };
 
 #endif // ABSTRACT_POLLEN_H

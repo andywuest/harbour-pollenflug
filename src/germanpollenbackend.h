@@ -12,18 +12,18 @@ public:
     explicit GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent = nullptr);
     ~GermanPollenBackend() override;
 
-    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
+    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, const QString &regionId, const QString &partRegionId);
 
 protected:
     QString parsePollenData(QByteArray searchReply) override;
-    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString dayString);
+    QJsonObject createResultPollenObject(const QJsonObject &pollenSourceNode, const QString &dayString);
 
 private:
     int regionId;
     int partRegionId;
 
     bool isRegionNodeFound(int regionId, int partRegionId);
-    QJsonObject getNodeForPollenId(QJsonObject pollenNode, int pollenId);
+    QJsonObject getNodeForPollenId(const QJsonObject &pollenNode, int pollenId);
 };
 
 #endif // GERMAN_POLLEN_BACKEND_H

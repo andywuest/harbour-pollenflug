@@ -5,7 +5,7 @@
 
 class GenericPollen : public AbstractPollen {
 public:
-    explicit GenericPollen(int pollenId, QString jsonLookupKey, QString pollenMapKey);
+    explicit GenericPollen(int pollenId, const QString &jsonLookupKey, const QString &pollenMapKey);
     ~GenericPollen() override;
 
     QString getJsonLookupKey();

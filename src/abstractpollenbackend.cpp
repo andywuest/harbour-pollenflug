@@ -14,7 +14,7 @@ AbstractPollenBackend::~AbstractPollenBackend() {
 }
 
 void AbstractPollenBackend::handleRequestError(QNetworkReply::NetworkError error) {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    auto *reply = qobject_cast<QNetworkReply *>(sender());
     qWarning() << "AbstractPollenBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString()
                << reply->readAll();
 

@@ -16,12 +16,12 @@ public:
 
 protected:
     QString parsePollenData(QByteArray searchReply) override;
-    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, const QString &value);
+    QJsonObject createResultPollenObject(const QJsonObject &pollenSourceNode, const QString &value);
 
 private:
     QString regionId;
 
-    QJsonObject getNodeForPollenId(QJsonArray risksArray, int pollenId);
+    QJsonObject getNodeForPollenId(const QJsonArray &risksArray, int pollenId);
 
 #ifdef UNIT_TEST
     friend class PollenBackendTests; // to test non public methods

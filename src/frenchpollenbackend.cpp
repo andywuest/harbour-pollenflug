@@ -123,7 +123,7 @@ QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
     return dataToString;
 }
 
-QJsonObject FrenchPollenBackend::getNodeForPollenId(QJsonArray risksArray, int pollenId) {
+QJsonObject FrenchPollenBackend::getNodeForPollenId(const QJsonArray &risksArray, int pollenId) {
     if (this->pollenIdToPollenData.contains(pollenId)) {
         QString key = this->pollenIdToPollenData[pollenId]->getJsonLookupKey();
         // qDebug() << " found value for key " << pollenId;
@@ -140,7 +140,7 @@ QJsonObject FrenchPollenBackend::getNodeForPollenId(QJsonArray risksArray, int p
     return QJsonObject();
 }
 
-QJsonObject FrenchPollenBackend::createResultPollenObject(QJsonObject pollenSourceNode, const QString &value) {
+QJsonObject FrenchPollenBackend::createResultPollenObject(const QJsonObject &pollenSourceNode, const QString &value) {
     QJsonObject jsonObject;
     int riskLevel = pollenSourceNode.value(value).toInt();
     QString riskLevelValue;

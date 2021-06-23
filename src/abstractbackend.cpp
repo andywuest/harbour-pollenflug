@@ -21,7 +21,7 @@ QNetworkReply *AbstractBackend::executeGetRequest(const QUrl &url) {
 }
 
 void AbstractBackend::handleRequestError(QNetworkReply::NetworkError error) {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    auto *reply = qobject_cast<QNetworkReply *>(sender());
     qWarning() << "GermanPollenBackend::handleRequestError:" << static_cast<int>(error) << reply->errorString()
                << reply->readAll();
 
@@ -31,7 +31,7 @@ void AbstractBackend::handleRequestError(QNetworkReply::NetworkError error) {
 void AbstractBackend::handleFetchPollenDataFinished() {
     qDebug() << "AbstractBackend::handleFetchPollenDataFinished";
 
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    auto *reply = qobject_cast<QNetworkReply *>(sender());
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
         return;
@@ -40,7 +40,7 @@ void AbstractBackend::handleFetchPollenDataFinished() {
     emit pollenDataAvailable(parsePollenData(reply->readAll()));
 }
 
-void AbstractBackend::addPollenData(int pollenId, QString jsonLookupKey, QString pollenMapKey) {
+void AbstractBackend::addPollenData(int pollenId, const QString &jsonLookupKey, const QString &pollenMapKey) {
     QSharedPointer<GenericPollen> pointer(new GenericPollen(pollenId, jsonLookupKey, pollenMapKey));
     this->pollenIdToPollenData.insert(pollenId, pointer);
 }

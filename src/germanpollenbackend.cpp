@@ -45,7 +45,9 @@ GermanPollenBackend::~GermanPollenBackend() {
     qDebug() << "Shutting down German Pollen Backend...";
 }
 
-void GermanPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId) {
+void GermanPollenBackend::fetchPollenData(const QList<int> &pollenIds,
+                                          const QString &regionId,
+                                          const QString &partRegionId) {
     qDebug() << "GermanPollenBackend::fetchPollenData";
     qDebug() << pollenIds;
 
@@ -70,7 +72,7 @@ bool GermanPollenBackend::isRegionNodeFound(int regionId, int partRegionId) {
     return false;
 }
 
-QJsonObject GermanPollenBackend::getNodeForPollenId(QJsonObject pollenNode, int pollenId) {
+QJsonObject GermanPollenBackend::getNodeForPollenId(const QJsonObject &pollenNode, int pollenId) {
     if (this->pollenIdToPollenData.contains(pollenId)) {
         QString key = this->pollenIdToPollenData[pollenId]->getJsonLookupKey();
         qDebug() << " found value for key " << pollenId;
@@ -80,7 +82,8 @@ QJsonObject GermanPollenBackend::getNodeForPollenId(QJsonObject pollenNode, int 
     return QJsonObject();
 }
 
-QJsonObject GermanPollenBackend::createResultPollenObject(QJsonObject pollenSourceNode, QString dayString) {
+QJsonObject GermanPollenBackend::createResultPollenObject(const QJsonObject &pollenSourceNode,
+                                                          const QString &dayString) {
     QJsonObject jsonObject;
     jsonObject.insert("pollutionIndex", this->pollutionIndexToIndexMap[pollenSourceNode.value(dayString).toString()]);
     jsonObject.insert("pollutionLabel", this->pollutionIndexToLabelMap[pollenSourceNode.value(dayString).toString()]);
@@ -116,7 +119,7 @@ QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
         int regionId = rootObject.value("region_id").toInt();
         int partRegionId = rootObject.value("partregion_id").toInt();
 
-        if (isRegionNodeFound(regionId, partRegionId) == true) {
+        if (isRegionNodeFound(regionId, partRegionId)) {
             QJsonObject responsePollenObject = rootObject.value("Pollen").toObject();
 
             for (int pollenId : this->pollenIds) {

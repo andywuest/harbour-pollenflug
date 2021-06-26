@@ -33,16 +33,16 @@ Page {
     function switchToCountrySettings(countryValue) {
         pollenflugSettings.country = countryValue;
         var country = Constants.COUNTRY_MAP[countryValue];
-        console.log("_" + countryValue + ", " + country);
+        console.log("[SettingsPage] _" + countryValue + ", " + country);
         countrySpecificLoader.source = "../components/Settings" + country + ".qml";
     }
 
     onStatusChanged: {
         if (status === PageStatus.Deactivating) {
-            console.log("storing settings!")
+            console.log("[SettingsPage] storing settings!")
             countrySpecificLoader.item.updateConfiguration();
             // pollenflugSettings.country = countryComboBox.currentIndex;
-            console.log("country : " + pollenflugSettings.country)
+            console.log("[SettingsPage] country : " + pollenflugSettings.country)
             pollenflugSettings.sync()
         }
     }
@@ -112,68 +112,37 @@ Page {
                 text: qsTr("Allergen")
             }
 
+            // TODO delegate??
             PollenIconTextSwitch {
                 pollenId: Constants.MUGWORT_ID
-                checked: pollenflugSettings.isMugwortSelected
-                onCheckedChanged: {
-                    pollenflugSettings.isMugwortSelected = checked
-                }
             }
 
             PollenIconTextSwitch {
                 pollenId: Constants.BIRCH_ID
-                checked: pollenflugSettings.isBirchSelected
-                onCheckedChanged: {
-                    pollenflugSettings.isBirchSelected = checked
-                }
             }
 
             PollenIconTextSwitch {
                 pollenId: Constants.ALDER_ID
-                checked: pollenflugSettings.isAlderSelected
-                onCheckedChanged: {
-                    pollenflugSettings.isAlderSelected = checked
-                }
             }
 
             PollenIconTextSwitch {
                 pollenId: Constants.ASH_TREE_ID
-                checked: pollenflugSettings.isAshTreeSelected
-                onCheckedChanged: {
-                    pollenflugSettings.isAshTreeSelected = checked
-                }
             }
 
             PollenIconTextSwitch {
                 pollenId: Constants.GRASS_ID
-                checked: pollenflugSettings.isGrassPollenSelected
-                onCheckedChanged: {
-                    pollenflugSettings.isGrassPollenSelected = checked
-                }
             }
 
             PollenIconTextSwitch {
                 pollenId: Constants.AMBROSIA_ID
-                checked: pollenflugSettings.isAmbrosiaSelected
-                onCheckedChanged: {
-                    pollenflugSettings.isAmbrosiaSelected = checked
-                }
             }
 
             PollenIconTextSwitch {
                 pollenId: Constants.RYE_ID
-                checked: pollenflugSettings.isRyeSelected                
-                onCheckedChanged: {
-                    pollenflugSettings.isRyeSelected = checked
-                }
             }
 
             PollenIconTextSwitch {
                 pollenId: Constants.NETTLE_ID
-                checked: pollenflugSettings.isNettleSelected
-                onCheckedChanged: {
-                    pollenflugSettings.isNettleSelected = checked
-                }
             }
 
         }

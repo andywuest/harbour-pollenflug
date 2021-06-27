@@ -47,6 +47,89 @@ AboutPage title - about text title</extracomment>
     </message>
 </context>
 <context>
+    <name>AbstractPollen</name>
+    <message>
+        <source>Mugwort</source>
+        <translation>Beifuß</translation>
+    </message>
+    <message>
+        <source>Birch</source>
+        <translation>Birke</translation>
+    </message>
+    <message>
+        <source>Alder</source>
+        <translation>Erle</translation>
+    </message>
+    <message>
+        <source>Ash Tree</source>
+        <translation>Esche</translation>
+    </message>
+    <message>
+        <source>Grass</source>
+        <translation>Gräser</translation>
+    </message>
+    <message>
+        <source>Hazel</source>
+        <translation>Hasel</translation>
+    </message>
+    <message>
+        <source>Ambrosia</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Rye</source>
+        <translation>Roggen</translation>
+    </message>
+    <message>
+        <source>Hornbeam</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chestnut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Oak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cypress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Olive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorrel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poplar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plantain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plane</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Willow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nettle</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>Loading...</source>
@@ -63,30 +146,6 @@ AboutPage title - about text title</extracomment>
 </context>
 <context>
     <name>FrenchPollenBackend</name>
-    <message>
-        <source>Mugwort</source>
-        <translation>Beifuß</translation>
-    </message>
-    <message>
-        <source>Birch</source>
-        <translation>Birke</translation>
-    </message>
-    <message>
-        <source>Alder</source>
-        <translation>Erle</translation>
-    </message>
-    <message>
-        <source>Grass</source>
-        <translation>Gräser</translation>
-    </message>
-    <message>
-        <source>Hazel</source>
-        <translation>Hasel</translation>
-    </message>
-    <message>
-        <source>Ambrosia</source>
-        <translation></translation>
-    </message>
     <message>
         <source>no pollen exposure</source>
         <translation>keine Belastung</translation>
@@ -114,38 +173,6 @@ AboutPage title - about text title</extracomment>
 </context>
 <context>
     <name>GermanPollenBackend</name>
-    <message>
-        <source>Ambrosia</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Mugwort</source>
-        <translation>Beifuß</translation>
-    </message>
-    <message>
-        <source>Birch</source>
-        <translation>Birke</translation>
-    </message>
-    <message>
-        <source>Alder</source>
-        <translation>Erle</translation>
-    </message>
-    <message>
-        <source>Ash Tree</source>
-        <translation>Esche</translation>
-    </message>
-    <message>
-        <source>Grass</source>
-        <translation>Gräser</translation>
-    </message>
-    <message>
-        <source>Hazel</source>
-        <translation>Hasel</translation>
-    </message>
-    <message>
-        <source>Rye</source>
-        <translation>Roggen</translation>
-    </message>
     <message>
         <source>no pollen exposure</source>
         <translation>keine Belastung</translation>
@@ -884,6 +911,46 @@ AboutPage title - about text title</extracomment>
     <message>
         <source>Rye</source>
         <translation>Roggen</translation>
+    </message>
+    <message>
+        <source>Hornbeam</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chestnut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Olive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorrel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poplar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plantain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plane</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Willow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nettle</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

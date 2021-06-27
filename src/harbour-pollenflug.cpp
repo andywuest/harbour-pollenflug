@@ -3,9 +3,9 @@
 #endif
 
 #include <sailfishapp.h>
-#include <QQuickView>
-#include <QQmlContext>
 #include <QGuiApplication>
+#include <QQmlContext>
+#include <QQuickView>
 
 #include "pollenflug.h"
 

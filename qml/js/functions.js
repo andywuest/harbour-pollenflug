@@ -42,6 +42,7 @@ function getSelectedPollenList(settings) {
     addPollenIdIfActive(selection, HAZEL_ID, settings.isHazelSelected)
     addPollenIdIfActive(selection, AMBROSIA_ID, settings.isAmbrosiaSelected)
     addPollenIdIfActive(selection, RYE_ID, settings.isRyeSelected)
+    addPollenIdIfActive(selection, NETTLE_ID, settings.isNettleSelected)
     return selection;
 }
 

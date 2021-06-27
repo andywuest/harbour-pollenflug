@@ -110,7 +110,10 @@ Page {
             MenuItem {
                 //: OverviewPage settings menu item
                 text: qsTr("Settings")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+                onClicked: {
+                    var settingsPage = pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+                    settingsPage.reloadOverviewPollens.connect(reloadOverviewPollens)
+                }
             }
             MenuItem {
                 //: OverviewPage refrehs menu item

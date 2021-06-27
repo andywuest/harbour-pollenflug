@@ -1,5 +1,16 @@
-HEADERS += $$PWD/src/frenchpollenbackend.h \
+HEADERS += $$PWD/src/abstractpollenbackend.h \
+           $$PWD/src/abstractbackend.h \
+           $$PWD/src/frenchpollenbackend.h \
+           $$PWD/src/germanpollenbackend.h \
+           $$PWD/src/abstractpollen.h \
+           $$PWD/src/genericpollen.h \
            $$PWD/src/constants.h
 
-SOURCES += $$PWD/src/frenchpollenbackend.cpp
+SOURCES += $$PWD/src/abstractpollenbackend.cpp \
+           $$PWD/src/abstractbackend.cpp \
+           $$PWD/src/frenchpollenbackend.cpp \
+           $$PWD/src/germanpollenbackend.cpp \
+           $$PWD/src/abstractpollen.cpp \
+           $$PWD/src/genericpollen.cpp
+
 

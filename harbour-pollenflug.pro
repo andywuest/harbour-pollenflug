@@ -15,8 +15,10 @@ TARGET = harbour-pollenflug
 CONFIG += sailfishapp
 
 SOURCES += src/harbour-pollenflug.cpp \
-    src/germanpollenbackend.cpp \
     src/pollenflug.cpp
+
+HEADERS += \
+    src/pollenflug.h
 
 DEFINES += VERSION_NUMBER=\\\"$$(VERSION_NUMBER)\\\"
 
@@ -50,13 +52,13 @@ DISTFILES += qml/harbour-pollenflug.qml \
     rpm/harbour-pollenflug.yaml \
     translations/*.ts \
     qml/pages/icons/ambrosia.svg \
-    qml/pages/icons/beifuss.svg \
-    qml/pages/icons/birke.svg \
-    qml/pages/icons/erle.svg \
-    qml/pages/icons/esche.svg \
-    qml/pages/icons/graeser.svg \
-    qml/pages/icons/hasel.svg \
-    qml/pages/icons/roggen.svg \
+    qml/pages/icons/mugwort.svg \
+    qml/pages/icons/birch.svg \
+    qml/pages/icons/alder.svg \
+    qml/pages/icons/ashtree.svg \
+    qml/pages/icons/grass.svg \
+    qml/pages/icons/hazel.svg \
+    qml/pages/icons/rye.svg \
     qml/pages/icons/background.png \
     qml/pages/icons/background-black.png \
     harbour-pollenflug.desktop
@@ -73,10 +75,6 @@ CONFIG += sailfishapp_i18n
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-pollenflug-de.ts \
     translations/harbour-pollenflug-fr.ts
-
-HEADERS += \
-    src/germanpollenbackend.h \
-    src/pollenflug.h
 
 include(harbour-pollenflug.pri)
 

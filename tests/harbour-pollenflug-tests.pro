@@ -4,15 +4,14 @@ QT -= gui
 CONFIG += c++11 qt
 
 SOURCES += testmain.cpp \
-    frenchpollenbackendtests.cpp
+    pollenbackendtests.cpp
 
-HEADERS += \
-    frenchpollenbackendtests.h
+HEADERS += pollenbackendtests.h
 
 INCLUDEPATH += ../
 include(../harbour-pollenflug.pri)
 
-TARGET = FrenchBackendTest
+TARGET = PollenBackendTest
 
 DISTFILES += \
     testdata/fr.json

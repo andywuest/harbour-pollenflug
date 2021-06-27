@@ -1,55 +1,29 @@
-#ifndef GERMANPOLLENBACKEND_H
-#define GERMANPOLLENBACKEND_H
+#ifndef GERMAN_POLLEN_BACKEND_H
+#define GERMAN_POLLEN_BACKEND_H
 
 #include <QObject>
-#include <QNetworkReply>
-#include <QNetworkAccessManager>
-#include <QSequentialIterable>
 
+#include "abstractbackend.h"
 #include "constants.h"
 
-class GermanPollenBackend : public QObject {
+class GermanPollenBackend : public AbstractBackend {
     Q_OBJECT
 public:
-    explicit  GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent = 0);
-    ~GermanPollenBackend();
+    explicit GermanPollenBackend(QNetworkAccessManager *manager, QObject *parent = nullptr);
+    ~GermanPollenBackend() override;
 
-    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
-    Q_INVOKABLE bool isPollenDataProvided(int pollenId);
+    Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, const QString &regionId, const QString &partRegionId);
 
-    // signals for the qml part
-    Q_SIGNAL void requestError(const QString &errorMessage);
-    Q_SIGNAL void pollenDataAvailable(const QString &reply);
+protected:
+    QString parsePollenData(QByteArray searchReply) override;
+    QJsonObject createResultPollenObject(const QJsonObject &pollenSourceNode, const QString &dayString);
 
 private:
-
-    QMap<int, QString> pollenIdToMapKey;
-    QMap<int, QString> pollenIdToKeyMap;
-    QMap<int, QString> pollenIdToLabelMap;
-    QMap<QString, QString> pollutionIndexToLabelMap;
-    QMap<QString, int> pollutionIndexToIndexMap;
-    QList<int> pollenIds;
     int regionId;
     int partRegionId;
 
     bool isRegionNodeFound(int regionId, int partRegionId);
-    QJsonObject getNodeForPollenId(QJsonObject pollenNode, int pollenId);
-
-protected:
-
-    // QString applicationName;
-    // QString applicationVersion;
-    QNetworkAccessManager *manager;
-
-    QNetworkReply *executeGetRequest(const QUrl &url);
-
-    QString parsePollenData(QByteArray searchReply); // TODO rename
-    QJsonObject createResultPollenObject(QJsonObject pollenSourceNode, QString dayString);
-
-private slots:
-    void handleFetchPollenDataFinished();
-    void handleRequestError(QNetworkReply::NetworkError error);
-
+    QJsonObject getNodeForPollenId(const QJsonObject &pollenNode, int pollenId);
 };
 
-#endif // GERMANPOLLENBACKEND_H
+#endif // GERMAN_POLLEN_BACKEND_H

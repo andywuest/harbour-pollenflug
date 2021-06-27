@@ -1,6 +1,6 @@
 /*
- * harbour-watchlist - Sailfish OS Version
- * Copyright © 2019 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
+ * harbour-pollenflug - Sailfish OS Version
+ * Copyright © 2020 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,18 +17,14 @@
  */
 #include "pollenflug.h"
 
-
-Pollenflug::Pollenflug(QObject *parent) : QObject(parent),
-    networkAccessManager(new QNetworkAccessManager(this)),
-    networkConfigurationManager(new QNetworkConfigurationManager(this)),
-    settings("harbour-pollenflug", "settings") {
-
+Pollenflug::Pollenflug(QObject *parent)
+    : QObject(parent)
+    , networkAccessManager(new QNetworkAccessManager(this))
+    , networkConfigurationManager(new QNetworkConfigurationManager(this))
+    , settings("harbour-pollenflug", "settings") {
     // pollen backends
     germanPollenBackend = new GermanPollenBackend(this->networkAccessManager, this);
     frenchPollenBackend = new FrenchPollenBackend(this->networkAccessManager, this);
-}
-
-Pollenflug::~Pollenflug() {
 }
 
 GermanPollenBackend *Pollenflug::getGermanPollenBackend() {

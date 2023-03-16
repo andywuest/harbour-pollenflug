@@ -8,8 +8,8 @@ SOURCES += testmain.cpp \
 
 HEADERS += pollenbackendtests.h
 
-INCLUDEPATH += ../
-include(../harbour-pollenflug.pri)
+INCLUDEPATH += ../../
+include(../../harbour-pollenflug.pri)
 
 TARGET = PollenBackendTest
 

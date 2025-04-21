@@ -4,6 +4,12 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-pollenflug
 Exec=harbour-pollenflug
 Name=Pollenflug
+
+[X-Sailjail]
+OrganizationName=de.andreas-wuest-it-consulting
+ApplicationName=harbour-pollenflug
+Permissions=Internet
+
 [X-HarbourBackup]
-BackupPathList=.local/share/harbour-pollenflug/
+BackupPathList=.local/share/de.andreas-wuest-it-consulting/harbour-pollenflug/
 BackupConfigList=/apps/harbour-pollenflug/

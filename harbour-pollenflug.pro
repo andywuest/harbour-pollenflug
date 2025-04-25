@@ -47,10 +47,12 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/pages/AboutPage.qml \
     qml/pages/SettingsPage.qml \
     rpm/harbour-pollenflug.changes.in \
-    rpm/harbour-pollenflug.changes.run.in \
     rpm/harbour-pollenflug.spec \
     rpm/harbour-pollenflug.yaml \
     translations/*.ts \
+    qml/pages/icons/github.svg \
+    qml/pages/icons/paypal.svg \
+    qml/pages/icons/flaticon-color-negative.svg \
     qml/pages/icons/ambrosia.svg \
     qml/pages/icons/mugwort.svg \
     qml/pages/icons/birch.svg \

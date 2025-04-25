@@ -4,6 +4,7 @@
 void PollenBackendTests::init() {
     frenchPollenBackend = new FrenchPollenBackend(nullptr, nullptr);
     germanPollenBackend = new GermanPollenBackend(nullptr, nullptr);
+    swissPollenBackend = new SwissPollenBackend(nullptr, nullptr);
 }
 
 void PollenBackendTests::testIsFrenchPollenDataProvided() {
@@ -23,16 +24,23 @@ void PollenBackendTests::testRemoveFrenchUnsupportedPollens() {
     QCOMPARE(supportedPollenIds.at(0), Pollen::Mugwort);
 }
 
-void PollenBackendTests::testParseFrenchPollenData() {
-    QString testFile = "fr.json";
-    QFile f("testdata/" + testFile);
-    if (!f.open(QFile::ReadOnly | QFile::Text)) {
-        QString msg = "Testfile " + testFile + " not found!";
-        QFAIL(msg.toLocal8Bit().data());
-    }
+void PollenBackendTests::testParseSwissHtmlResponse() {
+    QByteArray data = readFileData("ch_oak.html");
+    QVERIFY2(data.length() > 0, "Testfile not found!");
 
-    QTextStream in(&f);
-    QByteArray data = in.readAll().toUtf8();
+    QList<QStringList> result = swissPollenBackend->parseHtmlResponse(QString(data));
+    QCOMPARE(result.size(), 14);
+    QCOMPARE(result.at(0).at(0), "Basel");
+    QCOMPARE(result.at(0).at(1), "schwach");
+    QCOMPARE(result.at(0).at(2), "26.05.2023");
+    QCOMPARE(result.at(1).at(0), "Bern");
+    QCOMPARE(result.at(1).at(1), "schwach");
+    QCOMPARE(result.at(1).at(2), "26.05.2023");
+}
+
+void PollenBackendTests::testParseFrenchPollenData() {
+    QByteArray data = readFileData("fr.json");
+    QVERIFY2(data.length() > 0, "Testfile not found!");
 
     // ALDER and Hazel for region 01
     frenchPollenBackend->regionId = "01";
@@ -64,4 +72,17 @@ void PollenBackendTests::testParseFrenchPollenData() {
     QCOMPARE(todayHazel.value("pollutionLabel"), "small pollen exposure");
 
     // TODO read pollution
+}
+
+QByteArray PollenBackendTests::readFileData(const QString &fileName) {
+  QFile f("testdata/" + fileName);
+  qDebug() << "Testfile is : " << QFileInfo(f).absoluteFilePath();
+  if (!f.exists() || !f.open(QFile::ReadOnly | QFile::Text)) {
+    QString msg = "Testfile " + fileName + " not found!";
+    qDebug() << msg << f.fileName() << QFileInfo(f).absoluteFilePath();
+    return QByteArray();
+  }
+
+  QTextStream in(&f);
+  return in.readAll().toUtf8();
 }

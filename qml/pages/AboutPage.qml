@@ -123,7 +123,7 @@ Page {
             }
 
             AboutIconLabel {
-                iconSource: "icons/flaticon-color-negative.svg"
+                iconSource: "icons/flaticon.svg"
                 label: qsTr("Flaticon")
                 targetUrl: "http://www.flaticon.com"
             }

@@ -52,7 +52,7 @@ DISTFILES += qml/harbour-pollenflug.qml \
     translations/*.ts \
     qml/pages/icons/github.svg \
     qml/pages/icons/paypal.svg \
-    qml/pages/icons/flaticon-color-negative.svg \
+    qml/pages/icons/flaticon.svg \
     qml/pages/icons/ambrosia.svg \
     qml/pages/icons/mugwort.svg \
     qml/pages/icons/birch.svg \

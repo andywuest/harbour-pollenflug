@@ -52,6 +52,10 @@
         <source>Flaticon</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Donate with PayPal</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AbstractPollen</name>

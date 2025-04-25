@@ -112,6 +112,12 @@ Page {
                 description: qsTr("If you like my work why not buy me a beer?")
             }
 
+            AboutIconLabel {
+                iconSource: "icons/paypal.svg"
+                label: qsTr("Donate with PayPal")
+                targetUrl: "https://www.paypal.com/paypalme/andywuest"
+            }
+
             SectionHeader {
                 //: AboutPage - Icons
                 text: qsTr("Icons")

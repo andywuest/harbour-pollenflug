@@ -4,45 +4,52 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>About Pollenflug</source>
-        <extracomment>AboutPage title - header
-----------
-AboutPage title - about text title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <extracomment>AboutPage version label</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Author</source>
-        <extracomment>AboutPage author label</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Source code</source>
-        <extracomment>AboutPage about source label</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Icons</source>
-        <extracomment>AboutPage icon source label</extracomment>
+        <extracomment>AboutPage - Icons</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
+        <source>About</source>
+        <extracomment>AboutPage - Header</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pollenflug</source>
+        <extracomment>AboutPage - Name</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you suffer from an allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
         <extracomment>AboutPage text - about text</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <extracomment>AboutPage contributors label</extracomment>
+        <source>Translations</source>
+        <extracomment>AboutPage - Translations</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Translators</source>
-        <extracomment>AboutPage translators label</extracomment>
+        <source>Sources</source>
+        <extracomment>AboutPage - sources</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donations</source>
+        <extracomment>AboutPage - Donations</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you like my work why not buy me a beer?</source>
+        <extracomment>AboutPage - donations info</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons made by Freepik from Free vector icons - SVG, PSD, PNG, EPS &amp; Icon Font - Thousands of free icons</source>
+        <extracomment>AboutPage - icons info</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flaticon</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

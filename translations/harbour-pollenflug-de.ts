@@ -4,46 +4,53 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>About Pollenflug</source>
-        <extracomment>AboutPage title - header
-----------
-AboutPage title - about text title</extracomment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <extracomment>AboutPage version label</extracomment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Author</source>
-        <extracomment>AboutPage author label</extracomment>
-        <translation>Autor</translation>
-    </message>
-    <message>
-        <source>Source code</source>
-        <extracomment>AboutPage about source label</extracomment>
-        <translation>Quellcode</translation>
-    </message>
-    <message>
         <source>Icons</source>
-        <extracomment>AboutPage icon source label</extracomment>
+        <extracomment>AboutPage - Icons</extracomment>
         <translation></translation>
     </message>
     <message>
-        <source>If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
+        <source>About</source>
+        <extracomment>AboutPage - Header</extracomment>
+        <translation>Über</translation>
+    </message>
+    <message>
+        <source>Pollenflug</source>
+        <extracomment>AboutPage - Name</extracomment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If you suffer from an allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.</source>
         <extracomment>AboutPage text - about text</extracomment>
         <translation>Wenn Sie an einer Allergie leiden, können Sie die Pollensituation in Ihrer Nähe auf verschiedene Allergene beobachten. Pollenflug ist Open Source und unter der GPL v3 lizenziert.</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <extracomment>AboutPage contributors label</extracomment>
-        <translation>Mitwirkende</translation>
+        <source>Translations</source>
+        <extracomment>AboutPage - Translations</extracomment>
+        <translation>Übersetzungen</translation>
     </message>
     <message>
-        <source>Translators</source>
-        <extracomment>AboutPage translators label</extracomment>
-        <translation>Übersetzer</translation>
+        <source>Sources</source>
+        <extracomment>AboutPage - sources</extracomment>
+        <translation>Quellen</translation>
+    </message>
+    <message>
+        <source>Donations</source>
+        <extracomment>AboutPage - Donations</extracomment>
+        <translation>Spenden</translation>
+    </message>
+    <message>
+        <source>If you like my work why not buy me a beer?</source>
+        <extracomment>AboutPage - donations info</extracomment>
+        <translation>Wenn Du meine Arbeit magst, warum gibst du mir nicht einfach ein Bier aus?</translation>
+    </message>
+    <message>
+        <source>Icons made by Freepik from Free vector icons - SVG, PSD, PNG, EPS &amp; Icon Font - Thousands of free icons</source>
+        <extracomment>AboutPage - icons info</extracomment>
+        <translation>Icons erstellt bei Freepik von Free vector icons - SVG, PSD, PNG, EPS &amp; Icon Font - Tausende von kostenlosen Icons</translation>
+    </message>
+    <message>
+        <source>Flaticon</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

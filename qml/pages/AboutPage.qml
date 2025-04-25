@@ -1,6 +1,6 @@
 /*
  * harbour-pollenflug - Sailfish OS Version
- * Copyright © 2020 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
+ * Copyright © 2025 Andreas Wüst (andreas.wuest.freelancer@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,140 +22,115 @@ import Sailfish.Silica 1.0
 import "../components/thirdparty"
 
 Page {
-    id: aboutPage
+    id: page
+
+    allowedOrientations: Orientation.All
 
     SilicaFlickable {
         id: aboutPageFlickable
         anchors.fill: parent
-        contentHeight: aboutColumn.height
+        contentHeight: column.height
 
         Column {
+            id: column
+            width:parent.width
+            spacing: Theme.paddingLarge
+
             PageHeader {
-                //: AboutPage title - header
-                title: qsTr("About Pollenflug")
+                //: AboutPage - Header
+                title: qsTr("About")
             }
 
-            id: aboutColumn
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            height: childrenRect.height
-
-            LabelText {
-                anchors {
-                    left: parent.left
-                    margins: Theme.paddingLarge
-                }
-                //: AboutPage title - about text title
-                label: qsTr("About Pollenflug")
-                //: AboutPage text - about text
-                // TODO fixme
-                text: qsTr("If you suffer from aan allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.")
-                separator: true
+            Image {
+                id: logo
+                source: "/usr/share/icons/hicolor/172x172/apps/harbour-pollenflug.png"
+                smooth: true
+                height: width
+                width: parent.width / 2
+                sourceSize.width: 512
+                sourceSize.height: 512
+                anchors.horizontalCenter: parent.horizontalCenter
+                opacity: 0.7
             }
 
-            LabelText {
-                anchors {
-                    left: parent.left
-                    margins: Theme.paddingLarge
-                }
-                //: AboutPage version label
-                label: qsTr("Version")
+            Label {
+                width: parent.width
+                x : Theme.horizontalPageMargin
+                font.pixelSize: Theme.fontSizeExtraLarge
+                color: Theme.secondaryHighlightColor
+
+                //: AboutPage - Name
+                text: qsTr("Pollenflug")
+            }
+
+            Label {
+                width: parent.width
+                x : Theme.horizontalPageMargin
                 text: applicationVersion
-                separator: true
             }
 
-            BackgroundItem {
-                id: clickableUrlAuthor
-                contentHeight: labelAuthor.height
-                height: contentHeight
-                width: aboutPageFlickable.width
-                anchors {
-                    left: parent.left
-                }
-
-                LabelText {
-                    id: labelAuthor
-                    anchors {
-                        left: parent.left
-                        margins: Theme.paddingLarge
-                    }
-                    //: AboutPage author label
-                    label: qsTr("Author")
-                    text: "Andreas Wüst"
-                    separator: true
-                    color: clickableUrlAuthor.highlighted ? Theme.highlightColor : Theme.primaryColor
-                }
+            Item {
+                height: Theme.paddingMedium
+                width: 1
             }
 
-            LabelText {
-                anchors {
-                    left: parent.left
-                    margins: Theme.paddingLarge
-                }
-                //: AboutPage translators label
-                label: qsTr("Translators")
-                text: "monkeyisland1992 (de)\n"
-                        + "Quentin Pagès (fr)"
-                separator: true
+            AboutDescription {
+                //: AboutPage text - about text
+                description: qsTr("If you suffer from an allergy you can watch the pollen situation in your area for various allergenes. Pollenflug is open source and licensed under the GPL v3.")
             }
 
-            LabelText {
-                anchors {
-                    left: parent.left
-                    margins: Theme.paddingLarge
-                }
-                //: AboutPage contributors label
-                label: qsTr("Contributors")
-                text: "planetos82 (icon)"
-                separator: true
+            SectionHeader {
+                //: AboutPage - Translations
+                text: qsTr("Translations")
             }
 
-            BackgroundItem {
-                id: clickableUrlIcons
-                contentHeight: iconLabelUrl.height
-                height: contentHeight
-                width: aboutPageFlickable.width
-                anchors {
-                    left: parent.left
-                }
-
-                LabelText {
-                    id: iconLabelUrl
-                    anchors {
-                        left: parent.left
-                        margins: Theme.paddingLarge
-                    }
-                    //: AboutPage icon source label
-                    label: qsTr("Icons")
-                    text: "Icons made by Freepik from Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons"
-                    color: clickableUrlSourceCode.highlighted ? Theme.highlightColor : Theme.primaryColor
-                }
-                onClicked: Qt.openUrlExternally("http://www.flaticon.com")
+            AboutDescription {
+                //: AboutPage - translations
+                description: "monkeyisland1992 (de)\n" +
+                             "Quentin Pagès (fr)"
             }
 
-            BackgroundItem {
-                id: clickableUrlSourceCode
-                contentHeight: labelUrl.height
-                height: contentHeight
-                width: aboutPageFlickable.width
-                anchors {
-                    left: parent.left
-                }
+            SectionHeader{
+                id: sectionHeaderSources
+                //: AboutPage - sources
+                text: qsTr("Sources")
+            }
 
-                LabelText {
-                    id: labelUrl
-                    anchors {
-                        left: parent.left
-                        margins: Theme.paddingLarge
-                    }
-                    //: AboutPage about source label
-                    label: qsTr("Source code")
-                    text: "https://github.com/andywuest/harbour-pollenflug"
-                    color: clickableUrlSourceCode.highlighted ? Theme.highlightColor : Theme.primaryColor
-                }
-                onClicked: Qt.openUrlExternally(labelUrl.text)
+            AboutIconLabel {
+                iconSource: "icons/github.svg"
+                label: "https://github.com/andywuest/harbour-pollenflug"
+                targetUrl: "https://github.com/andywuest/harbour-pollenflug"
+            }
+
+            SectionHeader {
+                //: AboutPage - Donations
+                text: qsTr("Donations")
+            }
+
+            AboutDescription {
+                //: AboutPage - donations info
+                description: qsTr("If you like my work why not buy me a beer?")
+            }
+
+            SectionHeader {
+                //: AboutPage - Icons
+                text: qsTr("Icons")
+            }
+
+            AboutDescription {
+                //: AboutPage - icons info
+                description: qsTr("Icons made by Freepik from Free vector icons - SVG, PSD, PNG, EPS & Icon Font - Thousands of free icons")
+            }
+
+            AboutIconLabel {
+                iconSource: "icons/flaticon.svg"
+                label: qsTr("Flaticon")
+                targetUrl: "http://www.flaticon.com"
+            }
+
+            Item {
+                width: 1
+                height: Theme.paddingSmall
             }
         }
     }

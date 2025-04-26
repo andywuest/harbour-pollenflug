@@ -4,6 +4,7 @@
 void PollenBackendTests::init() {
     frenchPollenBackend = new FrenchPollenBackend(nullptr, nullptr);
     germanPollenBackend = new GermanPollenBackend(nullptr, nullptr);
+    swissPollenBackend = new SwissPollenBackend(nullptr, nullptr);
 }
 
 void PollenBackendTests::testIsFrenchPollenDataProvided() {
@@ -64,4 +65,36 @@ void PollenBackendTests::testParseFrenchPollenData() {
     QCOMPARE(todayHazel.value("pollutionLabel"), "small pollen exposure");
 
     // TODO read pollution
+}
+
+void PollenBackendTests::testParseSwissHtmlResponse() {
+    QByteArray data = readFileData("ch_lugano.html");
+    QVERIFY2(data.length() > 0, "Testfile not found!");
+
+    QString parsedResult = swissPollenBackend->parsePollenData(data);
+    qDebug() << "result : " << parsedResult;
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(parsedResult.toUtf8());
+    QCOMPARE(jsonDocument.isObject(), true);
+    QJsonArray pollenData = jsonDocument.object().value("data").toArray();
+    QCOMPARE(pollenData.isEmpty(), false);
+    QCOMPARE(pollenData.size(), 7);
+    QCOMPARE(pollenData.at(0).toObject().value("name"), "Hasel");
+    QCOMPARE(pollenData.at(0).toObject().value("pollution"), "keine");
+    QCOMPARE(pollenData.at(3).toObject().value("name"), "Birke");
+    QCOMPARE(pollenData.at(3).toObject().value("pollution"), "stark");
+    QCOMPARE(pollenData.at(6).toObject().value("name"), "Gräser");
+    QCOMPARE(pollenData.at(6).toObject().value("pollution"), "schwach");
+}
+
+QByteArray PollenBackendTests::readFileData(const QString &fileName) {
+    // QFile f("testdata/" + fileName);
+    QFile f("/home/andy/projects/sailfishos/github/harbour-pollenflug/test/cpp/testdata/" + fileName);
+    if (!f.open(QFile::ReadOnly | QFile::Text)) {
+        QString msg = "Testfile " + fileName + " not found!";
+        qDebug() << msg << f.fileName() << QFileInfo(f).absoluteFilePath();
+        return QByteArray();
+    }
+
+    QTextStream in(&f);
+    return in.readAll().toUtf8();
 }

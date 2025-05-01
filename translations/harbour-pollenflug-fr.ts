@@ -788,6 +788,62 @@
         <source>Allergen</source>
         <translation>Allergène</translation>
     </message>
+    <message>
+        <source>Switzerland</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsSwitzerland</name>
+    <message>
+        <source>Measuring Station</source>
+        <extracomment>SettingsPage measuring station</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buchs SG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>La Chaux-de-Fonds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lugano</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the nearest measuring station</source>
+        <extracomment>SettingsPage measuring station description</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SwissPollenBackend</name>
+    <message>
+        <source>no pollen exposure</source>
+        <translation type="unfinished">aucune exposition au pollen</translation>
+    </message>
+    <message>
+        <source>small pollen exposure</source>
+        <translation type="unfinished">faible exposition au pollen</translation>
+    </message>
+    <message>
+        <source>medium pollen exposure</source>
+        <translation type="unfinished">exposition moyenne au pollen</translation>
+    </message>
+    <message>
+        <source>high pollen exposure</source>
+        <translation type="unfinished">forte exposition au pollen</translation>
+    </message>
 </context>
 <context>
     <name>constants</name>

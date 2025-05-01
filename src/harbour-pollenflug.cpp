@@ -23,6 +23,9 @@ int main(int argc, char *argv[]) {
     FrenchPollenBackend *frenchPollenBackend = pollenflug.getFrenchPollenBackend();
     context->setContextProperty("frenchPollenBackend", frenchPollenBackend);
 
+    SwissPollenBackend *swissPollenBackend = pollenflug.getSwissPollenBackend();
+    context->setContextProperty("swissPollenBackend", swissPollenBackend);
+
     context->setContextProperty("applicationVersion", QString(VERSION_NUMBER));
 
     view->setSource(SailfishApp::pathTo("qml/harbour-pollenflug.qml"));

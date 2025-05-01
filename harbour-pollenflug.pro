@@ -35,6 +35,7 @@ DISTFILES += qml/harbour-pollenflug.qml \
     qml/components/PollenTitleRow.qml \
     qml/components/SettingsFrance.qml \
     qml/components/SettingsGermany.qml \
+    qml/components/SettingsSwitzerland.qml \
     qml/components/thirdparty/LabelText.qml \
     qml/components/thirdparty/LoadingIndicator.qml \
     qml/components/thirdparty/AppNotification.qml \

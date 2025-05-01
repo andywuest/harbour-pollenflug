@@ -9,6 +9,7 @@
 
 #include "frenchpollenbackend.h"
 #include "germanpollenbackend.h"
+#include "swisspollenbackend.h"
 
 class Pollenflug : public QObject {
     Q_OBJECT
@@ -17,6 +18,7 @@ public:
     ~Pollenflug() = default;
     GermanPollenBackend *getGermanPollenBackend();
     FrenchPollenBackend *getFrenchPollenBackend();
+    SwissPollenBackend *getSwissPollenBackend();
 
 signals:
 
@@ -29,6 +31,7 @@ private:
     // pollen backends
     GermanPollenBackend *germanPollenBackend;
     FrenchPollenBackend *frenchPollenBackend;
+    SwissPollenBackend *swissPollenBackend;
 
     QSettings settings;
 };

@@ -90,6 +90,10 @@ Page {
                         readonly property int value: Constants.COUNTRY_FRANCE
                         text: qsTr("France")
                     }
+                    MenuItem {
+                        readonly property int value: Constants.COUNTRY_SWITZERLAND
+                        text: qsTr("Switzerland")
+                    }
                 }
 
                 onCurrentIndexChanged: {
@@ -143,6 +147,12 @@ Page {
                 pollenId: Constants.RYE_ID
             }
 
+// CH: Icon fehlt
+//            PollenIconTextSwitch {
+//                pollenId: Constants.HORNBEAM_ID
+//            }
+
+// FR: Icon fehlt
 //            PollenIconTextSwitch {
 //                pollenId: Constants.NETTLE_ID
 //            }

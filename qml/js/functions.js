@@ -51,6 +51,8 @@ function getDataBackend() {
         return germanPollenBackend;
     } else if (COUNTRY_FRANCE === pollenflugSettings.country) {
         return frenchPollenBackend;
+    } else if (COUNTRY_SWITZERLAND === pollenflugSettings.country) {
+        return swissPollenBackend;
     }
     console.error("pollen backend not found !");
 }

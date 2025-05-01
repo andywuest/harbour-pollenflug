@@ -25,6 +25,7 @@ Pollenflug::Pollenflug(QObject *parent)
     // pollen backends
     germanPollenBackend = new GermanPollenBackend(this->networkAccessManager, this);
     frenchPollenBackend = new FrenchPollenBackend(this->networkAccessManager, this);
+    swissPollenBackend = new SwissPollenBackend(this->networkAccessManager, this);
 }
 
 GermanPollenBackend *Pollenflug::getGermanPollenBackend() {
@@ -33,4 +34,8 @@ GermanPollenBackend *Pollenflug::getGermanPollenBackend() {
 
 FrenchPollenBackend *Pollenflug::getFrenchPollenBackend() {
     return this->frenchPollenBackend;
+}
+
+SwissPollenBackend *Pollenflug::getSwissPollenBackend() {
+    return this->swissPollenBackend;
 }

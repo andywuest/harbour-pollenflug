@@ -49,6 +49,9 @@ Page {
             pageHeaderDescription = Constants.COUNTRY_MAP[pollenflugSettings.country];
             // TODO determine departement
             // pageHeaderDescription += " " + Constants.GERMAN_REGION_ID_TO_PART_REGIONS[region][pollenflugSettings.partRegion];
+        } else if (Constants.COUNTRY_SWITZERLAND === pollenflugSettings.country) {
+            region = pollenflugSettings.stationName;
+            pageHeaderDescription = pollenflugSettings.stationName; // TODO fixme
         }
 
         pollenHeader.description = pageHeaderDescription;
@@ -57,7 +60,7 @@ Page {
     }
 
     function pollenDataHandler(result) {
-        //console.log(result);
+        console.log(result);
         lastestPollenData = JSON.parse(result);
 
         if (pollenModel) {

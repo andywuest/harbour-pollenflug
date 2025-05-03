@@ -71,7 +71,8 @@ void PollenBackendTests::testParseSwissHtmlResponse() {
     QByteArray data = readFileData("ch_lugano.html");
     QVERIFY2(data.length() > 0, "Testfile not found!");
 
-    QString parsedResult = swissPollenBackend->parsePollenData(data);
+    swissPollenBackend->resetData();
+    QString parsedResult = swissPollenBackend->parsePollenDataStation(data);
     qDebug() << "result : " << parsedResult;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(parsedResult.toUtf8());
     QCOMPARE(jsonDocument.isObject(), true);

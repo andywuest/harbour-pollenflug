@@ -30,8 +30,13 @@ const char USER_AGENT[] = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:73.0) "
 
 const char POLLEN_API_GERMANY[] = "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json";
 const char POLLEN_API_FRANCE[] = "https://www.pollens.fr/load_vigilance_map";
+const char POLLEN_API_SWITZERLAND[] = "https://www.pollenundallergie.ch/modul/echtzeitdaten/templates/index.cfm?action=messstation&location=%1&prognoseDatum=%2";
 
 const char MAP_URL_GERMANY[] = "https://www.dwd.de/DWD/warnungen/medizin/pollen/pollen_1_%1.png";
 const char MAP_URL_FRANCE[] = "https://www.pollens.fr/uploads/historic/2021/%1.png";
+
+const char KEY_TODAY[] = "today";
+const char KEY_TOMORROW[] = "tomorrow";
+const char KEY_DAY_AFTER_TOMORROW[] = "dayAfterTomorrow";
 
 #endif // CONSTANTS_H

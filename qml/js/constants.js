@@ -129,6 +129,18 @@ function buildGermanRegionIdToPartRegions() {
 
 var GERMAN_REGION_ID_TO_PART_REGIONS = buildGermanRegionIdToPartRegions()
 
+var SWISS_STATION_MAP = buildSwissStationMap()
+
+function buildSwissStationMap() {
+    var stationCodeMap = [];
+    stationCodeMap["PBS"] = qsTr("Basel");
+    stationCodeMap["PBE"] = qsTr("Bern");
+    stationCodeMap["PBU"] = qsTr("Buchs SG");
+    stationCodeMap["PCF"] = qsTr("La Chaux-de-Fonds");
+    stationCodeMap["PLU"] = qsTr("Lugano");
+    return stationCodeMap;
+}
+
 function isDataUpToDate(jsonResponse) {
     var nextUpdate = jsonResponse.next_update.replace(" Uhr", "")
     var now = new Date()

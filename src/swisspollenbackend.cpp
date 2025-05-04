@@ -117,20 +117,19 @@ QString SwissPollenBackend::parsePollenDataStation(QByteArray stationData) {
             resultArray.push_back(pollenResultObject);
 
             const int pollenId = getPollenIdForName(pollenName);
-            if (pollenId != -1 && !handledPollenIds.contains(pollenId)) {
+
+            // only handle supported pollens
+            if (this->pollenIds.contains(pollenId) && pollenId != -1 && !handledPollenIds.contains(pollenId)) {
                 handledPollenIds.append(pollenId);
+
+                // TODO not only today
+                QMap<int, QJsonObject> todayMap = this->searchStationDataResults.value(KEY_TODAY);
+                todayMap.insert(pollenId, pollenResultObject);
+                this->searchStationDataResults.insert(KEY_TODAY, todayMap);
+
+                qDebug() << "name : " << pollenName;
+                qDebug() << "pollutionInfo : " << pollutionInfo;
             }
-
-            qDebug() << "size before : " << this->searchStationDataResults[KEY_TODAY].size();
-
-            // TODO not only today
-            QMap<int, QJsonObject> todayMap = this->searchStationDataResults.value(KEY_TODAY);
-            todayMap.insert(pollenId, pollenResultObject);
-            this->searchStationDataResults.insert(KEY_TODAY, todayMap);
-
-            qDebug() << "size after : " << this->searchStationDataResults.value(KEY_TODAY).size();
-            qDebug() << "name : " << pollenName;
-            qDebug() << "pollutionInfo : " << pollutionInfo;
         }
     }
 

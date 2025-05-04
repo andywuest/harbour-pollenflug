@@ -51,7 +51,8 @@ Page {
             // pageHeaderDescription += " " + Constants.GERMAN_REGION_ID_TO_PART_REGIONS[region][pollenflugSettings.partRegion];
         } else if (Constants.COUNTRY_SWITZERLAND === pollenflugSettings.country) {
             region = pollenflugSettings.stationName;
-            pageHeaderDescription = pollenflugSettings.stationName; // TODO fixme
+            pageHeaderDescription = Constants.COUNTRY_MAP[pollenflugSettings.country];
+            pageHeaderDescription += " - " + Constants.SWISS_STATION_MAP[pollenflugSettings.stationName];
         }
 
         pollenHeader.description = pageHeaderDescription;

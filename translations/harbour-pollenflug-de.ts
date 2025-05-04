@@ -1019,5 +1019,25 @@
         <source>Nettle</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Basel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buchs SG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>La Chaux-de-Fonds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lugano</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

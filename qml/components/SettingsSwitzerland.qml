@@ -47,12 +47,26 @@ Column {
         ListElement { value: "PBE"; label: qsTr("Bern") }
         ListElement { value: "PBU"; label: qsTr("Buchs SG") }
         ListElement { value: "PCF"; label: qsTr("La Chaux-de-Fonds") }
+        ListElement { value: "PDS"; label: qsTr("Davos") }
+        ListElement { value: "PGE"; label: qsTr("Genf") }
+        ListElement { value: "PLS"; label: qsTr("Lausanne") }
+        ListElement { value: "PLO"; label: qsTr("Locarno") }
         ListElement { value: "PLU"; label: qsTr("Lugano") }
+        ListElement { value: "PLZ"; label: qsTr("Luzern") }
+        ListElement { value: "PMU"; label: qsTr("Münsterlingen") }
+        ListElement { value: "PNE"; label: qsTr("Neuenburg") }
+        ListElement { value: "PSN"; label: qsTr("Sion") }
+        ListElement { value: "PZH"; label: qsTr("Zürich") }
     }
 
     Component.onCompleted: {
         console.log("[CH] read config value : " + pollenflugSettings.stationName);
-        stationNameSwitzerlandComboBox.currentIndex = pollenflugSettings.stationName;
+        for (var si = 0; si < stationNameMenu.children.length; si++) {
+            if (stationNameMenu.children[si].value === pollenflugSettings.stationName) {
+                console.log("[CH] stationName index : " + si);
+                stationNameSwitzerlandComboBox.currentIndex = si;
+            }
+        }
     }
 
 }

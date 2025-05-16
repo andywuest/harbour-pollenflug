@@ -37,7 +37,7 @@ void AbstractBackend::handleFetchPollenDataFinished() {
         return;
     }
 
-    emit pollenDataAvailable(parsePollenData(reply->readAll()));
+    emit pollenDataAvailable(parsePollenData(reply->readAll(), reply));
 }
 
 void AbstractBackend::addPollenData(int pollenId, const QString &jsonLookupKey, const QString &pollenMapKey) {

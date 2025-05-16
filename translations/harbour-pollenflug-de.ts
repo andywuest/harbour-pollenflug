@@ -801,6 +801,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Select the nearest measuring station</source>
+        <extracomment>SettingsPage measuring station description</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Basel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -817,12 +822,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Davos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Genf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lausanne</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locarno</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Lugano</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select the nearest measuring station</source>
-        <extracomment>SettingsPage measuring station description</extracomment>
+        <source>Luzern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Münsterlingen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Neuenburg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zürich</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1037,6 +1073,42 @@
     </message>
     <message>
         <source>Lugano</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Davos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Genf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lausanne</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locarno</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Luzern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Münsterlingen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Neuenburg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zürich</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

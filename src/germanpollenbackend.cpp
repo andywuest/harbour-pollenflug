@@ -90,7 +90,7 @@ QJsonObject GermanPollenBackend::createResultPollenObject(const QJsonObject &pol
     return jsonObject;
 }
 
-QString GermanPollenBackend::parsePollenData(QByteArray searchReply) {
+QString GermanPollenBackend::parsePollenData(QByteArray searchReply, QNetworkReply *reply) {
     qDebug() << "GermanPollenBackend::parsePollenData";
     QJsonDocument jsonDocument = QJsonDocument::fromJson(searchReply);
     if (!jsonDocument.isObject()) {

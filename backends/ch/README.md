@@ -17,6 +17,16 @@ https://www.pollenundallergie.ch/modul/echtzeitdaten/templates/index.cfm?action=
 
 https://www.pollenundallergie.ch/modul/echtzeitdaten/templates/index.cfm?action=messstation&location=PVI&prognoseDatum=2025-04-27
 
+PLS: Lausanne
+PLO: Locarno
+PLU: Luzern
+PMU: Münsterlingen
+PNE: Neuenburg
+PSN: Sion
+PZH: Zürich
+
+
+
 # Abstufungen
 
 Belastung: keine - schwach - mässig - stark

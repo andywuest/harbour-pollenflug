@@ -40,14 +40,21 @@ SwissPollenBackend::~SwissPollenBackend() {
 void SwissPollenBackend::resetData() {
     this->handledPollenIds.clear();
     this->searchStationDataResults.clear();
-
-//    auto todayMap = QMap<int, QJsonObject>();
-//    todayMap.insert(Pollen::Grass, QJsonObject());
-//    todayMap.insert(Pollen::Hazel, QJsonObject());
-
     this->searchStationDataResults.insert(KEY_TODAY, QMap<int, QJsonObject>());
-    //    this->searchStationDataResults[KEY_TOMORROW] = QMap<Pollen, QJsonObject>();
-    //    this->searchStationDataResults[KEY_DAY_AFTER_TOMORROW] = QMap<Pollen, QJsonObject>();
+    this->searchStationDataResults.insert(KEY_TOMORROW, QMap<int, QJsonObject>());
+    this->searchStationDataResults.insert(KEY_DAY_AFTER_TOMORROW, QMap<int, QJsonObject>());
+}
+
+QString SwissPollenBackend::getDayNameForOffset(const int offset) {
+    switch (offset) {
+    case 0:
+        return QString(KEY_TODAY);
+    case 1:
+        return QString(KEY_TOMORROW);
+    case 2:
+        return QString(KEY_DAY_AFTER_TOMORROW);
+    }
+    return "";
 }
 
 void SwissPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId) {
@@ -58,19 +65,19 @@ void SwissPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString re
     this->stationName = regionId;
 
     resetData();
-//    this->handledPollenIds.clear();
-//    this->searchStationDataResults.clear();
-//    this->searchStationDataResults[KEY_TODAY] = QMap<int, QJsonObject>();
-//    this->searchStationDataResults[KEY_TOMORROW] = QMap<Pollen, QJsonObject>();
-//    this->searchStationDataResults[KEY_DAY_AFTER_TOMORROW] = QMap<Pollen, QJsonObject>();
 
-    for (int i = 0; i < this->numberOfRequestedDays; i++) {
-        const QString date = QDate::currentDate().addDays(i).toString("yyyy-MM-dd");
+    for (int offset = 0; offset < this->numberOfRequestedDays; offset++) {
+        const QString date = QDate::currentDate().addDays(offset).toString("yyyy-MM-dd");
         qDebug() << "looking up day : " << date;
-        QNetworkReply *reply = executeGetRequest(QUrl(QString(POLLEN_API_SWITZERLAND) //
-                                                      .arg(this->stationName, date))); //
+        QNetworkReply *reply = executeGetRequest(QUrl(QString(POLLEN_API_SWITZERLAND)      //
+                                                          .arg(this->stationName, date))); //
 
-        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleRequestError(QNetworkReply::NetworkError)));
+        reply->setProperty(NETWORK_REPLY_PROPERTY_REQUEST_DAY, getDayNameForOffset(offset));
+
+        connect(reply,
+                SIGNAL(error(QNetworkReply::NetworkError)),
+                this,
+                SLOT(handleRequestError(QNetworkReply::NetworkError)));
         connect(reply, SIGNAL(finished()), this, SLOT(handleFetchPollenDataFinished()));
     }
 }
@@ -85,11 +92,13 @@ int SwissPollenBackend::getPollenIdForName(QString pollenName) {
     return -1;
 }
 
-QString SwissPollenBackend::parsePollenDataStation(QByteArray stationData) {
+QString SwissPollenBackend::parsePollenDataStation(QByteArray stationData, QString dayName) {
     qDebug() << "SwissPollenBackend::parsePollenDataStation";
     QJsonArray resultArray;
     QJsonDocument resultDocument;
     QJsonObject resultObject;
+
+    // qDebug() << "data: " << QString(stationData);
 
     const QStringList tokens = QString(stationData)                                                       //
                                    .replace(QRegExp(".*<div class=\"data-box mb-0 pb-0 pb-lg-3\" >"), "") //
@@ -118,17 +127,22 @@ QString SwissPollenBackend::parsePollenDataStation(QByteArray stationData) {
 
             const int pollenId = getPollenIdForName(pollenName);
 
+            qDebug() << " current pollenId " << pollenId;
+
             // only handle supported pollens
-            if (this->pollenIds.contains(pollenId) && pollenId != -1 && !handledPollenIds.contains(pollenId)) {
-                handledPollenIds.append(pollenId);
+            if (this->pollenIds.contains(pollenId) && pollenId != -1) {
+                // update handledPollenIds -> only once, independent of the currently handled dayName
+                if (!handledPollenIds.contains(pollenId)) {
+                    handledPollenIds.append(pollenId);
+                }
 
                 // TODO not only today
-                QMap<int, QJsonObject> todayMap = this->searchStationDataResults.value(KEY_TODAY);
+                QMap<int, QJsonObject> todayMap = this->searchStationDataResults.value(dayName);
                 todayMap.insert(pollenId, pollenResultObject);
-                this->searchStationDataResults.insert(KEY_TODAY, todayMap);
+                this->searchStationDataResults.insert(dayName, todayMap);
 
-                qDebug() << "name : " << pollenName;
-                qDebug() << "pollutionInfo : " << pollutionInfo;
+                qDebug() << dayName << ", name : " << pollenName;
+                qDebug() << dayName << ", pollutionInfo : " << pollutionInfo;
             }
         }
     }
@@ -139,36 +153,42 @@ QString SwissPollenBackend::parsePollenDataStation(QByteArray stationData) {
     return dataToString;
 }
 
-QString SwissPollenBackend::parsePollenData(QByteArray searchReply) {
+QString SwissPollenBackend::parsePollenData(QByteArray searchReply, QNetworkReply *reply) {
     qDebug() << "SwissPollenBackend::parsePollenData";
+    const QString requestDayName = reply->property(NETWORK_REPLY_PROPERTY_REQUEST_DAY).toString();
+    qDebug() << "handling response : " << requestDayName << ", size: " << searchReply.length();
+
     QJsonDocument resultDocument;
 
     QJsonObject resultObject;
 
-    parsePollenDataStation(searchReply);
+    parsePollenDataStation(searchReply, requestDayName);
 
     if (this->searchStationDataResults.size() == this->numberOfRequestedDays) {
         QJsonObject resultObject;
-        resultObject.insert("lastUpdate", ""); // not supported
-        resultObject.insert("nextUpdate", ""); // not suppored
-        resultObject.insert("scaleElements", 4);               // predefined
-        resultObject.insert("maxDaysPrediction", 3);           // predefined
+        resultObject.insert("lastUpdate", "");            // not supported
+        resultObject.insert("nextUpdate", "");            // not suppored
+        resultObject.insert("scaleElements", 4);          // predefined
+        resultObject.insert("maxDaysPrediction", 3);      // predefined
         resultObject.insert("region", this->stationName); // dynamic from request
 
         QJsonArray resultArray;
 
-        // add for each pollen an entry
-        for(const int pollenId : handledPollenIds) {
-           QJsonObject pollenResult;
+        // add an entry for each handled pollenId
+        for (const int pollenId : handledPollenIds) {
+            QJsonObject pollenResult;
+            pollenResult.insert("id", pollenId);
+            pollenResult.insert("label", getPollenName(pollenId));
+            pollenResult.insert("todayMapUrl", ""); // not supported (TODO check)
 
-           // handle today
-           const QMap<int, QJsonObject> todayMap = this->searchStationDataResults[KEY_TODAY];
-           pollenResult.insert("id", pollenId);
-           pollenResult.insert("label", getPollenName(pollenId));
-           pollenResult.insert("todayMapUrl", ""); // not supported (TODO check)
-           pollenResult.insert(KEY_TODAY, todayMap[pollenId]);
+            for (int offset = 0; offset < this->numberOfRequestedDays; offset++) {
+                const QString currentDayName = this->getDayNameForOffset(offset);
+                const QMap<int, QJsonObject> dayMap = this->searchStationDataResults[currentDayName];
+                qDebug() << "insert for " << currentDayName;
+                pollenResult.insert(currentDayName, dayMap[pollenId]);
+            }
 
-           resultArray.push_back(pollenResult);
+            resultArray.push_back(pollenResult);
         }
 
         resultObject.insert("pollenData", resultArray);
@@ -182,5 +202,3 @@ QString SwissPollenBackend::parsePollenData(QByteArray searchReply) {
     // if we are not yet finished, only return empty response
     return "{}";
 }
-
-

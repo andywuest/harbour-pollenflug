@@ -137,7 +137,16 @@ function buildSwissStationMap() {
     stationCodeMap["PBE"] = qsTr("Bern");
     stationCodeMap["PBU"] = qsTr("Buchs SG");
     stationCodeMap["PCF"] = qsTr("La Chaux-de-Fonds");
+    stationCodeMap["PDS"] = qsTr("Davos");
+    stationCodeMap["PGE"] = qsTr("Genf");
+    stationCodeMap["PLS"] = qsTr("Lausanne");
+    stationCodeMap["PLO"] = qsTr("Locarno");
     stationCodeMap["PLU"] = qsTr("Lugano");
+    stationCodeMap["PLZ"] = qsTr("Luzern");
+    stationCodeMap["PMU"] = qsTr("Münsterlingen");
+    stationCodeMap["PNE"] = qsTr("Neuenburg");
+    stationCodeMap["PSN"] = qsTr("Sion");
+    stationCodeMap["PZH"] = qsTr("Zürich");
     return stationCodeMap;
 }
 

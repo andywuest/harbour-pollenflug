@@ -15,17 +15,17 @@ public:
     Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
 
 protected:
-    QString parsePollenData(QByteArray searchReply) override;
-    QString parsePollenDataStation(QByteArray stationData);
+    QString parsePollenData(QByteArray searchReply, QNetworkReply *reply) override;
+    QString parsePollenDataStation(QByteArray stationData, const QString dayName);
     void resetData();
     int getPollenIdForName(QString pollenName);
 
 private:
-// TODO 3
-    int numberOfRequestedDays = 1; // swiss backend provides the next three days
+    const int numberOfRequestedDays = 3;                            // swiss backend provides the next three days
     QMap<QString, QMap<int, QJsonObject>> searchStationDataResults; // first key is the day
     QList<int> handledPollenIds;
     QString stationName;
+    QString getDayNameForOffset(const int offset);
 
 #ifdef UNIT_TEST
     friend class PollenBackendTests; // to test non public methods

@@ -61,7 +61,13 @@ Page {
     }
 
     function pollenDataHandler(result) {
-        console.log(result);
+        console.log("[OverviewPage] pollen result: " + result);
+
+        // temp. emits return empty results - ignore them
+        if (result === "{}") {
+            return;
+        }
+
         lastestPollenData = JSON.parse(result);
 
         if (pollenModel) {

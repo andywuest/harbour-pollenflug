@@ -15,7 +15,7 @@ public:
     Q_INVOKABLE void fetchPollenData(const QList<int> &pollenIds, QString regionId, QString partRegionId);
 
 protected:
-    QString parsePollenData(QByteArray searchReply) override;
+    QString parsePollenData(QByteArray searchReply, QNetworkReply *reply) override;
     QJsonObject createResultPollenObject(const QJsonObject &pollenSourceNode, const QString &value);
 
 private:

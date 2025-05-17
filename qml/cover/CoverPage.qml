@@ -46,6 +46,8 @@ CoverBackground {
             partRegion = Functions.calculatePartRegion(region, pollenflugSettings.partRegion);
         } else if (Constants.COUNTRY_FRANCE === pollenflugSettings.country) {
             region = pollenflugSettings.departement;
+        } else if (Constants.COUNTRY_SWITZERLAND === pollenflugSettings.country) {
+            region = pollenflugSettings.stationName;
         }
 
 //        var region = Functions.calculateRegion(pollenflugSettings.region)
@@ -58,7 +60,13 @@ CoverBackground {
     }
 
     function pollenDataAvailable(result) {
-        console.log(result)
+        console.log("[Cover] result : " + result)
+
+        // temp. emits return empty results - ignore them
+        if (result === "{}") {
+            return;
+        }
+
         lastestPollenData = JSON.parse(result)
 
         if (coverModel) {

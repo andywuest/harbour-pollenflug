@@ -12,9 +12,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* xx.xx.2025 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.2.3-1
-- aarch64 release
+* 17.05.2025 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.3.0-1
+- added aarch64 release
 - added new about page.
+- added swiss backend
 
 * 28.06.2021 Andreas Wüst <andreas.wuest.freelancer@gmail.com> 0.2.2-1
 - show page header (with pollen name) for page with map

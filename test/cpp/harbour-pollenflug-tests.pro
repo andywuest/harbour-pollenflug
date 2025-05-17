@@ -14,6 +14,7 @@ include(../../harbour-pollenflug.pri)
 TARGET = PollenBackendTest
 
 DISTFILES += \
+    testdata/ch_lugano.html \
     testdata/fr.json
 
 DEFINES += UNIT_TEST

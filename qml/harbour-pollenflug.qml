@@ -23,6 +23,9 @@ ApplicationWindow {
         // france
         property string departement: ""
 
+        // switzerland
+        property string stationName: ""
+
         property bool isMugwortSelected: false // Beifuß
         property bool isBirchSelected: false // Birke
         property bool isAlderSelected: false // Erle

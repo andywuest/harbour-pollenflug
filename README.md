@@ -3,8 +3,8 @@
 This repository contains the sources of the pollenflug application for Sailfish OS.
 
 The pollenflug application provides information about various allergenes in your
-region and shows the current situation. So far there is a backend for Germany and
-France. Other countries may follow, if i can find a source for the data.
+region and shows the current situation. So far there is a backend for Germany,
+France and Switzerland. Other countries may follow, if i can find a source for the data.
 
 ## Features
 
@@ -13,7 +13,6 @@ France. Other countries may follow, if i can find a source for the data.
 - Show allergen situtation for your region with a forecast
 - Refresh the data
 - Display country map for the selected allergen
-
 
 ## Author
 Andreas Wüst [andreas.wuest.freelancer@gmail.com](mailto:andreas.wuest.freelancer@gmail.com)
@@ -24,7 +23,6 @@ Andreas Wüst [andreas.wuest.freelancer@gmail.com](mailto:andreas.wuest.freelanc
 ![Settings](/screenshots/settings.png?raw=true "Settings")
 ![Cover page](/screenshots/cover.png?raw=true "Cover page")
 ![Pollen map](/screenshots/pollenmap.png?raw=true "Pollen map")
-
 
 ## Build
 Simply clone this repository.
@@ -37,5 +35,3 @@ Licensed under GNU GPLv3
 Watchlist was translated to several languages. Thanks to all contributors!
 - German: me, monkeyisland1992
 - French: Quentin Pagès
-
-

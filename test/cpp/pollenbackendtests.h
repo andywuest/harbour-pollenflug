@@ -3,6 +3,7 @@
 
 #include "src/frenchpollenbackend.h"
 #include "src/germanpollenbackend.h"
+#include "src/swisspollenbackend.h"
 #include <QObject>
 
 class PollenBackendTests : public QObject {
@@ -11,6 +12,11 @@ class PollenBackendTests : public QObject {
 private:
     FrenchPollenBackend *frenchPollenBackend;
     GermanPollenBackend *germanPollenBackend;
+    SwissPollenBackend *swissPollenBackend;
+
+protected:
+    QByteArray readFileData(const QString &fileName);
+
 private slots:
     void init();
     void testParseFrenchPollenData();
@@ -18,6 +24,10 @@ private slots:
     void testRemoveFrenchUnsupportedPollens();
     // TODO add german tests
     void testIsGermanPollenDataProvided();
+    // swiss tests
+    void testParseSwissHtmlResponse();
+    void testGetPollenIdForName();
+    void testGetDayNameForOffset();
 };
 
 #endif // POLLEN_BACKEND_TEST_H

@@ -69,7 +69,7 @@ void FrenchPollenBackend::fetchPollenData(const QList<int> &pollenIds, QString r
     connect(reply, SIGNAL(finished()), this, SLOT(handleFetchPollenDataFinished()));
 }
 
-QString FrenchPollenBackend::parsePollenData(QByteArray searchReply) {
+QString FrenchPollenBackend::parsePollenData(QByteArray searchReply, QNetworkReply *reply) {
     qDebug() << "FrenchPollenBackend::parsePollenData";
     QJsonDocument jsonDocument = QJsonDocument::fromJson(searchReply);
     if (!jsonDocument.isObject()) {

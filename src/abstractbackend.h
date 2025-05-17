@@ -39,7 +39,7 @@ protected:
     QList<int> pollenIds;
 
     QNetworkReply *executeGetRequest(const QUrl &url);
-    virtual QString parsePollenData(QByteArray searchReply) = 0;
+    virtual QString parsePollenData(QByteArray searchReply, QNetworkReply *reply) = 0;
     void addPollenData(int pollenId, const QString &jsonLookupKey, const QString &pollenMapKey);
 };
 

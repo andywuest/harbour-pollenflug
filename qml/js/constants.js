@@ -2,10 +2,12 @@
 // supported countries - order of countries in settings comboBox
 var COUNTRY_GERMANY = 1;
 var COUNTRY_FRANCE = 2;
+var COUNTRY_SWITZERLAND = 3;
 
 var COUNTRY_MAP = [];
 COUNTRY_MAP[1] = "Germany";
 COUNTRY_MAP[2] = "France";
+COUNTRY_MAP[3] = "Switzerland";
 
 var MUGWORT_ID = 1;
 var BIRCH_ID = 2;
@@ -126,6 +128,27 @@ function buildGermanRegionIdToPartRegions() {
 }
 
 var GERMAN_REGION_ID_TO_PART_REGIONS = buildGermanRegionIdToPartRegions()
+
+var SWISS_STATION_MAP = buildSwissStationMap()
+
+function buildSwissStationMap() {
+    var stationCodeMap = [];
+    stationCodeMap["PBS"] = qsTr("Basel");
+    stationCodeMap["PBE"] = qsTr("Bern");
+    stationCodeMap["PBU"] = qsTr("Buchs SG");
+    stationCodeMap["PCF"] = qsTr("La Chaux-de-Fonds");
+    stationCodeMap["PDS"] = qsTr("Davos");
+    stationCodeMap["PGE"] = qsTr("Genf");
+    stationCodeMap["PLS"] = qsTr("Lausanne");
+    stationCodeMap["PLO"] = qsTr("Locarno");
+    stationCodeMap["PLU"] = qsTr("Lugano");
+    stationCodeMap["PLZ"] = qsTr("Luzern");
+    stationCodeMap["PMU"] = qsTr("Münsterlingen");
+    stationCodeMap["PNE"] = qsTr("Neuenburg");
+    stationCodeMap["PSN"] = qsTr("Sion");
+    stationCodeMap["PZH"] = qsTr("Zürich");
+    return stationCodeMap;
+}
 
 function isDataUpToDate(jsonResponse) {
     var nextUpdate = jsonResponse.next_update.replace(" Uhr", "")

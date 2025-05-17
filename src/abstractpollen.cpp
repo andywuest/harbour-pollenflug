@@ -7,6 +7,10 @@ AbstractPollen::AbstractPollen(int pollenId) {
     this->pollenId = pollenId;
 }
 
+int AbstractPollen::getPollenId() {
+    return this->pollenId;
+}
+
 QString AbstractPollen::getPollenName(int pollenId) {
     switch (pollenId) {
     case Pollen::Mugwort:

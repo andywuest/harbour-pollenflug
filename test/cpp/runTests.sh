@@ -8,7 +8,7 @@ find . -name "moc_*" -exec rm  {} \;
 find . -name "Makefile" -exec rm  {} \;
 
 qmake -o Makefile harbour-pollenflug-tests.pro
-make
+make VERBOSE=1
 
 cat Makefile
 ls -l Pollen*

@@ -880,6 +880,10 @@
         <source>high pollen exposure</source>
         <translation type="unfinished">forte exposition au pollen</translation>
     </message>
+    <message>
+        <source>very high pollen exposure</source>
+        <translation type="unfinished">exposition au pollen très élévée</translation>
+    </message>
 </context>
 <context>
     <name>constants</name>

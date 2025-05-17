@@ -21,16 +21,18 @@ SwissPollenBackend::SwissPollenBackend(QNetworkAccessManager *manager, QObject *
     addPollenData(Pollen::Grass, "Gräser", "6");
 
     // used for label - CH has the following categories keine - schwach - mässig - stark
-    this->pollutionIndexToLabelMap.insert("keine", tr("no pollen exposure"));      // keine Belastung
-    this->pollutionIndexToLabelMap.insert("schwach", tr("small pollen exposure")); // schwache Belastung
-    this->pollutionIndexToLabelMap.insert("mässig", tr("medium pollen exposure")); // mässig Belastung
-    this->pollutionIndexToLabelMap.insert("stark", tr("high pollen exposure"));    // starke Belastung
+    this->pollutionIndexToLabelMap.insert("keine", tr("no pollen exposure"));             // keine Belastung
+    this->pollutionIndexToLabelMap.insert("schwach", tr("small pollen exposure"));        // schwache Belastung
+    this->pollutionIndexToLabelMap.insert("mässig", tr("medium pollen exposure"));        // mässig Belastung
+    this->pollutionIndexToLabelMap.insert("stark", tr("high pollen exposure"));           // starke Belastung
+    this->pollutionIndexToLabelMap.insert("sehr stark", tr("very high pollen exposure")); // sehr starke Belastung
 
     // used for scale index
     this->pollutionIndexToIndexMap.insert("keine", 0);
     this->pollutionIndexToIndexMap.insert("schwach", 2);
-    this->pollutionIndexToIndexMap.insert("mässig", 4);
-    this->pollutionIndexToIndexMap.insert("stark", 6);
+    this->pollutionIndexToIndexMap.insert("mässig", 3);
+    this->pollutionIndexToIndexMap.insert("stark", 5);
+    this->pollutionIndexToIndexMap.insert("sehr stark", 6);
 }
 
 SwissPollenBackend::~SwissPollenBackend() {
@@ -168,7 +170,7 @@ QString SwissPollenBackend::parsePollenData(QByteArray searchReply, QNetworkRepl
         QJsonObject resultObject;
         resultObject.insert("lastUpdate", "");            // not supported
         resultObject.insert("nextUpdate", "");            // not suppored
-        resultObject.insert("scaleElements", 4);          // predefined
+        resultObject.insert("scaleElements", 5);          // predefined
         resultObject.insert("maxDaysPrediction", 3);      // predefined
         resultObject.insert("region", this->stationName); // dynamic from request
 

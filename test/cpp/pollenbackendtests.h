@@ -26,6 +26,8 @@ private slots:
     void testIsGermanPollenDataProvided();
     // swiss tests
     void testParseSwissHtmlResponse();
+    void testGetPollenIdForName();
+    void testGetDayNameForOffset();
 };
 
 #endif // POLLEN_BACKEND_TEST_H

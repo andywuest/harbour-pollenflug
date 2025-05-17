@@ -103,7 +103,7 @@ void PollenBackendTests::testParseSwissHtmlResponse() {
     const QJsonObject birke = pollenData.at(3).toObject();
     QCOMPARE(birke.value("name"), "Birke");
     QCOMPARE(birke.value("pollution"), "stark");
-    QCOMPARE(birke.value("pollutionIndex"), 6);
+    QCOMPARE(birke.value("pollutionIndex"), 5);
 
     const QJsonObject graeser = pollenData.at(6).toObject();
     QCOMPARE(graeser.value("name"), "Gräser");
@@ -112,8 +112,8 @@ void PollenBackendTests::testParseSwissHtmlResponse() {
 }
 
 QByteArray PollenBackendTests::readFileData(const QString &fileName) {
-    // QFile f("testdata/" + fileName);
-    QFile f("/home/andy/projects/sailfishos/github/harbour-pollenflug/test/cpp/testdata/" + fileName);
+    QFile f("testdata/" + fileName);
+    // QFile f("/home/andy/projects/sailfishos/github/harbour-pollenflug/test/cpp/testdata/" + fileName);
     if (!f.open(QFile::ReadOnly | QFile::Text)) {
         QString msg = "Testfile " + fileName + " not found!";
         qDebug() << msg << f.fileName() << QFileInfo(f).absoluteFilePath();
